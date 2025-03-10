@@ -15,18 +15,15 @@ import retrofit2.Response
 
 class LoginActivity : AppCompatActivity() {
 
-    // Se crea la instancia de la actividad
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.login_layout)
 
-        // Se le agrega funcionalidad al boton de siguiente
         val btnNext = findViewById<Button>(R.id.boton_enviar)
         btnNext.setOnClickListener {
             validarLogin()
         }
 
-        // Se le agrega funcionalidad al boton de registro
         val btnSignIn = findViewById<Button>(R.id.boton_registro)
         btnSignIn.setOnClickListener {
             irRegistro()
@@ -41,7 +38,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun irMenu() {
-        val intent = Intent(this, MainMenuActivity::class.java)
+        val intent = Intent(this, MainMenuSchoolActivity::class.java)
         startActivity(intent)
         finish()
     }
@@ -64,13 +61,10 @@ class LoginActivity : AppCompatActivity() {
         apiService.login(loginRequest).enqueue(object : Callback<LoginResponse> {
             override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
                 if (response.isSuccessful) {
-                    // Si el login es exitoso
                     val loginResponse = response.body()
                     if (loginResponse != null && loginResponse.success) {
-                        // Redirigir al menu principal
                         irMenu()
                     } else {
-                        // Mostrar el mensaje de error si no es exitoso
                         Toast.makeText(this@LoginActivity, loginResponse?.message ?: "Error desconocido", Toast.LENGTH_SHORT).show()
                     }
                 } else {
@@ -79,7 +73,6 @@ class LoginActivity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
-                // En caso de que falle la llamada a la API
                 Toast.makeText(this@LoginActivity, "Error: ${t.message}", Toast.LENGTH_SHORT).show()
             }
         })
