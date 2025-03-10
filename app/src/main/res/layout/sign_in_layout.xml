@@ -22,95 +22,12 @@
             android:textSize="24sp"
             android:textStyle="bold" />
 
-        <EditText
-            android:id="@+id/InputCorreo"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="50dp"
-            android:layout_marginRight="20dp"
-            android:ems="10"
-            android:fontFamily="sans-serif"
-            android:hint="Correo Electrónico"
-            android:inputType="text" />
+        <!-- Empieza como invisible -->
 
-        <EditText
-            android:id="@+id/inputNombre"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:ems="10"
-            android:fontFamily="sans-serif"
-            android:hint="Nombre"
-            android:inputType="text" />
-
-        <EditText
-            android:id="@+id/inputTelefono"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:ems="10"
-            android:fontFamily="sans-serif"
-            android:hint="Telefono"
-            android:inputType="text" />
-
-        <EditText
-            android:id="@+id/inputDepartamento"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:ems="10"
-            android:fontFamily="sans-serif"
-            android:hint="Departamento Académico"
-            android:visibility="gone" /> <!-- Empieza como invisible -->
-
-        <EditText
-            android:id="@+id/inputNivelAcademico"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:ems="10"
-            android:fontFamily="sans-serif"
-            android:hint="Nivel Académico"
-            android:visibility="gone" /> <!-- Empieza como invisible -->
+        <!-- Empieza como invisible -->
 
 
-        <EditText
-            android:id="@+id/inputContacto"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:ems="10"
-            android:fontFamily="sans-serif"
-            android:hint="Contacto"
-            android:visibility="gone" /> <!-- Empieza como invisible -->
-
-        <EditText
-            android:id="@+id/InputContraseña"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:ems="10"
-            android:fontFamily="sans-serif"
-            android:hint="Contraseña"
-            android:inputType="textPassword" />
-
-        <EditText
-            android:id="@+id/InputRepetirContraseña"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:ems="10"
-            android:fontFamily="sans-serif"
-            android:hint="Repetir Contraseña"
-            android:inputType="textPassword" />
+        <!-- Empieza como invisible -->
 
         <RadioGroup
             android:id="@+id/radioGroup"
@@ -142,21 +59,9 @@
                 android:text="Escuela/Departamento"
                 android:textSize="12dp" />
 
-            <RadioButton
-                android:id="@+id/radioAdmin"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:text="Administrador"
-                android:textSize="12dp" />
-
         </RadioGroup>
 
-        <Spinner
-            android:id="@+id/spinnerOptions"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="gone" /> <!-- Empieza como invisible -->
+        <!-- Empieza como invisible -->
 
         <Button
             android:id="@+id/boton_enviar"
@@ -165,7 +70,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="50dp"
             android:background="@drawable/skyblue_button"
-            android:text="Enviar" />
+            android:text="Siguiente" />
 
         <Button
             android:id="@+id/boton_login"

@@ -19,6 +19,15 @@
             android:name=".SignInActivity"
             android:exported="false"/>
         <activity
+            android:name="SignInStudentActivity"
+            android:exported="false"/>
+        <activity
+            android:name="SignInProfessorActivity"
+            android:exported="false"/>
+        <activity
+            android:name="SignInSchoolActivity"
+            android:exported="false"/>
+        <activity
             android:name=".LoginActivity"
             android:exported="true">
             <intent-filter>
