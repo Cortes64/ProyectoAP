@@ -6,6 +6,7 @@ import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
 class SignInSchoolActivity : AppCompatActivity()  {
@@ -33,6 +34,35 @@ class SignInSchoolActivity : AppCompatActivity()  {
         }
     }
 
+    // validaciones para el SignIn
+
+    private fun camposVacios(
+        correo: String,
+        nombre: String,
+        facultad: String,
+        telefono: String,
+        contrasena: String,
+        confirmarContrasena: String
+    ): Boolean {
+        return correo.isEmpty() ||
+                nombre.isEmpty() ||
+                facultad.isEmpty() ||
+                telefono.isEmpty() ||
+                contrasena.isEmpty() ||
+                confirmarContrasena.isEmpty()
+    }
+
+    private fun correoValido(correo: String): Boolean {
+        return correo.endsWith("@itcr.ac.cr") || correo.endsWith("tec.ac.cr")
+    }
+
+    private fun confirmarContrasenas(
+        contrasena: String,
+        confirmarContrasena: String
+    ): Boolean {
+        return contrasena == confirmarContrasena
+    }
+
     // Acciones que provocan los botones
 
     private fun validarRegistro() {
@@ -52,7 +82,27 @@ class SignInSchoolActivity : AppCompatActivity()  {
         val confirmarContrasena = campoConfirmarContrasena.text.toString()
         val carrera = spinner.selectedItem.toString()
 
+        if (camposVacios(
+                correo,
+                nombre,
+                facultad,
+                telefono,
+                contrasena,
+                confirmarContrasena
+        )) {
+            Toast.makeText(this, "Por favor, complete todos los campos", Toast.LENGTH_SHORT).show()
+            return
+        }
 
+        if (!correoValido(correo)) {
+            Toast.makeText(this, "El correo ingresado no es válido", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        if (!confirmarContrasenas(contrasena, confirmarContrasena)) {
+            Toast.makeText(this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show()
+            return
+        }
     }
 
     private fun irLogin() {

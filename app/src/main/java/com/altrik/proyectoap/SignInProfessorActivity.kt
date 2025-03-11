@@ -6,6 +6,11 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import android.content.Intent
+import android.net.Uri
+import android.view.View
+import androidx.core.net.toUri
+import android.util.Log
+import kotlin.concurrent.thread
 
 class SignInProfessorActivity : AppCompatActivity()  {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,6 +30,18 @@ class SignInProfessorActivity : AppCompatActivity()  {
 
     //Validaciones para el SignIn
 
+    /**
+     * Valida que los campos no estén vacíos
+     *
+     * @param correo Correo del profesor
+     * @param nombre Nombre del profesor
+     * @param telefono Teléfono del profesor
+     * @param departamento Departamento del profesor
+     * @param contrasena Contraseña del profesor
+     * @param confirmarContrasena Confirmación de la contraseña del profesor
+     *
+     * @return True si los campos están vacíos, false en caso contrario
+     */
     private fun camposVacios(
         correo: String,
         nombre: String,
@@ -41,10 +58,25 @@ class SignInProfessorActivity : AppCompatActivity()  {
                 confirmarContrasena.isEmpty()
     }
 
+    /**
+     * Valida que el correo sea válido
+     *
+     * @param correo Correo del profesor
+     *
+     * @return True si el correo es válido, false en caso contrario
+     */
     private fun correoValido(correo: String): Boolean {
-        return correo.endsWith("@itcr.ac.cr")
+        return correo.endsWith("@itcr.ac.cr") || correo.endsWith("tec.ac.cr")
     }
 
+    /**
+     * Valida que las contraseñas sean iguales
+     *
+     * @param contrasena Contraseña del profesor
+     * @param confirmarContrasena Confirmación de la contraseña del profesor
+     *
+     * @return True si las contraseñas son iguales, false en caso contrario
+     */
     private fun confirmarContrasenas(
         contrasena: String,
         confirmarContrasena: String
@@ -90,8 +122,6 @@ class SignInProfessorActivity : AppCompatActivity()  {
             Toast.makeText(this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show()
             return
         }
-
-
     }
 
     private fun irLogin() {
