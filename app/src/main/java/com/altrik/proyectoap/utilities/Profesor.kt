@@ -17,6 +17,6 @@ class Profesor(
                 "correo='$correo', " +
                 "nombre='$nombre', " +
                 "telefono='$telefono', " +
-                "departamentoAcademico='$departamentoAcademico', "
+                "departamentoAcademico='$departamentoAcademico'"
     }
 }
