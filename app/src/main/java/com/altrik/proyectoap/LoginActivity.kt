@@ -63,7 +63,7 @@ class LoginActivity : AppCompatActivity() {
                 if (response.isSuccessful) {
                     val loginResponse = response.body()
                     if (loginResponse != null && loginResponse.success) {
-                        irMenu()
+                        Toast.makeText(this@LoginActivity, "Login exitoso", Toast.LENGTH_SHORT).show()
                     } else {
                         Toast.makeText(this@LoginActivity, loginResponse?.message ?: "Error desconocido", Toast.LENGTH_SHORT).show()
                     }
