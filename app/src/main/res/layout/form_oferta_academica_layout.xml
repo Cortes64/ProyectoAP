@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="300sp"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@drawable/rounded_login_background"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/Título"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="serif"
+            android:text="Oferta Académica"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/InputCorreo"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginRight="20dp"
+            android:ems="10"
+            android:fontFamily="sans-serif"
+            android:hint="Nombre"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/inputObjetivos"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:ems="10"
+            android:fontFamily="sans-serif"
+            android:hint="Objetivos"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/inputVacantes"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:ems="10"
+            android:fontFamily="sans-serif"
+            android:hint="Cantidad de Vacantes"
+            android:inputType="number" />
+
+        <EditText
+            android:id="@+id/inputDuracion"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:ems="10"
+            android:fontFamily="sans-serif"
+            android:hint="Duración" />
+
+        <EditText
+            android:id="@+id/inputInicio"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:ems="10"
+            android:fontFamily="sans-serif"
+            android:hint="Hora Inicio" />
+
+        <EditText
+            android:id="@+id/inputFinal"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:ems="10"
+            android:fontFamily="sans-serif"
+            android:hint="Hora Final" />
+
+        <EditText
+            android:id="@+id/inputBeneficio"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:ems="10"
+            android:fontFamily="sans-serif"
+            android:hint="Beneficio económico" />
+
+        <EditText
+            android:id="@+id/inputCertificaciones"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:ems="10"
+            android:fontFamily="sans-serif"
+            android:hint="Certificaciones" />
+
+        <EditText
+            android:id="@+id/inputRequisitos"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:ems="10"
+            android:fontFamily="sans-serif"
+            android:hint="Requisitos" />
+
+        <Button
+            android:id="@+id/boton_enviar"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/skyblue_button"
+            android:text="Enviar" />
+
+        <Button
+            android:id="@+id/boton_registro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="1dp"
+            android:layout_marginBottom="15dp"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:backgroundTintMode="add"
+            android:text="Registrarse"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="13dp" />
+    </LinearLayout>
+</RelativeLayout>

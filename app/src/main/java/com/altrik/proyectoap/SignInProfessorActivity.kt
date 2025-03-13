@@ -6,11 +6,6 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import android.content.Intent
-import android.net.Uri
-import android.view.View
-import androidx.core.net.toUri
-import android.util.Log
-import kotlin.concurrent.thread
 
 class SignInProfessorActivity : AppCompatActivity()  {
     override fun onCreate(savedInstanceState: Bundle?) {
