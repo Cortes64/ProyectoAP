@@ -16,7 +16,13 @@
         android:theme="@style/Theme.ProyectoAP"
         tools:targetApi="31">
         <activity
-            android:name=".SignInActivity"
+            android:name=".MainMenuSchoolActivity"
+            android:exported="false"/>
+        <activity
+            android:name="FormOfertaAcademicaActivity"
+            android:exported="false"/>
+        <activity
+            android:name="SignInActivity"
             android:exported="false"/>
         <activity
             android:name="SignInStudentActivity"
