@@ -12,7 +12,7 @@ import retrofit2.http.PUT
 import retrofit2.http.DELETE
 
 interface ApiService {
-    @GET("login")
+    @POST("login")
     fun login(@Body usuario: LoginRequest): Call<LoginResponse>
 
     @POST("signIn")

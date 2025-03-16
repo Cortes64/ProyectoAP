@@ -95,7 +95,7 @@
                 android:fontFamily="sans-serif"
                 android:gravity="center"
                 android:hint="Escuela"
-                android:inputType="textPassword"
+                android:inputType="text"
                 android:textColorHint="#FFFFFF" />
 
             <EditText
@@ -130,17 +130,17 @@
 
             <Button
                 android:id="@+id/boton_crear_cuenta"
-                app:cornerRadius="16dp"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_marginLeft="40dp"
                 android:layout_marginTop="30dp"
                 android:layout_marginRight="40dp"
+                android:backgroundTint="#B79595"
 
-                android:backgroundTint="#FF909E77"
                 android:minHeight="48dp"
                 android:text="Crear Cuenta"
-                android:textColor="#FFFFFF" />
+                android:textColor="#FFFFFF"
+                app:cornerRadius="16dp" />
 
             <Button
                 android:id="@+id/boton_inicio_sesion"

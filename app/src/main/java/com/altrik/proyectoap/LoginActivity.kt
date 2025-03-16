@@ -56,8 +56,10 @@ class LoginActivity : AppCompatActivity() {
             override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
                 if (response.isSuccessful) {
                     val loginResponse = response.body()
-                    if (loginResponse != null && loginResponse.success) {
-                        Toast.makeText(this@LoginActivity, "Login exitoso", Toast.LENGTH_SHORT).show()
+                    if (loginResponse != null && loginResponse.success && loginResponse.tipoUsuario != null) {
+                        val tipoUsuario: String = loginResponse.tipoUsuario
+                        irMenu(tipoUsuario)
+                        return
                     } else {
                         Toast.makeText(this@LoginActivity, loginResponse?.message ?: "Error desconocido", Toast.LENGTH_SHORT).show()
                     }
@@ -70,6 +72,34 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(this@LoginActivity, "Error: ${t.message}", Toast.LENGTH_SHORT).show()
             }
         })
+    }
+
+    private fun irMenu(tipoUsuario: String) {
+        when (tipoUsuario) {
+            "ESTUDIANTE" -> {
+                val intent = Intent(this, MenuStudentActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+            "PROFESOR" -> {
+                val intent = Intent(this, MenuProfessorActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+            "ESCUELA" -> {
+                val intent = Intent(this, MenuSchoolActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+            "ADMINISTRADOR" -> {
+                val intent = Intent(this, MenuSchoolActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+            else -> {
+                Toast.makeText(this, "Tipo de usuario desconocido", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     private fun camposVacios(correo: String, contrasena: String): Boolean {
