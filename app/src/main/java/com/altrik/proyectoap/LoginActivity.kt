@@ -44,7 +44,7 @@ class LoginActivity : AppCompatActivity() {
         val correo = campoCorreo.text.toString()
         val contrasena = campoContrasena.text.toString()
 
-        if (validarCampos(correo = correo, contrasena = contrasena)) {
+        if (camposVacios(correo = correo, contrasena = contrasena)) {
             Toast.makeText(this, "Por favor complete todos los campos del login", Toast.LENGTH_SHORT).show()
             return
         }
@@ -72,7 +72,7 @@ class LoginActivity : AppCompatActivity() {
         })
     }
 
-    private fun validarCampos(correo: String, contrasena: String): Boolean {
+    private fun camposVacios(correo: String, contrasena: String): Boolean {
         return correo.isEmpty() || contrasena.isEmpty()
     }
 }

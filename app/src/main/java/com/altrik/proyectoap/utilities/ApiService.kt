@@ -7,9 +7,12 @@ import com.altrik.proyectoap.utilities.response.SignInResponse
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.POST
+import retrofit2.http.GET
+import retrofit2.http.PUT
+import retrofit2.http.DELETE
 
 interface ApiService {
-    @POST("login")
+    @GET("login")
     fun login(@Body usuario: LoginRequest): Call<LoginResponse>
 
     @POST("signIn")
