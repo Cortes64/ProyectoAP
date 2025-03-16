@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#BEC9E1">
 
     <LinearLayout
-        android:layout_width="300sp"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:background="@drawable/rounded_login_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
         android:orientation="vertical">
 
         <TextView
@@ -18,73 +18,92 @@
             android:fontFamily="serif"
             android:text="Registrarse"
             android:textAlignment="center"
-            android:textColor="@color/black"
-            android:textSize="24sp"
+            android:textColor="@color/white"
+            android:textSize="30sp"
             android:textStyle="bold" />
 
-        <!-- Empieza como invisible -->
-
-        <!-- Empieza como invisible -->
-
-
-        <!-- Empieza como invisible -->
-
-        <RadioGroup
-            android:id="@+id/radioGroup"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <RadioButton
-                android:id="@+id/radioEstudiante"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:checked="true"
-                android:text="Estudiante"
-                android:textSize="12dp" />
-
-            <RadioButton
-                android:id="@+id/radioProfesor"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:text="Profesor"
-                android:textSize="12dp" />
-
-            <RadioButton
-                android:id="@+id/radioEscuelaDepartamento"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:text="Escuela/Departamento"
-                android:textSize="12dp" />
-
-        </RadioGroup>
-
-        <!-- Empieza como invisible -->
-
-        <Button
-            android:id="@+id/boton_enviar"
-            android:layout_width="150dp"
-            android:layout_height="40dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="50dp"
-            android:background="@drawable/skyblue_button"
-            android:text="Siguiente" />
-
-        <Button
-            android:id="@+id/boton_login"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="300sp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="1dp"
-            android:layout_marginBottom="15dp"
-            android:background="?android:attr/selectableItemBackgroundBorderless"
-            android:backgroundTintMode="add"
-            android:text="Iniciar Sesión"
-            android:textAlignment="center"
-            android:textColor="#000000"
-            android:textSize="13sp" />
+            android:background="@drawable/rounded_sign_in_background"
+            android:orientation="vertical">
 
+            <!-- Empieza como invisible -->
+
+            <!-- Empieza como invisible -->
+
+
+            <!-- Empieza como invisible -->
+
+            <TextView
+                android:id="@+id/título"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="serif"
+                android:text="Soy un..."
+                android:textAlignment="center"
+                android:textColor="#3D394F"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/buttonEstudiante"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="40dp"
+                android:backgroundTint="#6A9D87"
+                android:text="Estudiante" />
+
+            <!-- Empieza como invisible -->
+
+            <Button
+                android:id="@+id/buttonProfesor"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="40dp"
+                android:backgroundTint="#6A9D87"
+                android:text="Profesor" />
+
+            <Button
+                android:id="@+id/buttonEscuela"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="40dp"
+                android:backgroundTint="#6A9D87"
+                android:text="Escuela/Departamento" />
+
+            <Button
+                android:id="@+id/buttonAdmin"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="40dp"
+                android:backgroundTint="#6A9D87"
+                android:text="Administrador" />
+
+            <Button
+                android:id="@+id/boton_inicio_sesion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="1dp"
+                android:layout_marginBottom="15dp"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:backgroundTintMode="add"
+                android:text="¿Ya tiene cuenta? Inicie sesión AQUI"
+                android:textAlignment="center"
+                android:textColor="#BEC9E1"
+                android:textSize="10sp" />
+
+        </LinearLayout>
     </LinearLayout>
+
 </RelativeLayout>

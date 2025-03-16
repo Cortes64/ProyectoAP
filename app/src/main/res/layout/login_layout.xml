@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#CCFFFA">
+    android:background="#717171">
 
     <LinearLayout
-        android:layout_width="300sp"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:background="@drawable/rounded_login_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
         android:orientation="vertical">
 
         <TextView
@@ -20,54 +20,76 @@
             android:fontFamily="serif"
             android:text="Iniciar Sesión"
             android:textAlignment="center"
-            android:textColor="@color/black"
-            android:textSize="24sp"
+            android:textColor="@color/white"
+            android:textSize="30sp"
             android:textStyle="bold" />
 
-        <EditText
-            android:id="@+id/InputCorreo"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="50dp"
-            android:layout_marginRight="20dp"
-            android:ems="10"
-            android:fontFamily="sans-serif"
-            android:hint="Correo Electrónico"
-            android:inputType="text" />
-
-        <EditText
-            android:id="@+id/InputContraseña"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:ems="10"
-            android:fontFamily="sans-serif"
-            android:hint="Contraseña"
-            android:inputType="textPassword" />
-
-        <Button
-            android:id="@+id/boton_enviar"
-            android:layout_width="150dp"
-            android:layout_height="40dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="50dp"
-            android:background="@drawable/skyblue_button"
-            android:text="Enviar" />
-
-        <Button
-            android:id="@+id/boton_registro"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="300sp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="1dp"
-            android:layout_marginBottom="15dp"
-            android:background="?android:attr/selectableItemBackgroundBorderless"
-            android:backgroundTintMode="add"
-            android:text="Registrarse"
-            android:textAlignment="center"
-            android:textColor="#000000"
-            android:textSize="13dp" />
+            android:background="@drawable/rounded_login_background"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/InputCorreo"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="60dp"
+                android:layout_marginRight="40dp"
+                android:background="@drawable/text_edit_login"
+                android:ems="10"
+                android:fontFamily="sans-serif"
+                android:gravity="center"
+                android:hint="Correo Electrónico"
+                android:inputType="text"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp" />
+
+            <EditText
+                android:id="@+id/InputContraseña"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="40dp"
+                android:background="@drawable/text_edit_login"
+                android:ems="10"
+                android:fontFamily="sans-serif"
+                android:gravity="center"
+                android:hint="Contraseña"
+                android:inputType="textPassword"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp" />
+
+            <Button
+                android:id="@+id/boton_enviar"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="40dp"
+                android:backgroundTint="#FF6A9D87"
+
+                android:minHeight="48dp"
+                android:text="Enviar"
+                android:textColor="#FFFFFF"
+                app:cornerRadius="16dp" />
+
+            <Button
+                android:id="@+id/boton_registro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="1dp"
+                android:layout_marginBottom="15dp"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:backgroundTintMode="add"
+                android:text="¿No está registrado? Cree su cuenta AQUI"
+                android:textAlignment="center"
+                android:textColor="#108754"
+                android:textSize="10sp" />
+        </LinearLayout>
     </LinearLayout>
+
 </RelativeLayout>

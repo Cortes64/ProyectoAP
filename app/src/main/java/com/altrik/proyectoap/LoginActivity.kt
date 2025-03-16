@@ -37,13 +37,7 @@ class LoginActivity : AppCompatActivity() {
         finish()
     }
 
-    private fun irMenu() {
-        val intent = Intent(this, MainMenuSchoolActivity::class.java)
-        startActivity(intent)
-        finish()
-    }
-
-    fun validarLogin() {
+    private fun validarLogin() {
         val campoCorreo = findViewById<EditText>(R.id.InputCorreo)
         val campoContrasena = findViewById<EditText>(R.id.InputContraseña)
 

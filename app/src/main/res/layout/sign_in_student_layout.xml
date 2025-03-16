@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#A5CECA"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
-        android:layout_width="300sp"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:background="@drawable/rounded_login_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
         android:orientation="vertical">
 
         <TextView
@@ -16,125 +17,145 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:fontFamily="serif"
-            android:text="Registrarse"
+            android:gravity="center"
+            android:text="Estudiante"
             android:textAlignment="center"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="24sp"
             android:textStyle="bold" />
 
-        <EditText
-            android:id="@+id/InputCorreo"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="50dp"
-            android:layout_marginRight="20dp"
-            android:ems="10"
-            android:fontFamily="sans-serif"
-            android:hint="Correo Electrónico"
-            android:inputType="text" />
-
-        <EditText
-            android:id="@+id/inputNombre"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:ems="10"
-            android:fontFamily="sans-serif"
-            android:hint="Nombre"
-            android:inputType="text" />
-
-        <EditText
-            android:id="@+id/inputTelefono"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:ems="10"
-            android:fontFamily="sans-serif"
-            android:hint="Telefono"
-            android:inputType="phone" />
-
-        <!-- Empieza como invisible -->
-
-        <EditText
-            android:id="@+id/inputNivelAcademico"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:ems="10"
-            android:fontFamily="sans-serif"
-            android:hint="Nivel Académico" /> <!-- Empieza como invisible -->
-
-
-        <EditText
-            android:id="@+id/inputContacto"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:ems="10"
-            android:fontFamily="sans-serif"
-            android:hint="Contacto" /> <!-- Empieza como invisible -->
-
-        <EditText
-            android:id="@+id/InputContraseña"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:ems="10"
-            android:fontFamily="sans-serif"
-            android:hint="Contraseña"
-            android:inputType="textPassword" />
-
-        <EditText
-            android:id="@+id/InputRepetirContraseña"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:ems="10"
-            android:fontFamily="sans-serif"
-            android:hint="Repetir Contraseña"
-            android:inputType="textPassword" />
-
-        <RadioGroup
-            android:id="@+id/radioGroup"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-        <Spinner
-            android:id="@+id/spinnerOptions"
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_width="300sp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp" /> <!-- Empieza como invisible -->
+            android:background="@drawable/rounded_sign_in_background"
+            android:gravity="center"
+            android:orientation="vertical">
 
-        <Button
-            android:id="@+id/boton_enviar"
-            android:layout_width="150dp"
-            android:layout_height="40dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="50dp"
-            android:background="@drawable/skyblue_button"
-            android:text="Enviar" />
+            <EditText
+                android:id="@+id/InputCorreo"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/text_edit_sign_in"
+                android:ems="10"
+                android:fontFamily="sans-serif"
+                android:gravity="center"
+                android:hint="Correo ITCR"
+                android:inputType="textEmailAddress"
+                android:textColorHint="#FFFFFF" />
 
-        <Button
-            android:id="@+id/boton_login"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="1dp"
-            android:layout_marginBottom="15dp"
-            android:background="?android:attr/selectableItemBackgroundBorderless"
-            android:backgroundTintMode="add"
-            android:text="Iniciar Sesión"
-            android:textAlignment="center"
-            android:textColor="#000000"
-            android:textSize="13sp" />
+            <EditText
+                android:id="@+id/inputNombre"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/text_edit_sign_in"
+                android:ems="10"
+                android:fontFamily="sans-serif"
+                android:gravity="center"
+                android:hint="Nombre"
+                android:inputType="text"
+                android:textColorHint="#FFFFFF" />
 
+            <!-- Empieza como invisible -->
+
+            <!-- Empieza como invisible -->
+
+
+            <!-- Empieza como invisible -->
+
+            <EditText
+                android:id="@+id/inputApellidos"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/text_edit_sign_in"
+                android:ems="10"
+                android:fontFamily="sans-serif"
+                android:gravity="center"
+                android:hint="Apellidos"
+                android:inputType="text"
+                android:textColorHint="#FFFFFF" />
+
+            <EditText
+                android:id="@+id/InputEscuela"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/text_edit_sign_in"
+                android:ems="10"
+                android:fontFamily="sans-serif"
+                android:gravity="center"
+                android:hint="Escuela"
+                android:inputType="textPassword"
+                android:textColorHint="#FFFFFF" />
+
+            <EditText
+                android:id="@+id/InputContraseña"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/text_edit_sign_in"
+                android:ems="10"
+                android:fontFamily="sans-serif"
+                android:gravity="center"
+                android:hint="Contraseña"
+                android:inputType="textPassword"
+                android:textColorHint="#FFFFFF" />
+
+            <EditText
+                android:id="@+id/InputRepetirContraseña"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/text_edit_sign_in"
+                android:ems="10"
+                android:fontFamily="sans-serif"
+                android:gravity="center"
+                android:hint="Repetir Contraseña"
+                android:inputType="textPassword"
+                android:textColorHint="#FFFFFF" />
+
+            <Button
+                android:id="@+id/boton_crear_cuenta"
+                app:cornerRadius="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="40dp"
+
+                android:backgroundTint="#FF909E77"
+                android:minHeight="48dp"
+                android:text="Crear Cuenta"
+                android:textColor="#FFFFFF" />
+
+            <Button
+                android:id="@+id/boton_inicio_sesion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="1dp"
+                android:layout_marginBottom="15dp"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:backgroundTintMode="add"
+                android:text="¿Ya tiene cuenta? Inicie sesión AQUI"
+                android:textAlignment="center"
+                android:textColor="#A5CECA"
+                android:textSize="10sp" />
+
+        </LinearLayout>
     </LinearLayout>
 </RelativeLayout>
