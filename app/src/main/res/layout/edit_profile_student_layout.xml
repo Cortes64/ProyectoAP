@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottom_bar"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="44dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginRight="44dp"
+            android:text="@string/nombre_estudiante"
+            android:textAlignment="center"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/circle_background"
+            android:scaleType="centerInside"
+            app:srcCompat="@drawable/ic_digital_wellbeing_outline" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/editTextText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/input_edit"
+                android:ems="10"
+                android:gravity="center"
+                android:inputType="text"
+                android:text="Nombre"
+                android:textColor="#FFFFFF" />
+
+            <ImageButton
+                android:id="@+id/imageButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_edit"
+                android:backgroundTint="#B3B3B3"
+                android:padding="10dp"
+                app:srcCompat="@drawable/ic_edit" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/editTextText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/input_edit"
+                android:ems="10"
+                android:gravity="center"
+                android:inputType="text"
+                android:text="Apellidos"
+                android:textColor="#FFFFFF" />
+
+            <ImageButton
+                android:id="@+id/imageButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_edit"
+                android:backgroundTint="#B3B3B3"
+                android:padding="10dp"
+                app:srcCompat="@drawable/ic_edit" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/editTextText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/input_edit"
+                android:ems="10"
+                android:gravity="center"
+                android:inputType="text"
+                android:text="Contraseña"
+                android:textColor="#FFFFFF" />
+
+            <ImageButton
+                android:id="@+id/imageButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_edit"
+                android:backgroundTint="#B3B3B3"
+                android:padding="10dp"
+                app:srcCompat="@drawable/ic_edit" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/boton_aplicar_cambios"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="75dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="75dp"
+
+            android:backgroundTint="#6A9D87"
+            android:minHeight="48dp"
+            android:text="Guardar Cambios"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            app:cornerRadius="16dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/bottom_bar"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_alignParentBottom="true"
+        android:background="#59775D"
+        android:orientation="horizontal"
+        android:paddingTop="10dp">
+
+        <ImageButton
+            android:id="@+id/imageButton5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#59775D"
+            android:src="@drawable/ic_approval"
+            app:srcCompat="@drawable/ic_construction" />
+
+        <ImageButton
+            android:id="@+id/imageButton3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#59775D"
+            android:src="@drawable/ic_attach_money"
+            app:srcCompat="@drawable/ic_book_ribbon" />
+
+        <ImageButton
+            android:id="@+id/imageButton4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#59775D"
+            android:src="@drawable/ic_server_person"
+            app:srcCompat="@drawable/group" />
+    </LinearLayout>
+</RelativeLayout>

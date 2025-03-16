@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">ProyectoAP</string>
+    <string name="nombre_estudiante">NOMBRE ALUMNO EJEMPLO</string>
 </resources>
