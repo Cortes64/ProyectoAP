@@ -16,22 +16,31 @@
         android:theme="@style/Theme.ProyectoAP"
         tools:targetApi="31">
         <activity
-            android:name=".MainMenuSchoolActivity"
+            android:name=".MenuStudentActivity"
             android:exported="false"/>
         <activity
-            android:name="FormOfertaAcademicaActivity"
+            android:name=".MenuProfessorActivity"
             android:exported="false"/>
         <activity
-            android:name="SignInActivity"
+            android:name=".MenuSchoolActivity"
             android:exported="false"/>
         <activity
-            android:name="SignInStudentActivity"
+            android:name=".MenuAdminActivity"
             android:exported="false"/>
         <activity
-            android:name="SignInProfessorActivity"
+            android:name=".SignInActivity"
             android:exported="false"/>
         <activity
-            android:name="SignInSchoolActivity"
+            android:name=".SignInStudentActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".SignInAdminActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".SignInProfessorActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".SignInSchoolActivity"
             android:exported="false"/>
         <activity
             android:name=".LoginActivity"

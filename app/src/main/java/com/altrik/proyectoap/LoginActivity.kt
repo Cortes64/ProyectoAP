@@ -56,8 +56,8 @@ class LoginActivity : AppCompatActivity() {
             override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
                 if (response.isSuccessful) {
                     val loginResponse = response.body()
-                    if (loginResponse != null && loginResponse.success && loginResponse.tipoUsuario != null) {
-                        val tipoUsuario: String = loginResponse.tipoUsuario
+                    val tipoUsuario = loginResponse?.tipoUsuario
+                    if (loginResponse != null && loginResponse.success) {
                         irMenu(tipoUsuario)
                         return
                     } else {
@@ -74,7 +74,7 @@ class LoginActivity : AppCompatActivity() {
         })
     }
 
-    private fun irMenu(tipoUsuario: String) {
+    private fun irMenu(tipoUsuario: String?) {
         when (tipoUsuario) {
             "ESTUDIANTE" -> {
                 val intent = Intent(this, MenuStudentActivity::class.java)
