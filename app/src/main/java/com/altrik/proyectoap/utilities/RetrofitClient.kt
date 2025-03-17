@@ -4,7 +4,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitClient {
-    private const val BASE_URL = "http://10.0.2.2:9000/"
+    private const val BASE_URL = "https://mongodb-node-restapi.onrender.com/"
 
     val apiService: ApiService by lazy {
         val retrofit = Retrofit.Builder()
