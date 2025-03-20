@@ -62,7 +62,8 @@ class SignInSchoolActivity : AppCompatActivity()  {
             escuela = null,
             password = contrasena,
             zonaTrabajo = zonaTrabajo,
-            tipoUsuario = "ESCUELA"
+            tipoUsuario = "ESCUELA",
+            carnet = null
         )
 
         apiService.signIn(signInRequest).enqueue(object : Callback<SignInResponse> {

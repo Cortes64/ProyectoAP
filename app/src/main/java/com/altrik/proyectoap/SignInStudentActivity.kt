@@ -35,11 +35,11 @@ class SignInStudentActivity : AppCompatActivity()  {
         val correo = findViewById<EditText>(R.id.InputCorreo).text.toString()
         val nombre = findViewById<EditText>(R.id.inputNombre).text.toString()
         val apellidos = findViewById<EditText>(R.id.inputApellidos).text.toString()
-        val escuela = findViewById<EditText>(R.id.InputCarnet).text.toString()
+        val carnet = findViewById<EditText>(R.id.InputCarnet).text.toString()
         val contrasena = findViewById<EditText>(R.id.InputContraseña).text.toString()
         val repetirContrasena = findViewById<EditText>(R.id.InputRepetirContraseña).text.toString()
 
-        if (camposVacios(correo, nombre, apellidos, escuela, contrasena, repetirContrasena)) {
+        if (camposVacios(correo, nombre, apellidos, carnet, contrasena, repetirContrasena)) {
             Toast.makeText(this, "Por favor, complete todos los campos", Toast.LENGTH_SHORT).show()
             return
         }
@@ -59,9 +59,10 @@ class SignInStudentActivity : AppCompatActivity()  {
             email = correo,
             name = nombre,
             apellidos = apellidos,
-            escuela = escuela,
+            carnet = carnet,
             password = contrasena,
             tipoUsuario = "ESTUDIANTE",
+            escuela = null,
             zonaTrabajo = null
         )
 

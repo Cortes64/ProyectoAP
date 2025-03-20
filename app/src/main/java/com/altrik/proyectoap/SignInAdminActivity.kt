@@ -62,7 +62,8 @@ class SignInAdminActivity : AppCompatActivity() {
             escuela = null,
             password = contrasena,
             zonaTrabajo = zonaTrabajo,
-            tipoUsuario = "ADMINISTRADOR"
+            tipoUsuario = "ADMINISTRADOR",
+            carnet = null
         )
 
         apiService.signIn(signInRequest).enqueue(object : Callback<SignInResponse> {

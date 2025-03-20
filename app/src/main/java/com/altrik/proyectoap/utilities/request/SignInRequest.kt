@@ -6,6 +6,7 @@ data class SignInRequest (
     val apellidos: String,
     val escuela: String?,
     val zonaTrabajo: String?,
+    val carnet: String?,
     val password: String,
     val tipoUsuario: String
 )
