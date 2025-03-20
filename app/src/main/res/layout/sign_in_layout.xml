@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#BEC9E1">
+    android:background="#2C393E">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -100,7 +100,7 @@
                 android:backgroundTintMode="add"
                 android:text="¿Ya tiene cuenta? Inicie sesión AQUI"
                 android:textAlignment="center"
-                android:textColor="#BEC9E1"
+                android:textColor="#2C393E"
                 android:textSize="10sp" />
 
         </LinearLayout>

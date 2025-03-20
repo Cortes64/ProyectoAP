@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#717171">
+    android:background="#2C393E">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -87,7 +87,7 @@
                 android:backgroundTintMode="add"
                 android:text="¿No está registrado? Cree su cuenta AQUI"
                 android:textAlignment="center"
-                android:textColor="#108754"
+                android:textColor="#2C393E"
                 android:textSize="10sp" />
         </LinearLayout>
     </LinearLayout>

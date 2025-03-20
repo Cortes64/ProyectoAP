@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#9F95C3"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:background="#2C393E">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -130,17 +130,17 @@
 
             <Button
                 android:id="@+id/boton_crear_cuenta"
-                app:cornerRadius="16dp"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_marginLeft="40dp"
                 android:layout_marginTop="30dp"
                 android:layout_marginRight="40dp"
-
                 android:backgroundTint="#827E94"
+
                 android:minHeight="48dp"
                 android:text="Crear Cuenta"
-                android:textColor="#FFFFFF" />
+                android:textColor="#FFFFFF"
+                app:cornerRadius="16dp" />
 
             <Button
                 android:id="@+id/boton_inicio_sesion"
