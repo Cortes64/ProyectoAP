@@ -8,35 +8,35 @@
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:layout_alignParentBottom="true"
-        android:background="#59775D"
+        android:background="#444F7E"
         android:orientation="horizontal"
         android:paddingTop="10dp">
 
         <ImageButton
             android:id="@+id/imageButtonMenu"
-            app:srcCompat="@drawable/ic_approval"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="#59775D"
-            android:src="@drawable/ic_construction" />
+            android:background="#444F7E"
+            android:src="@drawable/ic_construction"
+            app:srcCompat="@drawable/ic_approval" />
 
         <ImageButton
             android:id="@+id/imageButtonDollar"
-            app:srcCompat="@drawable/ic_attach_money"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="#59775D"
-            android:src="@drawable/ic_book_ribbon" />
+            android:background="#444F7E"
+            android:src="@drawable/ic_book_ribbon"
+            app:srcCompat="@drawable/ic_attach_money" />
 
         <ImageButton
             android:id="@+id/imageButtonEdit"
-            app:srcCompat="@drawable/ic_server_person"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="#59775D"
-            android:src="@drawable/group" />
+            android:background="#444F7E"
+            android:src="@drawable/group"
+            app:srcCompat="@drawable/ic_server_person" />
     </LinearLayout>
 </RelativeLayout>

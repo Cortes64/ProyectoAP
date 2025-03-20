@@ -54,7 +54,7 @@
                 android:layout_marginLeft="40dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="40dp"
-                android:backgroundTint="#6A9D87"
+                android:backgroundTint="#77899E"
                 android:text="Estudiante" />
 
             <!-- Empieza como invisible -->
@@ -66,7 +66,7 @@
                 android:layout_marginLeft="40dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="40dp"
-                android:backgroundTint="#6A9D87"
+                android:backgroundTint="#77899E"
                 android:text="Profesor" />
 
             <Button
@@ -76,7 +76,7 @@
                 android:layout_marginLeft="40dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="40dp"
-                android:backgroundTint="#6A9D87"
+                android:backgroundTint="#77899E"
                 android:text="Escuela/Departamento" />
 
             <Button
@@ -86,7 +86,7 @@
                 android:layout_marginLeft="40dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="40dp"
-                android:backgroundTint="#6A9D87"
+                android:backgroundTint="#77899E"
                 android:text="Administrador" />
 
             <Button

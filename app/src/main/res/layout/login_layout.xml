@@ -69,7 +69,7 @@
                 android:layout_marginLeft="40dp"
                 android:layout_marginTop="30dp"
                 android:layout_marginRight="40dp"
-                android:backgroundTint="#FF6A9D87"
+                android:backgroundTint="#77899E"
 
                 android:minHeight="48dp"
                 android:text="Enviar"
