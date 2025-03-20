@@ -35,7 +35,7 @@ class SignInStudentActivity : AppCompatActivity()  {
         val correo = findViewById<EditText>(R.id.InputCorreo).text.toString()
         val nombre = findViewById<EditText>(R.id.inputNombre).text.toString()
         val apellidos = findViewById<EditText>(R.id.inputApellidos).text.toString()
-        val escuela = findViewById<EditText>(R.id.InputEscuela).text.toString()
+        val escuela = findViewById<EditText>(R.id.InputCarnet).text.toString()
         val contrasena = findViewById<EditText>(R.id.InputContraseña).text.toString()
         val repetirContrasena = findViewById<EditText>(R.id.InputRepetirContraseña).text.toString()
 
