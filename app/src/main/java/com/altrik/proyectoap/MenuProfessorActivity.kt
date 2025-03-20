@@ -6,6 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 class MenuProfessorActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.professor_menu_layout)
+        setContentView(R.layout.menu_professor_layout)
     }
 }

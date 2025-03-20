@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,28 +13,30 @@
         android:paddingTop="10dp">
 
         <ImageButton
-            android:id="@+id/imageButton5"
+            android:id="@+id/imageButtonMenu"
+            app:srcCompat="@drawable/ic_approval"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="#59775D"
-            app:srcCompat="@drawable/ic_approval" />
+            android:src="@drawable/ic_construction" />
 
         <ImageButton
-            android:id="@+id/imageButton3"
+            android:id="@+id/imageButtonDollar"
+            app:srcCompat="@drawable/ic_attach_money"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="#59775D"
-            app:srcCompat="@drawable/ic_attach_money" />
+            android:src="@drawable/ic_book_ribbon" />
 
         <ImageButton
-            android:id="@+id/imageButton4"
+            android:id="@+id/imageButtonEdit"
+            app:srcCompat="@drawable/ic_server_person"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="#59775D"
-            app:srcCompat="@drawable/ic_server_person" />
+            android:src="@drawable/group" />
     </LinearLayout>
-
 </RelativeLayout>

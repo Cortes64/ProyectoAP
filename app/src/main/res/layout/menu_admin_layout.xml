@@ -13,7 +13,7 @@
         android:paddingTop="10dp">
 
         <ImageButton
-            android:id="@+id/imageButton5"
+            android:id="@+id/imageButtonMenu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -21,7 +21,7 @@
             app:srcCompat="@drawable/ic_construction" />
 
         <ImageButton
-            android:id="@+id/imageButton3"
+            android:id="@+id/imageButtonDollar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -29,7 +29,7 @@
             app:srcCompat="@drawable/ic_book_ribbon" />
 
         <ImageButton
-            android:id="@+id/imageButton4"
+            android:id="@+id/imageButtonEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
