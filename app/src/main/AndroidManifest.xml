@@ -19,6 +19,9 @@
             android:name=".UserListActivity"
             android:exported="false"/>
         <activity
+            android:name=".EditProfileStudentActivity"
+            android:exported="false"/>
+        <activity
             android:name=".MenuStudentActivity"
             android:exported="false"/>
         <activity

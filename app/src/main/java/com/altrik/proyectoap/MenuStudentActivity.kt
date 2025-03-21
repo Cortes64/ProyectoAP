@@ -51,6 +51,11 @@ class MenuStudentActivity : AppCompatActivity() {
                 else -> false
             }
         }
+
+        val imageButtonEdit = findViewById<ImageButton>(R.id.imageButtonEdit)
+        imageButtonEdit.setOnClickListener {
+            irEditarPerfil()
+        }
     }
 
     private fun abrirSidebar() {
@@ -69,6 +74,12 @@ class MenuStudentActivity : AppCompatActivity() {
 
     private fun irMenu() {
         val intent = Intent(this, MenuStudentActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+
+    private fun irEditarPerfil() {
+        val intent = Intent(this, EditProfileStudentActivity::class.java)
         startActivity(intent)
         finish()
     }
