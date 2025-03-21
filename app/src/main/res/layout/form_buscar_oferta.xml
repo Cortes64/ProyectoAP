@@ -5,6 +5,50 @@
     android:layout_height="match_parent"
     android:background="#2C393E">
 
+    <ImageButton
+        android:id="@+id/imageButtonSidebar2"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="75dp"
+        android:background="@drawable/rounded_navbar"
+        android:elevation="8dp"
+        app:srcCompat="@drawable/ic_menu" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_alignParentBottom="true"
+        android:background="#444F7E"
+        android:orientation="horizontal"
+        android:paddingTop="10dp">
+
+        <ImageButton
+            android:id="@+id/imageButtonMenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#444F7E"
+            app:srcCompat="@drawable/ic_approval" />
+
+        <ImageButton
+            android:id="@+id/imageButtonDollar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#444F7E"
+            app:srcCompat="@drawable/ic_attach_money" />
+
+        <ImageButton
+            android:id="@+id/imageButtonEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#444F7E"
+            app:srcCompat="@drawable/ic_server_person" />
+    </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -18,7 +62,7 @@
             android:layout_marginTop="10dp"
             android:fontFamily="serif"
             android:gravity="center"
-            android:text="Administrador"
+            android:text="Buscar Oferta"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="24sp"
@@ -31,10 +75,17 @@
             android:gravity="center"
             android:orientation="vertical">
 
+            <!-- Empieza como invisible -->
+
+            <!-- Empieza como invisible -->
+
+
+            <!-- Empieza como invisible -->
+
             <EditText
-                android:id="@+id/InputCorreo"
+                android:id="@+id/inputTituloOferta"
                 android:layout_width="match_parent"
-                android:layout_height="35dp"
+                android:layout_height="40dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="40dp"
                 android:layout_marginRight="20dp"
@@ -42,79 +93,12 @@
                 android:ems="10"
                 android:fontFamily="sans-serif"
                 android:gravity="center"
-                android:hint="Correo ITCR"
-                android:inputType="textEmailAddress"
-                android:textColorHint="#FFFFFF" />
-
-            <EditText
-                android:id="@+id/inputNombre"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="20dp"
-                android:background="@drawable/text_edit_sign_in"
-                android:ems="10"
-                android:fontFamily="sans-serif"
-                android:gravity="center"
-                android:hint="Nombre"
-                android:inputType="text"
-                android:textColorHint="#FFFFFF" />
-
-            <!-- Empieza como invisible -->
-
-            <!-- Empieza como invisible -->
-
-
-            <!-- Empieza como invisible -->
-
-            <EditText
-                android:id="@+id/inputApellidos"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="20dp"
-                android:background="@drawable/text_edit_sign_in"
-                android:ems="10"
-                android:fontFamily="sans-serif"
-                android:gravity="center"
-                android:hint="Apellidos"
-                android:inputType="text"
-                android:textColorHint="#FFFFFF" />
-
-            <EditText
-                android:id="@+id/InputZonaTrabajo"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="20dp"
-                android:background="@drawable/text_edit_sign_in"
-                android:ems="10"
-                android:fontFamily="sans-serif"
-                android:gravity="center"
-                android:hint="Zona de Trabajo ITCR"
-                android:inputType="text"
-                android:textColorHint="#FFFFFF" />
-
-            <EditText
-                android:id="@+id/InputContraseña"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="20dp"
-                android:background="@drawable/text_edit_sign_in"
-                android:ems="10"
-                android:fontFamily="sans-serif"
-                android:gravity="center"
-                android:hint="Contraseña"
+                android:hint="Título Oferta"
                 android:inputType="textPassword"
                 android:textColorHint="#FFFFFF" />
 
             <EditText
-                android:id="@+id/InputRepetirContraseña"
+                android:id="@+id/inputTipoTrabajo"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginLeft="20dp"
@@ -124,37 +108,54 @@
                 android:ems="10"
                 android:fontFamily="sans-serif"
                 android:gravity="center"
-                android:hint="Repetir Contraseña"
+                android:hint="Tipo de trabajo"
+                android:inputType="textPassword"
+                android:textColorHint="#FFFFFF" />
+
+            <EditText
+                android:id="@+id/inputDepartamento"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/text_edit_sign_in"
+                android:ems="10"
+                android:fontFamily="sans-serif"
+                android:gravity="center"
+                android:hint="Departamento"
+                android:inputType="textPassword"
+                android:textColorHint="#FFFFFF" />
+
+            <EditText
+                android:id="@+id/inputProfesorOferta"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/text_edit_sign_in"
+                android:ems="10"
+                android:fontFamily="sans-serif"
+                android:gravity="center"
+                android:hint="Profesor"
                 android:inputType="textPassword"
                 android:textColorHint="#FFFFFF" />
 
             <Button
-                android:id="@+id/boton_crear_cuenta"
+                android:id="@+id/boton_buscar"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_marginLeft="40dp"
                 android:layout_marginTop="30dp"
                 android:layout_marginRight="40dp"
-                android:backgroundTint="#827E94"
 
+                android:layout_marginBottom="40dp"
+                android:backgroundTint="#827E94"
                 android:minHeight="48dp"
-                android:text="Crear Cuenta"
+                android:text="Buscar Oferta"
                 android:textColor="#FFFFFF"
                 app:cornerRadius="16dp" />
-
-            <Button
-                android:id="@+id/boton_inicio_sesion"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="1dp"
-                android:layout_marginBottom="15dp"
-                android:background="?android:attr/selectableItemBackgroundBorderless"
-                android:backgroundTintMode="add"
-                android:text="¿Ya tiene cuenta? Inicie sesión AQUI"
-                android:textAlignment="center"
-                android:textColor="#9F95C3"
-                android:textSize="10sp" />
 
         </LinearLayout>
     </LinearLayout>

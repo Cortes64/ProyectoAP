@@ -2,6 +2,7 @@ package com.altrik.proyectoap
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -9,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.altrik.proyectoap.utilities.request.LoginRequest
 import com.altrik.proyectoap.utilities.response.LoginResponse
 import com.altrik.proyectoap.utilities.RetrofitClient
+import com.altrik.proyectoap.utilities.Usuario
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -56,15 +58,24 @@ class LoginActivity : AppCompatActivity() {
             override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
                 if (response.isSuccessful) {
                     val loginResponse = response.body()
-                    val tipoUsuario = loginResponse?.tipoUsuario
+                    val usuario = response.body()?.usuario
                     if (loginResponse != null && loginResponse.success) {
-                        irMenu(tipoUsuario)
+
+                        val sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE)
+                        val editor = sharedPreferences.edit()
+
+                        editor.apply()
+
+                        irMenu(usuario)
                         return
                     } else {
                         Toast.makeText(this@LoginActivity, loginResponse?.message ?: "Error desconocido", Toast.LENGTH_SHORT).show()
                     }
                 } else {
-                    Toast.makeText(this@LoginActivity, "Error en el login", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@LoginActivity, "Error en el login: ${response.code()}", Toast.LENGTH_SHORT).show()
+                    response.errorBody()?.let {
+                        println("Error en el login: ${it.string()}") // Imprime el error en la consola
+                    }
                 }
             }
 
@@ -74,7 +85,20 @@ class LoginActivity : AppCompatActivity() {
         })
     }
 
-    private fun irMenu(tipoUsuario: String?) {
+    private fun irMenu(usuario: Usuario?) {
+        val sharedPref = getSharedPreferences("UserPrefs", MODE_PRIVATE).edit()
+        sharedPref.putString("tipoUsuario", usuario?.tipoUsuario)
+        sharedPref.putString("correoUsuario", usuario?.email)
+        sharedPref.putString("nombreUsuario", usuario?.name)
+        sharedPref.putString("apellidosUsuario", usuario?.apellidos)
+        sharedPref.putString("carnetUsuario", usuario?.carnet)
+        sharedPref.putString("escuelaUsuario", usuario?.escuela)
+        sharedPref.putString("zonaTrabajoUsuario", usuario?.zonaTrabajo)
+        sharedPref.putString("contactoUsuario", usuario?.contacto)
+        sharedPref.apply()
+
+        val tipoUsuario = usuario?.tipoUsuario
+
         when (tipoUsuario) {
             "ESTUDIANTE" -> {
                 val intent = Intent(this, MenuStudentActivity::class.java)
@@ -92,7 +116,7 @@ class LoginActivity : AppCompatActivity() {
                 finish()
             }
             "ADMINISTRADOR" -> {
-                val intent = Intent(this, MenuSchoolActivity::class.java)
+                val intent = Intent(this, MenuAdminActivity::class.java)
                 startActivity(intent)
                 finish()
             }

@@ -1,40 +1,69 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_alignParentBottom="true"
-        android:background="#444F7E"
-        android:orientation="horizontal"
-        android:paddingTop="10dp">
+        android:layout_height="match_parent">
+
+        <!-- Aquí va tu contenido principal -->
 
         <ImageButton
-            android:id="@+id/imageButtonMenu"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="#444F7E"
-            app:srcCompat="@drawable/ic_approval" />
+            android:id="@+id/imageButtonSidebar"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="75dp"
+            android:background="@drawable/rounded_navbar"
+            android:elevation="8dp"
+            app:srcCompat="@drawable/ic_menu" />
 
-        <ImageButton
-            android:id="@+id/imageButtonDollar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_alignParentBottom="true"
             android:background="#444F7E"
-            app:srcCompat="@drawable/ic_attach_money" />
+            android:orientation="horizontal"
+            android:paddingTop="10dp">
 
-        <ImageButton
-            android:id="@+id/imageButtonEdit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="#444F7E"
-            app:srcCompat="@drawable/ic_server_person" />
-    </LinearLayout>
+            <ImageButton
+                android:id="@+id/imageButtonMenu"
+                android:layout_weight="1"
+                android:background="#444F7E"
+                app:srcCompat="@drawable/ic_approval"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
-</RelativeLayout>
+            <ImageButton
+                android:id="@+id/imageButtonDollar"
+                android:layout_weight="1"
+                android:background="#444F7E"
+                app:srcCompat="@drawable/ic_attach_money"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <ImageButton
+                android:id="@+id/imageButtonEdit"
+                android:layout_weight="1"
+                android:background="#444F7E"
+                app:srcCompat="@drawable/ic_server_person"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <!-- Navigation View -->
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="150dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        app:headerLayout="@layout/drawer_header"
+        app:menu="@menu/sidebar_student_menu" />
+
+</androidx.drawerlayout.widget.DrawerLayout>
