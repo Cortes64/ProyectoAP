@@ -7,6 +7,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.altrik.proyectoap.utilities.MailSender
 import com.altrik.proyectoap.utilities.request.LoginRequest
 import com.altrik.proyectoap.utilities.response.LoginResponse
 import com.altrik.proyectoap.utilities.RetrofitClient
@@ -50,6 +51,8 @@ class LoginActivity : AppCompatActivity() {
             Toast.makeText(this, "Por favor complete todos los campos del login", Toast.LENGTH_SHORT).show()
             return
         }
+
+        MailSender.sendEmail(this, correo, "Prueba", "Prueba")
 
         val apiService = RetrofitClient.apiService
         val loginRequest = LoginRequest(correo, contrasena)

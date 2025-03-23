@@ -47,7 +47,7 @@ class EditProfileStudentActivity : AppCompatActivity() {
 
         val botonAplicarCambios = findViewById<Button>(R.id.boton_aplicar_cambios)
         botonAplicarCambios.setOnClickListener {
-
+            guardarCambios()
         }
     }
 

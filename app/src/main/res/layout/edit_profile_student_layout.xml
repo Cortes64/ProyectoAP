@@ -120,30 +120,27 @@
         android:paddingTop="10dp">
 
         <ImageButton
-            android:id="@+id/imageButtonMenu"
+            android:id="@+id/imageButtonMenu2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="#444F7E"
-            android:src="@drawable/ic_approval"
-            app:srcCompat="@drawable/ic_construction" />
+            app:srcCompat="@drawable/ic_approval" />
 
         <ImageButton
-            android:id="@+id/imageButtonDollar"
+            android:id="@+id/imageButtonDollar2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="#444F7E"
-            android:src="@drawable/ic_attach_money"
-            app:srcCompat="@drawable/ic_book_ribbon" />
+            app:srcCompat="@drawable/ic_attach_money" />
 
         <ImageButton
-            android:id="@+id/imageButtonEdit"
+            android:id="@+id/imageButtonEdit2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="#444F7E"
-            android:src="@drawable/ic_server_person"
-            app:srcCompat="@drawable/group" />
+            app:srcCompat="@drawable/ic_server_person" />
     </LinearLayout>
 </RelativeLayout>
