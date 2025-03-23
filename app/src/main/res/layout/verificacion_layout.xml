@@ -61,12 +61,25 @@
                 android:layout_marginTop="30dp"
 
                 android:layout_marginRight="40dp"
-                android:layout_marginBottom="40dp"
                 android:backgroundTint="#827E94"
                 android:minHeight="48dp"
                 android:text="Verificar"
                 android:textColor="#FFFFFF"
                 app:cornerRadius="16dp" />
+
+            <Button
+                android:id="@+id/boton_login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="1dp"
+                android:layout_marginBottom="15dp"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:backgroundTintMode="add"
+                android:text="¿Ya tiene cuenta? Inicie sesión AQUI"
+                android:textAlignment="center"
+                android:textColor="#9F95C3"
+                android:textSize="10sp" />
 
         </LinearLayout>
     </LinearLayout>

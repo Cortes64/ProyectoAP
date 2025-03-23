@@ -21,9 +21,13 @@ class VerificacionActivity : AppCompatActivity() {
         setContentView(R.layout.verificacion_layout)
 
         val btnVerificar = findViewById<Button>(R.id.boton_verificar)
-
         btnVerificar.setOnClickListener {
             verificarCodigo()
+        }
+
+        val btnInicioSesion = findViewById<Button>(R.id.boton_login)
+        btnInicioSesion.setOnClickListener {
+            irLogin()
         }
     }
 

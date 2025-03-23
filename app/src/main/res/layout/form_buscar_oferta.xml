@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#2C393E">
@@ -8,21 +10,28 @@
     <ImageButton
         android:id="@+id/imageButtonSidebar2"
         android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_alignParentBottom="true"
+        android:layout_height="0dp"
+        android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
-        android:layout_marginBottom="75dp"
+        android:layout_marginBottom="5dp"
         android:background="@drawable/rounded_navbar"
         android:elevation="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
         app:srcCompat="@drawable/ic_menu" />
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_alignParentBottom="true"
+        android:id="@+id/linearLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:background="#444F7E"
         android:orientation="horizontal"
-        android:paddingTop="10dp">
+        android:paddingTop="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageButtonSidebar2">
 
         <ImageButton
             android:id="@+id/imageButtonMenu"
@@ -49,114 +58,123 @@
             app:srcCompat="@drawable/ic_server_person" />
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+
+    <TextView
+        android:id="@+id/Título"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="180dp"
+        android:fontFamily="serif"
         android:gravity="center"
-        android:orientation="vertical">
+        android:text="Buscar Oferta"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/Título"
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="55dp"
+        android:layout_marginLeft="55dp"
+        android:layout_marginEnd="55dp"
+        android:layout_marginRight="55dp"
+        android:layout_marginBottom="45dp"
+        android:background="@drawable/rounded_sign_in_background"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/imageButtonSidebar2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Título">
+
+        <!-- Empieza como invisible -->
+
+        <!-- Empieza como invisible -->
+
+
+        <!-- Empieza como invisible -->
+
+        <EditText
+            android:id="@+id/inputTituloOferta"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/text_edit_sign_in"
+            android:ems="10"
+            android:fontFamily="sans-serif"
+            android:gravity="center"
+            android:hint="Título Oferta"
+            android:inputType="textPassword"
+            android:textColorHint="#FFFFFF" />
+
+        <EditText
+            android:id="@+id/inputTipoTrabajo"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
-            android:fontFamily="serif"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/text_edit_sign_in"
+            android:ems="10"
+            android:fontFamily="sans-serif"
             android:gravity="center"
+            android:hint="Tipo de trabajo"
+            android:inputType="textPassword"
+            android:textColorHint="#FFFFFF" />
+
+        <EditText
+            android:id="@+id/inputDepartamento"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/text_edit_sign_in"
+            android:ems="10"
+            android:fontFamily="sans-serif"
+            android:gravity="center"
+            android:hint="Departamento"
+            android:inputType="textPassword"
+            android:textColorHint="#FFFFFF" />
+
+        <EditText
+            android:id="@+id/inputProfesorOferta"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/text_edit_sign_in"
+            android:ems="10"
+            android:fontFamily="sans-serif"
+            android:gravity="center"
+            android:hint="Profesor"
+            android:inputType="textPassword"
+            android:textColorHint="#FFFFFF" />
+
+        <Button
+            android:id="@+id/boton_buscar"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="40dp"
+
+            android:layout_marginBottom="40dp"
+            android:backgroundTint="#827E94"
+            android:minHeight="48dp"
             android:text="Buscar Oferta"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="24sp"
-            android:textStyle="bold" />
+            android:textColor="#FFFFFF"
+            app:cornerRadius="16dp" />
 
-        <LinearLayout
-            android:layout_width="300sp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/rounded_sign_in_background"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <!-- Empieza como invisible -->
-
-            <!-- Empieza como invisible -->
-
-
-            <!-- Empieza como invisible -->
-
-            <EditText
-                android:id="@+id/inputTituloOferta"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="40dp"
-                android:layout_marginRight="20dp"
-                android:background="@drawable/text_edit_sign_in"
-                android:ems="10"
-                android:fontFamily="sans-serif"
-                android:gravity="center"
-                android:hint="Título Oferta"
-                android:inputType="textPassword"
-                android:textColorHint="#FFFFFF" />
-
-            <EditText
-                android:id="@+id/inputTipoTrabajo"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="20dp"
-                android:background="@drawable/text_edit_sign_in"
-                android:ems="10"
-                android:fontFamily="sans-serif"
-                android:gravity="center"
-                android:hint="Tipo de trabajo"
-                android:inputType="textPassword"
-                android:textColorHint="#FFFFFF" />
-
-            <EditText
-                android:id="@+id/inputDepartamento"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="20dp"
-                android:background="@drawable/text_edit_sign_in"
-                android:ems="10"
-                android:fontFamily="sans-serif"
-                android:gravity="center"
-                android:hint="Departamento"
-                android:inputType="textPassword"
-                android:textColorHint="#FFFFFF" />
-
-            <EditText
-                android:id="@+id/inputProfesorOferta"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="20dp"
-                android:background="@drawable/text_edit_sign_in"
-                android:ems="10"
-                android:fontFamily="sans-serif"
-                android:gravity="center"
-                android:hint="Profesor"
-                android:inputType="textPassword"
-                android:textColorHint="#FFFFFF" />
-
-            <Button
-                android:id="@+id/boton_buscar"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginLeft="40dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginRight="40dp"
-
-                android:layout_marginBottom="40dp"
-                android:backgroundTint="#827E94"
-                android:minHeight="48dp"
-                android:text="Buscar Oferta"
-                android:textColor="#FFFFFF"
-                app:cornerRadius="16dp" />
-
-        </LinearLayout>
     </LinearLayout>
-</RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
