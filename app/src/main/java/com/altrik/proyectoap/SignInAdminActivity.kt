@@ -6,6 +6,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.altrik.proyectoap.utilities.MailSender
 import com.altrik.proyectoap.utilities.RetrofitClient
 import com.altrik.proyectoap.utilities.request.SignInRequest
 import com.altrik.proyectoap.utilities.response.SignInResponse
@@ -54,37 +55,21 @@ class SignInAdminActivity : AppCompatActivity() {
             return
         }
 
-        val apiService = RetrofitClient.apiService
-        val signInRequest = SignInRequest(
-            email = correo,
-            name = nombre,
-            apellidos = apellidos,
-            escuela = null,
-            password = contrasena,
-            zonaTrabajo = zonaTrabajo,
-            tipoUsuario = "ADMINISTRADOR",
-            carnet = null
-        )
+        val codigoVerificacion = generarCodigoVerificacion()
 
-        apiService.signIn(signInRequest).enqueue(object : Callback<SignInResponse> {
-            override fun onResponse(call: Call<SignInResponse>, response: Response<SignInResponse>) {
-                if (response.isSuccessful) {
-                    val signInResponse = response.body()
-                    if (signInResponse != null && signInResponse.success) {
-                        Toast.makeText(this@SignInAdminActivity, signInResponse.message, Toast.LENGTH_SHORT).show()
-                        irLogin()
-                    } else {
-                        Toast.makeText(this@SignInAdminActivity, signInResponse?.message ?: "Error desconocido", Toast.LENGTH_SHORT).show()
-                    }
-                } else {
-                    val errorMessage = response.errorBody()?.string() ?: "Error desconocido"
-                    Toast.makeText(this@SignInAdminActivity, errorMessage, Toast.LENGTH_SHORT).show()
-                }
-            }
-            override fun onFailure(call: Call<SignInResponse>, t: Throwable) {
-                Toast.makeText(this@SignInAdminActivity, "Error: ${t.message}", Toast.LENGTH_SHORT).show()
-            }
-        })
+        val asunto = "Código de Verificación"
+        val cuerpo = "Tu código de verificación es: $codigoVerificacion"
+
+        MailSender.sendEmail(this, correo, asunto, cuerpo)
+
+        mostrarPantallaVerificacion(
+            codigoVerificacion = codigoVerificacion,
+            correo = correo,
+            nombre = nombre,
+            apellidos = apellidos,
+            zonaTrabajo = zonaTrabajo,
+            contrasena = contrasena
+        )
     }
 
     private fun irLogin() {
@@ -120,5 +105,41 @@ class SignInAdminActivity : AppCompatActivity() {
     private fun validarContransena(contrasena: String, repetirContrasena: String): Boolean {
         val passwordMatch = contrasena == repetirContrasena
         return passwordMatch
+    }
+
+    private fun generarCodigoVerificacion(): String {
+        val caracteres = "0123456789"
+        val longitud = 6
+        val codigo = StringBuilder()
+
+        for (i in 0 until longitud) {
+            val indice = (0 until caracteres.length).random()
+            codigo.append(caracteres[indice])
+        }
+
+        return codigo.toString()
+    }
+
+    private fun mostrarPantallaVerificacion(
+        codigoVerificacion: String,
+        correo: String,
+        nombre: String,
+        apellidos: String,
+        zonaTrabajo: String,
+        contrasena: String,
+    ) {
+        val sharedPreferences = getSharedPreferences("SignInPrefs", MODE_PRIVATE).edit()
+        sharedPreferences.putString("codigoVerificacion", codigoVerificacion)
+        sharedPreferences.putString("correo", correo)
+        sharedPreferences.putString("nombre", nombre)
+        sharedPreferences.putString("apellidos", apellidos)
+        sharedPreferences.putString("zonaTrabajo", zonaTrabajo)
+        sharedPreferences.putString("contrasena", contrasena)
+        sharedPreferences.putString("tipoUsuario", "ADMINISTRADOR")
+        sharedPreferences.apply()
+
+        val intent = Intent(this, VerificacionActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 }

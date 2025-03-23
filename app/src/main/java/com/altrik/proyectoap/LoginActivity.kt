@@ -52,8 +52,6 @@ class LoginActivity : AppCompatActivity() {
             return
         }
 
-        MailSender.sendEmail(this, correo, "Prueba", "Prueba")
-
         val apiService = RetrofitClient.apiService
         val loginRequest = LoginRequest(correo, contrasena)
 

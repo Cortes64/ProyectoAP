@@ -6,12 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import com.altrik.proyectoap.utilities.RetrofitClient
-import com.altrik.proyectoap.utilities.request.SignInRequest
-import com.altrik.proyectoap.utilities.response.SignInResponse
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import com.altrik.proyectoap.utilities.MailSender
 
 class SignInStudentActivity : AppCompatActivity()  {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,37 +49,21 @@ class SignInStudentActivity : AppCompatActivity()  {
             return
         }
 
-        val apiService = RetrofitClient.apiService
-        val signInRequest = SignInRequest(
-            email = correo,
-            name = nombre,
+        val codigoVerificacion = generarCodigoVerificacion()
+
+        val asunto = "Código de Verificación"
+        val cuerpo = "Tu código de verificación es: $codigoVerificacion"
+
+        MailSender.sendEmail(this, correo, asunto, cuerpo)
+
+        mostrarPantallaVerificacion(
+            codigoVerificacion = codigoVerificacion,
+            correo = correo,
+            nombre = nombre,
             apellidos = apellidos,
             carnet = carnet,
-            password = contrasena,
-            tipoUsuario = "ESTUDIANTE",
-            escuela = null,
-            zonaTrabajo = null
+            contrasena = contrasena
         )
-
-        apiService.signIn(signInRequest).enqueue(object : Callback<SignInResponse> {
-            override fun onResponse(call: Call<SignInResponse>, response: Response<SignInResponse>) {
-                if (response.isSuccessful) {
-                    val signInResponse = response.body()
-                    if (signInResponse != null && signInResponse.success) {
-                        Toast.makeText(this@SignInStudentActivity, signInResponse.message, Toast.LENGTH_SHORT).show()
-                        irLogin()
-                    } else {
-                        Toast.makeText(this@SignInStudentActivity, signInResponse?.message ?: "Error desconocido", Toast.LENGTH_SHORT).show()
-                    }
-                } else {
-                    val errorMessage = response.errorBody()?.string() ?: "Error desconocido"
-                    Toast.makeText(this@SignInStudentActivity, errorMessage, Toast.LENGTH_SHORT).show()
-                }
-            }
-            override fun onFailure(call: Call<SignInResponse>, t: Throwable) {
-                Toast.makeText(this@SignInStudentActivity, "Error: ${t.message}", Toast.LENGTH_SHORT).show()
-            }
-        })
     }
 
     private fun irLogin() {
@@ -99,14 +78,14 @@ class SignInStudentActivity : AppCompatActivity()  {
         correo: String,
         nombre: String,
         apellidos: String,
-        escuela: String,
+        carnet: String,
         contrasena: String,
         repetirContrasena: String
     ): Boolean {
         val camposVacios = correo.isEmpty() ||
                 nombre.isEmpty() ||
                 apellidos.isEmpty() ||
-                escuela.isEmpty() ||
+                carnet.isEmpty() ||
                 contrasena.isEmpty() ||
                 repetirContrasena.isEmpty()
         return camposVacios
@@ -120,5 +99,41 @@ class SignInStudentActivity : AppCompatActivity()  {
     private fun validarContransena(contrasena: String, repetirContrasena: String): Boolean {
         val passwordMatch = contrasena == repetirContrasena
         return passwordMatch
+    }
+
+    private fun generarCodigoVerificacion(): String {
+        val caracteres = "0123456789"
+        val longitud = 6
+        val codigo = StringBuilder()
+
+        for (i in 0 until longitud) {
+            val indice = (0 until caracteres.length).random()
+            codigo.append(caracteres[indice])
+        }
+
+        return codigo.toString()
+    }
+
+    private fun mostrarPantallaVerificacion(
+        codigoVerificacion: String,
+        correo: String,
+        nombre: String,
+        apellidos: String,
+        carnet: String,
+        contrasena: String,
+    ) {
+        val sharedPreferences = getSharedPreferences("SignInPrefs", MODE_PRIVATE).edit()
+        sharedPreferences.putString("codigoVerificacion", codigoVerificacion)
+        sharedPreferences.putString("correo", correo)
+        sharedPreferences.putString("nombre", nombre)
+        sharedPreferences.putString("apellidos", apellidos)
+        sharedPreferences.putString("carnet", carnet)
+        sharedPreferences.putString("contrasena", contrasena)
+        sharedPreferences.putString("tipoUsuario", "ESTUDIANTE")
+        sharedPreferences.apply()
+
+        val intent = Intent(this, VerificacionActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 }

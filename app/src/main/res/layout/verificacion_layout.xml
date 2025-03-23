@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#2C393E">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/Título"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="serif"
+            android:gravity="center"
+            android:text="Ingresar Código"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="300sp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_sign_in_background"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <!-- Empieza como invisible -->
+
+            <!-- Empieza como invisible -->
+
+
+            <!-- Empieza como invisible -->
+
+            <EditText
+                android:id="@+id/inputCodigo"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/text_edit_sign_in"
+                android:ems="10"
+                android:fontFamily="sans-serif"
+                android:gravity="center"
+                android:hint="Código"
+                android:inputType="number"
+                android:textColorHint="#FFFFFF" />
+
+            <Button
+                android:id="@+id/boton_verificar"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="30dp"
+
+                android:layout_marginRight="40dp"
+                android:layout_marginBottom="40dp"
+                android:backgroundTint="#827E94"
+                android:minHeight="48dp"
+                android:text="Verificar"
+                android:textColor="#FFFFFF"
+                app:cornerRadius="16dp" />
+
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>
