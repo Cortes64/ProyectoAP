@@ -67,14 +67,14 @@
             tools:layout_constraintEnd_toEndOf="parent">
 
             <ImageView
-                android:id="@+id/imageView"
+                android:id="@+id/imageViewShortcutSolicitud"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 app:srcCompat="@drawable/ic_chat" />
 
             <ImageView
-                android:id="@+id/imageView3"
+                android:id="@+id/imageViewPersonSolicitud"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

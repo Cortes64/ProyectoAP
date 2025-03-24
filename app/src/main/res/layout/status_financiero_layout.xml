@@ -42,7 +42,7 @@
             android:layout_marginLeft="40dp"
             android:layout_marginTop="40dp"
             android:layout_marginRight="40dp"
-            android:background="#D9D9D9"
+            android:background="@drawable/rounded_login_background"
             android:orientation="vertical"
             android:padding="20dp">
 
@@ -51,13 +51,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/profile_background_title"
-                android:text="Situación Financiera"
+                android:text="SITUACIÓN FINANCIERA"
                 android:textAlignment="center"
                 android:textColor="#FFFFFF"
                 android:textSize="24dp" />
 
             <TextView
-                android:id="@+id/textViewStatusBeca"
+                android:id="@+id/textViewEscuelaSolicitud"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -70,13 +70,13 @@
                 android:text="Tipo de beca: " />
 
             <TextView
-                android:id="@+id/textViewDepartamentoBeca"
+                android:id="@+id/textViewNombreSolicitud"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Departamento de beca: " />
 
             <TextView
-                android:id="@+id/textViewVencimientoBeca"
+                android:id="@+id/textViewTipoTrabajoSolicitud"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Vencimiento de Beca:" />

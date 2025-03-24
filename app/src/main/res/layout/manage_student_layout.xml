@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/nombre_estudiante"
+                android:textAlignment="center"
+                android:textSize="24sp"
+                tools:layout_editor_absoluteX="44dp"
+                tools:layout_editor_absoluteY="40dp" />
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/circle_background"
+                android:scaleType="centerInside"
+                app:srcCompat="@drawable/ic_digital_wellbeing_outline"
+                tools:layout_editor_absoluteX="109dp"
+                tools:layout_editor_absoluteY="92dp" />
+
+            <TextView
+                android:id="@+id/textCarnet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="CARNET ESTUDIANTE"
+                android:textAlignment="center"
+                android:textSize="24sp"
+                tools:layout_editor_absoluteX="44dp"
+                tools:layout_editor_absoluteY="306dp" />
+
+            <TextView
+                android:id="@+id/textEscuela"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ESCUELA ESTUDIANTE"
+                android:textAlignment="center"
+                android:textSize="24sp"
+                tools:layout_editor_absoluteX="44dp"
+                tools:layout_editor_absoluteY="348dp" />
+
+            <LinearLayout
+                android:id="@+id/solicitudTrabajo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/rounded_login_background"
+                android:elevation="8dp"
+                android:orientation="vertical"
+                android:padding="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="348dp">
+
+                <TextView
+                    android:id="@+id/textTitulo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/profile_background_title"
+                    android:text="SOLICITUD DE TRABAJO"
+                    android:textAlignment="center"
+                    android:textColor="#FFFFFF"
+                    android:textSize="24dp" />
+
+                <TextView
+                    android:id="@+id/textViewEscuelaSolicitud"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="Escuela / Departamento:" />
+
+                <TextView
+                    android:id="@+id/textViewNombreSolicitud"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Nombre del Encargado" />
+
+                <TextView
+                    android:id="@+id/textViewTipoTrabajoSolicitud"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Tipo de Trabajo" />
+
+                <LinearLayout
+                    android:id="@+id/iconsOferta"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginRight="10dp"
+                    android:orientation="horizontal"
+                    tools:layout_constraintEnd_toEndOf="parent">
+
+                    <ImageView
+                        android:id="@+id/imageViewShortcutSolicitud"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/ic_article_shortcut" />
+
+                    <ImageView
+                        android:id="@+id/imageViewPersonSolicitud"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/ic_boy" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/becaActual"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/rounded_login_background"
+                android:elevation="8dp"
+                android:orientation="vertical"
+                android:padding="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/solicitudTrabajo">
+
+                <TextView
+                    android:id="@+id/textTitulo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/profile_background_title"
+                    android:text="BECA ECONÓMICA ACTUAL"
+                    android:textAlignment="center"
+                    android:textColor="#FFFFFF"
+                    android:textSize="24dp" />
+
+                <TextView
+                    android:id="@+id/textViewTipoBeca"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="Tipo de Beca" />
+
+                <TextView
+                    android:id="@+id/textViewEncargadoBeca"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Nombre del Encargado" />
+
+                <LinearLayout
+                    android:id="@+id/iconsOferta"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginRight="10dp"
+                    android:orientation="horizontal"
+                    tools:layout_constraintEnd_toEndOf="parent">
+
+                    <ImageView
+                        android:id="@+id/imageViewBeca"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/ic_article_shortcut" />
+                </LinearLayout>
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/bottom_bar"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_alignParentBottom="true"
+        android:background="#444F7E"
+        android:orientation="horizontal"
+        android:paddingTop="10dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <ImageButton
+            android:id="@+id/imageButtonMenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#444F7E"
+            app:srcCompat="@drawable/ic_create_new_folder" />
+
+        <ImageButton
+            android:id="@+id/imageButtonDollar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#444F7E"
+            app:srcCompat="@drawable/ic_folder_check" />
+
+        <ImageButton
+            android:id="@+id/imageButtonEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#444F7E"
+            app:srcCompat="@drawable/group" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

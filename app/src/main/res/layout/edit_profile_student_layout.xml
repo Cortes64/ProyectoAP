@@ -21,7 +21,7 @@
             android:layout_marginRight="44dp"
             android:text="@string/nombre_estudiante"
             android:textAlignment="center"
-            android:textSize="20sp" />
+            android:textSize="24sp" />
 
         <ImageView
             android:id="@+id/imageView2"
