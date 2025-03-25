@@ -16,7 +16,13 @@
         android:theme="@style/Theme.ProyectoAP"
         tools:targetApi="31">
         <activity
+            android:name=".ManageStudentActivity"
+            android:exported="false"/>
+        <activity
             android:name=".VerificacionActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".FormBuscarEstudianteActivity"
             android:exported="false"/>
         <activity
             android:name=".UserListActivity"

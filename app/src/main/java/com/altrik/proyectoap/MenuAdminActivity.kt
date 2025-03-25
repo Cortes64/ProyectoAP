@@ -75,7 +75,7 @@ class MenuAdminActivity : AppCompatActivity() {
     }
 
     private fun irGestionarUsuarios() {
-        val intent = Intent(this, UserListActivity::class.java)
+        val intent = Intent(this, FormBuscarEstudianteActivity::class.java)
         startActivity(intent)
         finish()
     }

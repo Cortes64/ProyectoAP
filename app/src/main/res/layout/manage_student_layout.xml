@@ -5,54 +5,62 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <ImageButton
+        android:id="@+id/imageButtonSidebar6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/rounded_navbar"
+        android:elevation="8dp"
+        app:layout_constraintBottom_toTopOf="@id/bottom_bar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/ic_menu" />
+
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/bottom_bar"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/textTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
                 android:text="@string/nombre_estudiante"
                 android:textAlignment="center"
                 android:textSize="24sp"
-                tools:layout_editor_absoluteX="44dp"
-                tools:layout_editor_absoluteY="40dp" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/imageView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/circle_background"
                 android:scaleType="centerInside"
-                app:srcCompat="@drawable/ic_digital_wellbeing_outline"
-                tools:layout_editor_absoluteX="109dp"
-                tools:layout_editor_absoluteY="92dp" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textTitle"
+                app:srcCompat="@drawable/ic_digital_wellbeing_outline" />
 
             <TextView
                 android:id="@+id/textCarnet"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:text="CARNET ESTUDIANTE"
                 android:textAlignment="center"
                 android:textSize="24sp"
-                tools:layout_editor_absoluteX="44dp"
-                tools:layout_editor_absoluteY="306dp" />
-
-            <TextView
-                android:id="@+id/textEscuela"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="ESCUELA ESTUDIANTE"
-                android:textAlignment="center"
-                android:textSize="24sp"
-                tools:layout_editor_absoluteX="44dp"
-                tools:layout_editor_absoluteY="348dp" />
+                app:layout_constraintTop_toBottomOf="@id/imageView4"
+                tools:layout_editor_absoluteX="44dp" />
 
             <LinearLayout
                 android:id="@+id/solicitudTrabajo"
@@ -61,12 +69,11 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:background="@drawable/rounded_login_background"
-                android:elevation="8dp"
                 android:orientation="vertical"
                 android:padding="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                tools:layout_editor_absoluteY="348dp">
+                app:layout_constraintTop_toBottomOf="@id/textCarnet">
 
                 <TextView
                     android:id="@+id/textTitulo"
@@ -130,12 +137,12 @@
                 android:layout_marginTop="30dp"
                 android:layout_marginRight="20dp"
                 android:background="@drawable/rounded_login_background"
-                android:elevation="8dp"
                 android:orientation="vertical"
                 android:padding="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/solicitudTrabajo">
+                app:layout_constraintTop_toBottomOf="@id/solicitudTrabajo"
+                tools:layout_constraintTop_toBottomOf="@id/solicitudTrabajo">
 
                 <TextView
                     android:id="@+id/textTitulo"

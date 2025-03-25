@@ -62,7 +62,7 @@
             android:layout_marginTop="10dp"
             android:fontFamily="serif"
             android:gravity="center"
-            android:text="Buscar Oferta"
+            android:text="Buscar Estudiante"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="24sp"
@@ -108,7 +108,7 @@
                 android:layout_marginBottom="40dp"
                 android:backgroundTint="#827E94"
                 android:minHeight="48dp"
-                android:text="Buscar Oferta"
+                android:text="Buscar"
                 android:textColor="#FFFFFF"
                 app:cornerRadius="16dp" />
 

@@ -7,8 +7,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.altrik.proyectoap.R
 
-class UsuarioAdapter(private val usuarios: List<Usuario>) :
-    RecyclerView.Adapter<UsuarioAdapter.UsuarioViewHolder>() {
+class UsuarioAdapter(
+    private val usuarios: List<Usuario>,
+    private val onItemClick: (Usuario) -> Unit
+) : RecyclerView.Adapter<UsuarioAdapter.UsuarioViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UsuarioViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -21,6 +23,10 @@ class UsuarioAdapter(private val usuarios: List<Usuario>) :
         holder.email.text = usuario.email
         holder.nombre.text = "${usuario.name} ${usuario.apellidos}"
         holder.tipoUsuario.text = usuario.tipoUsuario
+
+        holder.itemView.setOnClickListener {
+            onItemClick(usuario)
+        }
     }
 
     override fun getItemCount(): Int = usuarios.size

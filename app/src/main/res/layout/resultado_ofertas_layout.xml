@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -11,22 +10,22 @@
         app:layout_constraintBottom_toTopOf="@id/footer"
         app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="wrap_content" >
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView"
+                android:id="@+id/recyclerViewOfertas"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
+                android:layout_height="match_parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
     <LinearLayout
         android:id="@+id/footer"
         android:layout_width="match_parent"
         android:layout_height="70dp"
+        android:layout_alignParentBottom="true"
         android:background="#444F7E"
         android:orientation="horizontal"
         android:paddingTop="10dp"
@@ -56,18 +55,4 @@
             android:background="#444F7E"
             app:srcCompat="@drawable/ic_server_person" />
     </LinearLayout>
-
-    <ImageButton
-        android:id="@+id/imageButtonSidebar5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginLeft="10dp"
-        android:layout_marginBottom="5dp"
-        android:background="@drawable/rounded_navbar"
-        android:elevation="8dp"
-        app:layout_constraintBottom_toTopOf="@id/footer"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/ic_menu" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

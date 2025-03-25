@@ -10,6 +10,7 @@ import com.altrik.proyectoap.utilities.RetrofitClient
 import com.altrik.proyectoap.utilities.Usuario
 import com.altrik.proyectoap.utilities.UsuarioAdapter
 import kotlinx.coroutines.launch
+import android.content.Intent
 
 class UserListActivity : AppCompatActivity() {
 
@@ -24,7 +25,17 @@ class UserListActivity : AppCompatActivity() {
         recyclerView = findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        adapter = UsuarioAdapter(listaUsuarios)
+        adapter = UsuarioAdapter(listaUsuarios) { usuario ->
+            // Manejar click del usuario
+
+            val intent = Intent(this, ManageStudentActivity::class.java).apply {
+                putExtra("NOMBRE", usuario.name)
+                putExtra("APELLIDOS", usuario.apellidos)
+                putExtra("EMAIL", usuario.email)
+                putExtra("TIPO", usuario.tipoUsuario)
+            }
+            startActivity(intent)
+        }
         recyclerView.adapter = adapter
 
         val sharedPreferences = getSharedPreferences("SearchUser", MODE_PRIVATE)
