@@ -1,6 +1,6 @@
 package com.altrik.proyectoap.utilities
 
-data class OfertaAcademica (
+data class Oferta (
     val titulo: String,
     val tipoTrabajo: String,
     val departamento: String,

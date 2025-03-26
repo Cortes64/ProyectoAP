@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.altrik.proyectoap.R
 
 class OfertaAdapter(
-    private val ofertas: List<OfertaAcademica>,
+    private val ofertas: List<Oferta>,
 ) : RecyclerView.Adapter<OfertaAdapter.OfertaViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OfertaViewHolder {
@@ -17,7 +17,7 @@ class OfertaAdapter(
         return OfertaViewHolder(view)
     }
 
-    override fun onBindViewHoler(holder: OfertaViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: OfertaViewHolder, position: Int) {
         val oferta = ofertas[position]
         holder.titulo.text = oferta.titulo
         holder.tipoTrabajo.text = oferta.tipoTrabajo
