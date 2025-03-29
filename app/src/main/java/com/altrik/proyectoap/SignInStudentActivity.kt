@@ -2,9 +2,11 @@ package com.altrik.proyectoap
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Spinner
 import android.widget.Toast
 import com.altrik.proyectoap.utilities.MailSender
 
@@ -12,6 +14,27 @@ class SignInStudentActivity : AppCompatActivity()  {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.sign_in_student_layout)
+
+        val spinnerCarrera = findViewById<Spinner>(R.id.carreraOptions)
+        val spinnerNivelAcademico = findViewById<Spinner>(R.id.nivelAcademicoOptions)
+
+        val adapterCarrera = ArrayAdapter.createFromResource(
+            this,
+            R.array.careers_array,
+            R.layout.spinner
+        )
+
+        adapterCarrera.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinnerCarrera.adapter = adapterCarrera
+
+        val adapterNivelAcademico = ArrayAdapter.createFromResource(
+            this,
+            R.array.nivel_academico,
+            R.layout.spinner
+        )
+
+        adapterNivelAcademico.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinnerNivelAcademico.adapter = adapterNivelAcademico
 
         val btnLogin = findViewById<Button>(R.id.boton_inicio_sesion)
         btnLogin.setOnClickListener {
@@ -33,8 +56,16 @@ class SignInStudentActivity : AppCompatActivity()  {
         val carnet = findViewById<EditText>(R.id.InputCarnet).text.toString()
         val contrasena = findViewById<EditText>(R.id.InputContraseña).text.toString()
         val repetirContrasena = findViewById<EditText>(R.id.InputRepetirContraseña).text.toString()
+        val contacto = findViewById<EditText>(R.id.InputContacto).text.toString()
+        val promedioPonderado = findViewById<EditText>(R.id.InputPromedio).text.toString()
 
-        if (camposVacios(correo, nombre, apellidos, carnet, contrasena, repetirContrasena)) {
+        val spinnerCarrera = findViewById<Spinner>(R.id.carreraOptions)
+        val spinnerNivelAcademico = findViewById<Spinner>(R.id.nivelAcademicoOptions)
+
+        val carrera = spinnerCarrera.selectedItem.toString()
+        val nivelAcademico = spinnerNivelAcademico.selectedItem.toString()
+
+        if (camposVacios(correo, nombre, apellidos, carnet, contrasena, repetirContrasena, contacto, promedioPonderado)) {
             Toast.makeText(this, "Por favor, complete todos los campos", Toast.LENGTH_SHORT).show()
             return
         }
@@ -62,7 +93,11 @@ class SignInStudentActivity : AppCompatActivity()  {
             nombre = nombre,
             apellidos = apellidos,
             carnet = carnet,
-            contrasena = contrasena
+            contrasena = contrasena,
+            contacto = contacto,
+            carrera = carrera,
+            nivelAcademico = nivelAcademico,
+            promedioPonderado = promedioPonderado
         )
     }
 
@@ -80,14 +115,18 @@ class SignInStudentActivity : AppCompatActivity()  {
         apellidos: String,
         carnet: String,
         contrasena: String,
-        repetirContrasena: String
+        repetirContrasena: String,
+        contacto: String,
+        promedioPonderado: String
     ): Boolean {
         val camposVacios = correo.isEmpty() ||
                 nombre.isEmpty() ||
                 apellidos.isEmpty() ||
                 carnet.isEmpty() ||
                 contrasena.isEmpty() ||
-                repetirContrasena.isEmpty()
+                repetirContrasena.isEmpty() ||
+                contacto.isEmpty() ||
+                promedioPonderado.isEmpty()
         return camposVacios
     }
 
@@ -121,6 +160,10 @@ class SignInStudentActivity : AppCompatActivity()  {
         apellidos: String,
         carnet: String,
         contrasena: String,
+        contacto: String,
+        carrera: String,
+        nivelAcademico: String,
+        promedioPonderado: String
     ) {
         val sharedPreferences = getSharedPreferences("SignInPrefs", MODE_PRIVATE).edit()
         sharedPreferences.putString("codigoVerificacion", codigoVerificacion)
@@ -130,6 +173,10 @@ class SignInStudentActivity : AppCompatActivity()  {
         sharedPreferences.putString("carnet", carnet)
         sharedPreferences.putString("contrasena", contrasena)
         sharedPreferences.putString("tipoUsuario", "ESTUDIANTE")
+        sharedPreferences.putString("contacto", contacto)
+        sharedPreferences.putString("carrera", carrera)
+        sharedPreferences.putString("nivelAcademico", nivelAcademico)
+        sharedPreferences.putString("promedioPonderado", promedioPonderado)
         sharedPreferences.apply()
 
         val intent = Intent(this, VerificacionActivity::class.java)

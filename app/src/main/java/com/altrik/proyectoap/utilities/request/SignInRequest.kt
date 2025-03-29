@@ -8,5 +8,11 @@ data class SignInRequest (
     val zonaTrabajo: String?,
     val carnet: String?,
     val password: String,
-    val tipoUsuario: String
+    val tipoUsuario: String,
+    val departamentoTrabajo: String?,
+    val telefono: String?,
+    val nivelAcademico: String?,
+    val contacto: String?,
+    val carrera: String?,
+    val promedioPonderado: String?
 )

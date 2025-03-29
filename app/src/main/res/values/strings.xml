@@ -8,4 +8,8 @@
         <item>Opcion 2</item>
         <item>Opcion 3</item>
     </string-array>
+    <string-array name="nivel_academico">
+        <item>Bachillerato</item>
+        <item>Licenciatura</item>
+    </string-array>
 </resources>

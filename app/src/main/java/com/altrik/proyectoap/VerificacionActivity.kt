@@ -68,6 +68,10 @@ class VerificacionActivity : AppCompatActivity() {
         val carnet = sharedPref.getString("carnet", "") ?: ""
         val contrasena = sharedPref.getString("contrasena", "") ?: ""
         val tipoUsuario = sharedPref.getString("tipoUsuario", "") ?: ""
+        val contacto = sharedPref.getString("contacto", "") ?: ""
+        val carrera = sharedPref.getString("carrera", "") ?: ""
+        val nivelAcademico = sharedPref.getString("nivelAcademico", "") ?: ""
+        val promedioPonderado = sharedPref.getString("promedioPonderado", "") ?: ""
 
         val signInRequest = SignInRequest(
             email = correo,
@@ -77,7 +81,13 @@ class VerificacionActivity : AppCompatActivity() {
             password = contrasena,
             tipoUsuario = tipoUsuario,
             escuela = null,
-            zonaTrabajo = null
+            zonaTrabajo = null,
+            departamentoTrabajo = null,
+            telefono = null,
+            nivelAcademico = nivelAcademico,
+            contacto = contacto,
+            carrera = carrera,
+            promedioPonderado = promedioPonderado
         )
 
         if (
@@ -101,6 +111,8 @@ class VerificacionActivity : AppCompatActivity() {
         val escuela = sharedPref.getString("escuela", "") ?: ""
         val contrasena = sharedPref.getString("contrasena", "") ?: ""
         val tipoUsuario = sharedPref.getString("tipoUsuario", "") ?: ""
+        val departamentoAcademico = sharedPref.getString("departamentoAcademico", "") ?: ""
+        val telefono = sharedPref.getString("telefono", "") ?: ""
 
         val signInRequest = SignInRequest(
             email = correo,
@@ -110,7 +122,13 @@ class VerificacionActivity : AppCompatActivity() {
             password = contrasena,
             tipoUsuario = tipoUsuario,
             escuela = escuela,
-            zonaTrabajo = null
+            zonaTrabajo = null,
+            departamentoTrabajo = departamentoAcademico,
+            telefono = telefono,
+            nivelAcademico = null,
+            contacto = null,
+            carrera = null,
+            promedioPonderado = null
         )
 
         if (
@@ -134,6 +152,7 @@ class VerificacionActivity : AppCompatActivity() {
         val zonaTrabajo = sharedPref.getString("zonaTrabajo", "") ?: ""
         val contrasena = sharedPref.getString("contrasena", "") ?: ""
         val tipoUsuario = sharedPref.getString("tipoUsuario", "") ?: ""
+        val escuela = sharedPref.getString("escuela", "") ?: ""
 
         val signInRequest = SignInRequest(
             email = correo,
@@ -142,8 +161,14 @@ class VerificacionActivity : AppCompatActivity() {
             carnet = null,
             password = contrasena,
             tipoUsuario = tipoUsuario,
-            escuela = null,
-            zonaTrabajo = zonaTrabajo
+            escuela = escuela,
+            zonaTrabajo = zonaTrabajo,
+            departamentoTrabajo = null,
+            telefono = null,
+            nivelAcademico = null,
+            contacto = null,
+            carrera = null,
+            promedioPonderado = null
         )
 
         if (

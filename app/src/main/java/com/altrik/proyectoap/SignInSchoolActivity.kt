@@ -33,8 +33,9 @@ class SignInSchoolActivity : AppCompatActivity()  {
         val zonaTrabajo = findViewById<EditText>(R.id.InputZonaTrabajo).text.toString()
         val contrasena = findViewById<EditText>(R.id.InputContraseña).text.toString()
         val repetirContrasena = findViewById<EditText>(R.id.InputRepetirContraseña).text.toString()
+        val telefono = findViewById<EditText>(R.id.InputTelefono).text.toString()
 
-        if (camposVacios(correo, nombre, apellidos, zonaTrabajo, contrasena, repetirContrasena)) {
+        if (camposVacios(correo, nombre, apellidos, zonaTrabajo, contrasena, repetirContrasena, telefono)) {
             Toast.makeText(this, "Por favor, complete todos los campos", Toast.LENGTH_SHORT).show()
             return
         }
@@ -62,7 +63,8 @@ class SignInSchoolActivity : AppCompatActivity()  {
             nombre = nombre,
             apellidos = apellidos,
             zonaTrabajo = zonaTrabajo,
-            contrasena = contrasena
+            contrasena = contrasena,
+            telefono = telefono
         )
     }
 
@@ -80,14 +82,16 @@ class SignInSchoolActivity : AppCompatActivity()  {
         apellidos: String,
         zonaTrabajo: String,
         contrasena: String,
-        repetirContrasena: String
+        repetirContrasena: String,
+        telefono: String
     ): Boolean {
         val camposVacios = correo.isEmpty() ||
                 nombre.isEmpty() ||
                 apellidos.isEmpty() ||
                 zonaTrabajo.isEmpty() ||
                 contrasena.isEmpty() ||
-                repetirContrasena.isEmpty()
+                repetirContrasena.isEmpty() ||
+                telefono.isEmpty()
         return camposVacios
     }
 
@@ -121,6 +125,7 @@ class SignInSchoolActivity : AppCompatActivity()  {
         apellidos: String,
         zonaTrabajo: String,
         contrasena: String,
+        telefono: String
     ) {
         val sharedPreferences = getSharedPreferences("SignInPrefs", MODE_PRIVATE).edit()
         sharedPreferences.putString("codigoVerificacion", codigoVerificacion)
@@ -130,6 +135,7 @@ class SignInSchoolActivity : AppCompatActivity()  {
         sharedPreferences.putString("zonaTrabajo", zonaTrabajo)
         sharedPreferences.putString("contrasena", contrasena)
         sharedPreferences.putString("tipoUsuario", "ESCUELA")
+        sharedPreferences.putString("telefono", telefono)
         sharedPreferences.apply()
 
         val intent = Intent(this, VerificacionActivity::class.java)

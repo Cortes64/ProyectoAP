@@ -27,4 +27,7 @@ interface ApiService {
 
     @PUT("user/{email}")
     suspend fun updateUser(@Path("email") email: String, @Body usuario: UpdateUserRequest): UpdateUserResponse<Usuario>
+
+    @GET("userGet/escuela")
+    suspend fun getEscuelas(): UserListResponse<List<Usuario>>
 }

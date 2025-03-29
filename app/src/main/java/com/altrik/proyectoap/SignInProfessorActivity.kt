@@ -10,7 +10,12 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
+import androidx.lifecycle.lifecycleScope
 import com.altrik.proyectoap.utilities.MailSender
+import com.altrik.proyectoap.utilities.RetrofitClient
+import com.altrik.proyectoap.utilities.Usuario
+import com.altrik.proyectoap.utilities.response.UserListResponse
+import kotlinx.coroutines.launch
 
 class SignInProfessorActivity : AppCompatActivity()  {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,7 +40,7 @@ class SignInProfessorActivity : AppCompatActivity()  {
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {
-                // Acción si no se selecciona nada
+
             }
         }
 
@@ -50,6 +55,24 @@ class SignInProfessorActivity : AppCompatActivity()  {
         }
     }
 
+    private fun cargarEscuelas() {
+        val spinner = findViewById<Spinner>(R.id.EscuelaOptions)
+
+        lifecycleScope.launch {
+            try {
+                val response: UserListResponse<List<Usuario>> = RetrofitClient.apiService.getEscuelas()
+
+                val nombresEscuelas = response.data.map { it.name }
+
+                val adapter = ArrayAdapter(this@SignInProfessorActivity, android.R.layout.simple_spinner_item, nombresEscuelas)
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                spinner.adapter = adapter
+            } catch (e: Exception) {
+                Toast.makeText(this@SignInProfessorActivity, "Error al cargar las escuelas: ${e.message}", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
     // Al presionar los botones
 
     private fun crearCuenta() {
@@ -58,8 +81,13 @@ class SignInProfessorActivity : AppCompatActivity()  {
         val apellidos = findViewById<EditText>(R.id.inputApellidos).text.toString()
         val contrasena = findViewById<EditText>(R.id.InputContraseña).text.toString()
         val repetirContrasena = findViewById<EditText>(R.id.InputRepetirContraseña).text.toString()
+        val telefono = findViewById<EditText>(R.id.InputTelefono).text.toString()
+        val departamentoAcademico = findViewById<EditText>(R.id.InputDepartamentoAcademico).text.toString()
 
-        if (camposVacios(correo, nombre, apellidos, "escuela", contrasena, repetirContrasena)) {
+        val spinner = findViewById<Spinner>(R.id.EscuelaOptions)
+        val escuela = spinner.selectedItem.toString()
+
+        if (camposVacios(correo, nombre, apellidos, escuela, telefono, departamentoAcademico, contrasena, repetirContrasena)) {
             Toast.makeText(this, "Por favor, complete todos los campos", Toast.LENGTH_SHORT).show()
             return
         }
@@ -86,8 +114,10 @@ class SignInProfessorActivity : AppCompatActivity()  {
             correo = correo,
             nombre = nombre,
             apellidos = apellidos,
-            escuela = "escuela",
-            contrasena = contrasena
+            escuela = escuela,
+            contrasena = contrasena,
+            departamentoAcademico = departamentoAcademico,
+            telefono = telefono
         )
     }
 
@@ -99,6 +129,8 @@ class SignInProfessorActivity : AppCompatActivity()  {
         nombre: String,
         apellidos: String,
         escuela: String,
+        telefono: String,
+        departamentoAcademico: String,
         contrasena: String,
         repetirContrasena: String
     ): Boolean {
@@ -107,7 +139,9 @@ class SignInProfessorActivity : AppCompatActivity()  {
                 apellidos.isEmpty() ||
                 escuela.isEmpty() ||
                 contrasena.isEmpty() ||
-                repetirContrasena.isEmpty()
+                repetirContrasena.isEmpty() ||
+                telefono.isEmpty() ||
+                departamentoAcademico.isEmpty()
         return camposVacios
     }
 
@@ -141,6 +175,8 @@ class SignInProfessorActivity : AppCompatActivity()  {
         apellidos: String,
         escuela: String,
         contrasena: String,
+        departamentoAcademico: String,
+        telefono: String
     ) {
         val sharedPreferences = getSharedPreferences("SignInPrefs", MODE_PRIVATE).edit()
         sharedPreferences.putString("codigoVerificacion", codigoVerificacion)
@@ -150,6 +186,8 @@ class SignInProfessorActivity : AppCompatActivity()  {
         sharedPreferences.putString("escuela", escuela)
         sharedPreferences.putString("contrasena", contrasena)
         sharedPreferences.putString("tipoUsuario", "PROFESOR")
+        sharedPreferences.putString("departamentoAcademico", departamentoAcademico)
+        sharedPreferences.putString("telefono", telefono)
         sharedPreferences.apply()
 
         val intent = Intent(this, VerificacionActivity::class.java)
