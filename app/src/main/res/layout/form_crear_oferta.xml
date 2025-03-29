@@ -128,6 +128,15 @@
                 android:inputType="textPassword"
                 android:textColorHint="#FFFFFF" />
 
+            <Spinner
+                android:id="@+id/DepartamentoOptions"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/text_edit_sign_in" />
+
             <EditText
                 android:id="@+id/inputDescripcionOferta"
                 android:layout_width="match_parent"

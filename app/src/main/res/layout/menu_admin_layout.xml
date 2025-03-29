@@ -11,6 +11,22 @@
 
         <!-- Aquí va tu contenido principal -->
 
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/footer">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/RecyclerViewOferta"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
         <ImageButton
             android:id="@+id/imageButtonSidebar"
             android:layout_width="50dp"
@@ -23,6 +39,7 @@
             app:srcCompat="@drawable/ic_menu" />
 
         <LinearLayout
+            android:id="@+id/footer"
             android:layout_width="match_parent"
             android:layout_height="70dp"
             android:layout_alignParentBottom="true"
@@ -64,6 +81,6 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/drawer_header"
-        app:menu="@menu/sidebar_admin_menu" />
+        app:menu="@menu/sidebar_student_menu" />
 
 </androidx.drawerlayout.widget.DrawerLayout>

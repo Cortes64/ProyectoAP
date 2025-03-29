@@ -6,12 +6,38 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import android.content.Intent
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Spinner
 import com.altrik.proyectoap.utilities.MailSender
 
 class SignInProfessorActivity : AppCompatActivity()  {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.sign_in_professor_layout)
+
+        val spinner = findViewById<Spinner>(R.id.EscuelaOptions)
+
+        val adapter = ArrayAdapter.createFromResource(
+            this,
+            R.array.escuela,
+            R.layout.spinner
+        )
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinner.adapter = adapter
+
+        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
+                val selectedItem = parent.getItemAtPosition(position).toString()
+                Toast.makeText(this@SignInProfessorActivity, "Seleccionaste: $selectedItem", Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {
+                // Acción si no se selecciona nada
+            }
+        }
 
         val btnLogin = findViewById<Button>(R.id.boton_inicio_sesion)
         btnLogin.setOnClickListener {
@@ -30,11 +56,10 @@ class SignInProfessorActivity : AppCompatActivity()  {
         val correo = findViewById<EditText>(R.id.InputCorreo).text.toString()
         val nombre = findViewById<EditText>(R.id.inputNombre).text.toString()
         val apellidos = findViewById<EditText>(R.id.inputApellidos).text.toString()
-        val escuela = findViewById<EditText>(R.id.InputEscuela).text.toString()
         val contrasena = findViewById<EditText>(R.id.InputContraseña).text.toString()
         val repetirContrasena = findViewById<EditText>(R.id.InputRepetirContraseña).text.toString()
 
-        if (camposVacios(correo, nombre, apellidos, escuela, contrasena, repetirContrasena)) {
+        if (camposVacios(correo, nombre, apellidos, "escuela", contrasena, repetirContrasena)) {
             Toast.makeText(this, "Por favor, complete todos los campos", Toast.LENGTH_SHORT).show()
             return
         }
@@ -61,7 +86,7 @@ class SignInProfessorActivity : AppCompatActivity()  {
             correo = correo,
             nombre = nombre,
             apellidos = apellidos,
-            escuela = escuela,
+            escuela = "escuela",
             contrasena = contrasena
         )
     }

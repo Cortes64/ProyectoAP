@@ -3,4 +3,9 @@
     <string name="nombre_estudiante">NOMBRE</string>
     <string name="open">Abrir menú</string>
     <string name="close">Cerrar menú</string>
+    <string-array name="escuela">
+        <item>Opcion 1</item>
+        <item>Opcion 2</item>
+        <item>Opcion 3</item>
+    </string-array>
 </resources>
