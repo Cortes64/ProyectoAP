@@ -1,6 +1,7 @@
 package com.altrik.proyectoap
 
 import android.content.Intent
+import android.inputmethodservice.Keyboard
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -47,8 +48,12 @@ class LoginActivity : AppCompatActivity() {
         val correo = campoCorreo.text.toString()
         val contrasena = campoContrasena.text.toString()
 
-        if (camposVacios(correo = correo, contrasena = contrasena)) {
-            Toast.makeText(this, "Por favor complete todos los campos del login", Toast.LENGTH_SHORT).show()
+        if ( correo.isEmpty() || contrasena.isEmpty() ) {
+            Toast.makeText(
+                this,
+                "Por favor, complete todos los campos del login",
+                Toast.LENGTH_SHORT
+            ).show()
             return
         }
 
@@ -59,20 +64,19 @@ class LoginActivity : AppCompatActivity() {
             override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
                 if (response.isSuccessful) {
                     val loginResponse = response.body()
-                    val usuario = response.body()?.usuario
-                    if (loginResponse != null && loginResponse.success) {
+                    if (loginResponse?.success == true) {
 
-                        val sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE)
-                        val editor = sharedPreferences.edit()
+                        getSharedPreferences("UserPrefs", MODE_PRIVATE)
+                            .edit()
+                            .apply()
 
-                        editor.apply()
-
-                        irMenu(usuario)
+                        irMenu(loginResponse.usuario)
                         return
                     } else {
                         Toast.makeText(this@LoginActivity, loginResponse?.message ?: "Error desconocido", Toast.LENGTH_SHORT).show()
                     }
                 } else {
+                    // En este else deberían manejarse los Toasts de contraseña incorrecta y cuenta que no existe
                     Toast.makeText(this@LoginActivity, "Error en el login: ${response.code()}", Toast.LENGTH_SHORT).show()
                     response.errorBody()?.let {
                         println("Error en el login: ${it.string()}") // Imprime el error en la consola
@@ -125,9 +129,5 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(this, "Tipo de usuario desconocido", Toast.LENGTH_SHORT).show()
             }
         }
-    }
-
-    private fun camposVacios(correo: String, contrasena: String): Boolean {
-        return correo.isEmpty() || contrasena.isEmpty()
     }
 }

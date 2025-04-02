@@ -62,7 +62,7 @@ class SignInProfessorActivity : AppCompatActivity()  {
             try {
                 val response: UserListResponse<List<Usuario>> = RetrofitClient.apiService.getEscuelas()
 
-                val nombresEscuelas = response.data.map { it.name }
+                val nombresEscuelas = response.data?.map { it.name } ?: emptyList()
 
                 val adapter = ArrayAdapter(this@SignInProfessorActivity, android.R.layout.simple_spinner_item, nombresEscuelas)
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)

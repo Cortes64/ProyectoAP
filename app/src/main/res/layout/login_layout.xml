@@ -42,7 +42,7 @@
                 android:fontFamily="sans-serif"
                 android:gravity="center"
                 android:hint="Correo Electrónico"
-                android:inputType="text"
+                android:inputType="text|textEmailAddress"
                 android:paddingStart="10dp"
                 android:paddingEnd="10dp" />
 
