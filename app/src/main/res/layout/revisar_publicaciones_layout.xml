@@ -53,7 +53,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="#444F7E"
-                app:srcCompat="@drawable/ic_approval" />
+                app:srcCompat="@drawable/ic_create_new_folder" />
 
             <ImageButton
                 android:id="@+id/imageButtonDollar"
@@ -61,7 +61,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="#444F7E"
-                app:srcCompat="@drawable/ic_attach_money" />
+                app:srcCompat="@drawable/ic_folder_check" />
 
             <ImageButton
                 android:id="@+id/imageButtonEdit"

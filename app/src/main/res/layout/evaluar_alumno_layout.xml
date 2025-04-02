@@ -1,0 +1,205 @@
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#2C393E">
+
+        <!-- Aquí va tu contenido principal -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/Título"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="serif"
+                android:gravity="center"
+                android:text="Evaluar alumno"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="300sp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_sign_in_background"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Puntaje de alumno:"
+                    android:textSize="18sp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="10dp"/>
+
+                <LinearLayout
+                    android:id="@+id/starContainer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/star1"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/star_selector"
+                        />
+
+                    <ImageView
+                        android:id="@+id/star2"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/star_selector"
+                        />
+
+                    <ImageView
+                        android:id="@+id/star3"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/star_selector"
+                        />
+
+                    <ImageView
+                        android:id="@+id/star4"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/star_selector"
+                        />
+
+                    <ImageView
+                        android:id="@+id/star5"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/star_selector"
+                        />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Comentarios:"
+                    android:textSize="18sp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="10dp"/>
+
+                <EditText
+                    android:id="@+id/inputComentarios"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/text_edit_sign_in"
+                    android:ems="10"
+                    android:fontFamily="sans-serif"
+                    android:gravity="center"
+                    android:inputType="text"
+                    android:textColorHint="#FFFFFF" />
+
+                <Button
+                    android:id="@+id/botonCalificar"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginRight="40dp"
+                    android:layout_marginBottom="40dp"
+                    android:backgroundTint="#827E94"
+                    android:minHeight="48dp"
+                    android:text="Enviar calificación"
+                    android:textColor="#FFFFFF"
+                    app:cornerRadius="16dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/footer">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/RecyclerViewOferta"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+        <ImageButton
+            android:id="@+id/imageButtonSidebar"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="75dp"
+            android:background="@drawable/rounded_navbar"
+            android:elevation="8dp"
+            app:srcCompat="@drawable/ic_menu" />
+
+        <LinearLayout
+            android:id="@+id/footer"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_alignParentBottom="true"
+            android:background="#444F7E"
+            android:orientation="horizontal"
+            android:paddingTop="10dp">
+
+            <ImageButton
+                android:id="@+id/imageButtonMenu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#444F7E"
+                app:srcCompat="@drawable/ic_create_new_folder" />
+
+            <ImageButton
+                android:id="@+id/imageButtonDollar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#444F7E"
+                app:srcCompat="@drawable/ic_folder_check" />
+
+            <ImageButton
+                android:id="@+id/imageButtonEdit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#444F7E"
+                app:srcCompat="@drawable/group" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <!-- Navigation View -->
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="150dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        app:headerLayout="@layout/drawer_header"
+        app:menu="@menu/sidebar_student_menu" />
+
+</androidx.drawerlayout.widget.DrawerLayout>
