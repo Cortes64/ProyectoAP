@@ -16,6 +16,7 @@ import com.altrik.proyectoap.utilities.RetrofitClient
 import com.altrik.proyectoap.utilities.Usuario
 import com.altrik.proyectoap.utilities.response.UserListResponse
 import kotlinx.coroutines.launch
+import retrofit2.HttpException
 
 class SignInProfessorActivity : AppCompatActivity()  {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,14 +25,19 @@ class SignInProfessorActivity : AppCompatActivity()  {
 
         val spinner = findViewById<Spinner>(R.id.EscuelaOptions)
 
-        val adapter = ArrayAdapter.createFromResource(
-            this,
-            R.array.escuela,
-            R.layout.spinner
-        )
+        lifecycleScope.launch {
+            try {
+                val response: UserListResponse<List<Usuario>> = RetrofitClient.apiService.getEscuelas()
 
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spinner.adapter = adapter
+                val nombresEscuelas = response.data?.map { it.name } ?: emptyList()
+
+                val adapter = ArrayAdapter(this@SignInProfessorActivity, android.R.layout.simple_spinner_item, nombresEscuelas)
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                spinner.adapter = adapter
+            } catch (e: Exception) {
+                Toast.makeText(this@SignInProfessorActivity, "Error al cargar las escuelas: ${e.message}", Toast.LENGTH_SHORT).show()
+            }
+        }
 
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
