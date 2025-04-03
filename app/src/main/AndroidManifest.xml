@@ -19,6 +19,9 @@
             android:name=".ManageStudentActivity"
             android:exported="false"/>
         <activity
+            android:name=".SeguimientoActivity"
+            android:exported="false"/>
+        <activity
             android:name=".VerificacionActivity"
             android:exported="false"/>
         <activity

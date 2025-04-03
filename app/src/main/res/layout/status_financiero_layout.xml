@@ -1,133 +1,149 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center_horizontal"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@id/bottom_bar"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        tools:layout_editor_absoluteX="0dp">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/textView"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="44dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginRight="44dp"
-            android:text="@string/nombre_estudiante"
-            android:textAlignment="center"
-            android:textSize="20sp" />
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@id/bottom_bar"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/imageView2"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="44dp"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginRight="44dp"
+                    android:text="@string/nombre_estudiante"
+                    android:textAlignment="center"
+                    android:textSize="20sp" />
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/circle_background"
+                    android:scaleType="centerInside"
+                    app:srcCompat="@drawable/ic_digital_wellbeing_outline" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginRight="40dp"
+                    android:background="@drawable/rounded_login_background"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <TextView
+                        android:id="@+id/textTitulo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/profile_background_title"
+                        android:text="SITUACIÓN FINANCIERA"
+                        android:textAlignment="center"
+                        android:textColor="#FFFFFF"
+                        android:textSize="24dp" />
+
+                    <TextView
+                        android:id="@+id/textViewEscuelaSolicitud"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="Status Beca: " />
+
+                    <TextView
+                        android:id="@+id/textViewTipoBeca"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Tipo de beca: " />
+
+                    <TextView
+                        android:id="@+id/textViewNombreSolicitud"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Departamento de beca: " />
+
+                    <TextView
+                        android:id="@+id/textViewTipoTrabajoSolicitud"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Vencimiento de Beca:" />
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+
+        <ImageButton
+            android:id="@+id/imageButtonSidebar3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/circle_background"
-            android:scaleType="centerInside"
-            app:srcCompat="@drawable/ic_digital_wellbeing_outline" />
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/rounded_navbar"
+            android:elevation="8dp"
+            app:layout_constraintBottom_toTopOf="@id/bottom_bar"
+            app:srcCompat="@drawable/ic_menu"
+            tools:layout_editor_absoluteX="15dp" />
 
         <LinearLayout
+            android:id="@+id/bottom_bar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="40dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginRight="40dp"
-            android:background="@drawable/rounded_login_background"
-            android:orientation="vertical"
-            android:padding="20dp">
+            android:layout_height="70dp"
+            android:background="#444F7E"
+            android:orientation="horizontal"
+            android:paddingTop="10dp"
+            app:layout_constraintBottom_toBottomOf="parent">
 
-            <TextView
-                android:id="@+id/textTitulo"
-                android:layout_width="match_parent"
+            <ImageButton
+                android:id="@+id/imageButtonMenu3"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/profile_background_title"
-                android:text="SITUACIÓN FINANCIERA"
-                android:textAlignment="center"
-                android:textColor="#FFFFFF"
-                android:textSize="24dp" />
+                android:layout_weight="1"
+                android:background="#444F7E"
+                app:srcCompat="@drawable/ic_approval" />
 
-            <TextView
-                android:id="@+id/textViewEscuelaSolicitud"
-                android:layout_width="match_parent"
+            <ImageButton
+                android:id="@+id/imageButtonDollar3"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="Status Beca: " />
+                android:layout_weight="1"
+                android:background="#444F7E"
+                app:srcCompat="@drawable/ic_attach_money" />
 
-            <TextView
-                android:id="@+id/textViewTipoBeca"
-                android:layout_width="match_parent"
+            <ImageButton
+                android:id="@+id/imageButtonEdit3"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tipo de beca: " />
-
-            <TextView
-                android:id="@+id/textViewNombreSolicitud"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Departamento de beca: " />
-
-            <TextView
-                android:id="@+id/textViewTipoTrabajoSolicitud"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Vencimiento de Beca:" />
+                android:layout_weight="1"
+                android:background="#444F7E"
+                app:srcCompat="@drawable/ic_server_person" />
         </LinearLayout>
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <ImageButton
-        android:id="@+id/imageButtonSidebar3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="5dp"
-        android:background="@drawable/rounded_navbar"
-        android:elevation="8dp"
-        app:layout_constraintBottom_toTopOf="@id/bottom_bar"
-        app:srcCompat="@drawable/ic_menu"
-        tools:layout_editor_absoluteX="15dp" />
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="150dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        app:headerLayout="@layout/drawer_header"
+        app:menu="@menu/sidebar_student_menu" />
 
-    <LinearLayout
-        android:id="@+id/bottom_bar"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:background="#444F7E"
-        android:orientation="horizontal"
-        android:paddingTop="10dp"
-        app:layout_constraintBottom_toBottomOf="parent">
-
-        <ImageButton
-            android:id="@+id/imageButtonMenu3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="#444F7E"
-            app:srcCompat="@drawable/ic_approval" />
-
-        <ImageButton
-            android:id="@+id/imageButtonDollar3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="#444F7E"
-            app:srcCompat="@drawable/ic_attach_money" />
-
-        <ImageButton
-            android:id="@+id/imageButtonEdit3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="#444F7E"
-            app:srcCompat="@drawable/ic_server_person" />
-    </LinearLayout>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.drawerlayout.widget.DrawerLayout>
