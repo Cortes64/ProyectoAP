@@ -1,5 +1,6 @@
 <androidx.drawerlayout.widget.DrawerLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -20,10 +21,84 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" >
 
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/asistencia"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:background="#D9D9D9"
+                    android:padding="8dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:layout_editor_absoluteX="20dp">
+
+                    <TextView
+                        android:id="@+id/textOfertaTitle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/profile_background_title"
+                        android:paddingTop="25dp"
+                        android:paddingBottom="25dp"
+                        android:text="Asistencia"
+                        android:textAlignment="center"
+                        android:textColor="#FFFFFF"
+                        android:textSize="24dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        tools:layout_editor_absoluteY="8dp" />
+
+                    <TextView
+                        android:id="@+id/textTipoOferta"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:text="Asistencia en curso"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/textOfertaTitle" />
+
+                    <TextView
+                        android:id="@+id/textDescripcionOferta"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:breakStrategy="high_quality"
+                        android:ellipsize="end"
+                        android:text="Descripción"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/textTipoOferta" />
+
+                    <LinearLayout
+                        android:id="@+id/iconsOferta"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:orientation="horizontal"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/textDescripcionOferta"
+                        tools:layout_constraintEnd_toEndOf="parent">
+
+                        <ImageButton
+                            android:id="@+id/person_button"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            app:srcCompat="@drawable/ic_boy" />
+
+                    </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/RecyclerViewOferta"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    app:layout_constraintTop_toBottomOf="@id/asistencia" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
 

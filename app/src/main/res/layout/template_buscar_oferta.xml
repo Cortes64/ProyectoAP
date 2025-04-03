@@ -66,19 +66,20 @@
             app:layout_constraintTop_toBottomOf="@id/textDescripcionOferta"
             tools:layout_constraintEnd_toEndOf="parent">
 
-            <ImageView
-                android:id="@+id/imageViewShortcutSolicitud"
+            <ImageButton
+                android:id="@+id/chat_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 app:srcCompat="@drawable/ic_chat" />
 
-            <ImageView
-                android:id="@+id/imageViewPersonSolicitud"
+            <ImageButton
+                android:id="@+id/person_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 app:srcCompat="@drawable/ic_boy" />
+
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>
