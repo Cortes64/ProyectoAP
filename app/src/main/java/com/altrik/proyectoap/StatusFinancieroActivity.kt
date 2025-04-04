@@ -11,8 +11,6 @@ import com.google.android.material.navigation.NavigationView
 
 class StatusFinancieroActivity: AppCompatActivity() {
     private lateinit var drawerLayout: DrawerLayout
-    private val nombreUsuario = getSharedPreferences("UserPrefs", MODE_PRIVATE)
-        .getString("nombreUsuario", "")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,6 +21,9 @@ class StatusFinancieroActivity: AppCompatActivity() {
 
         val headerView = navView.getHeaderView(0)
         val sidebarNombre = headerView.findViewById<TextView>(R.id.sidebarNombre)
+
+        val nombreUsuario = getSharedPreferences("UserPrefs", MODE_PRIVATE)
+            .getString("nombreUsuario", "")
 
         sidebarNombre.text = nombreUsuario
 
