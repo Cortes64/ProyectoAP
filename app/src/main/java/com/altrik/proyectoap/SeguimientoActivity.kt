@@ -4,13 +4,26 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageButton
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.altrik.proyectoap.utilities.Oferta
+import com.altrik.proyectoap.utilities.OfertaSeguimientoAdapter
+import com.altrik.proyectoap.utilities.RetrofitClient
 import com.google.android.material.navigation.NavigationView
+import kotlinx.coroutines.launch
 
 class SeguimientoActivity: AppCompatActivity() {
     private lateinit var drawerLayout: DrawerLayout
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var adapter: OfertaSeguimientoAdapter
+    private val listaOferta = mutableListOf<Oferta>()
+    private val nombreUsuario = getSharedPreferences("UserPrefs", MODE_PRIVATE)
+        .getString("nombreUsuario", "")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,9 +35,6 @@ class SeguimientoActivity: AppCompatActivity() {
         val headerView = navView.getHeaderView(0)
         val sidebarNombre = headerView.findViewById<TextView>(R.id.sidebarNombre)
 
-        val sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE)
-
-        val nombreUsuario = sharedPreferences.getString("nombreUsuario", "")
         sidebarNombre.text = nombreUsuario
 
         val imageButtonSidebar = findViewById<ImageButton>(R.id.imageButtonSidebar)
@@ -67,6 +77,35 @@ class SeguimientoActivity: AppCompatActivity() {
         val imageButtonMenu = findViewById<ImageButton>(R.id.imageButtonMenu)
         imageButtonMenu.setOnClickListener {
             irSeguimiento()
+        }
+
+        recyclerView = findViewById(R.id.RecyclerViewOferta)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+
+        adapter = OfertaSeguimientoAdapter(listaOferta)
+        recyclerView.adapter = adapter
+
+        fetchOfertas()
+    }
+
+    private fun fetchOfertas() {
+        lifecycleScope.launch {
+            try {
+                val response = RetrofitClient.apiService.getOfertas()
+
+                val ofertasFiltradas = response.filter { oferta ->
+                    oferta.estudiantesInteresados.any {
+                        it.correoEstudiante == nombreUsuario
+                    }
+                }
+
+                listaOferta.clear()
+                listaOferta.addAll(ofertasFiltradas)
+                adapter.notifyDataSetChanged()
+            } catch(e: Exception) {
+                Toast.makeText(this@SeguimientoActivity, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
+                println("${e.message}")
+            }
         }
     }
 
