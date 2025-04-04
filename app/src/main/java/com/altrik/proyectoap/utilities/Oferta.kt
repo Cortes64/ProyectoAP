@@ -12,4 +12,6 @@ data class Oferta (
     val cantidadVacantes: String,
     val duracion: String,
     val requisitos: String,
+    val estadoOferta: String,
+    val historial: Historial
 )
