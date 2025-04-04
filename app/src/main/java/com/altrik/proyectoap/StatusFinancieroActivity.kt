@@ -1,13 +1,20 @@
 package com.altrik.proyectoap
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageButton
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.lifecycle.lifecycleScope
+import com.altrik.proyectoap.utilities.Beca
+import com.altrik.proyectoap.utilities.RetrofitClient
 import com.google.android.material.navigation.NavigationView
+import kotlinx.coroutines.launch
+import org.w3c.dom.Text
 
 class StatusFinancieroActivity: AppCompatActivity() {
     private lateinit var drawerLayout: DrawerLayout
@@ -67,6 +74,33 @@ class StatusFinancieroActivity: AppCompatActivity() {
         val imageButtonMenu = findViewById<ImageButton>(R.id.imageButtonMenu)
         imageButtonMenu.setOnClickListener {
             irSeguimiento()
+        }
+
+        fetchBeca()
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun fetchBeca() {
+        val email = getSharedPreferences("UserPrefs", MODE_PRIVATE).getString("email", "")
+
+        lifecycleScope.launch {
+            try {
+                val response = RetrofitClient.apiService.getBecaByEmail(email.toString())
+                if (response.success) {
+                    val beca = response.data
+                    val textViewTipoBeca = findViewById<TextView>(R.id.textViewTipoBeca)
+                    val textViewBeneficioBeca = findViewById<TextView>(R.id.textViewBeneficiosBeca)
+
+                    textViewTipoBeca.text = "Tipo de beca: ${beca?.tipo}"
+                    textViewBeneficioBeca.text = "Beneficios: ${beca?.description}"
+                } else {
+                    Toast.makeText(this@StatusFinancieroActivity, "No se encontró la beca", Toast.LENGTH_SHORT).show()
+                }
+            }
+            catch (e: Exception) {
+                Toast.makeText(this@StatusFinancieroActivity, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
+                println("${e.message}")
+            }
         }
     }
 

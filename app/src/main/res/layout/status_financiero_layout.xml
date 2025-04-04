@@ -63,29 +63,17 @@
                         android:textSize="24dp" />
 
                     <TextView
-                        android:id="@+id/textViewEscuelaSolicitud"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:text="Status Beca: " />
-
-                    <TextView
                         android:id="@+id/textViewTipoBeca"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Tipo de beca: " />
 
                     <TextView
-                        android:id="@+id/textViewNombreSolicitud"
+                        android:id="@+id/textViewBeneficiosBeca"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Departamento de beca: " />
+                        android:text="Beneficios:" />
 
-                    <TextView
-                        android:id="@+id/textViewTipoTrabajoSolicitud"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Vencimiento de Beca:" />
                 </LinearLayout>
             </LinearLayout>
         </ScrollView>
