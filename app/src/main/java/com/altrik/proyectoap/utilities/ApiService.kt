@@ -4,6 +4,7 @@ import com.altrik.proyectoap.utilities.request.LoginRequest
 import com.altrik.proyectoap.utilities.response.LoginResponse
 import com.altrik.proyectoap.utilities.request.SignInRequest
 import com.altrik.proyectoap.utilities.request.UpdateUserRequest
+import com.altrik.proyectoap.utilities.response.OfertaListResponse
 import com.altrik.proyectoap.utilities.response.SignInResponse
 import com.altrik.proyectoap.utilities.response.UpdateUserResponse
 import com.altrik.proyectoap.utilities.response.UserListResponse
@@ -16,6 +17,8 @@ import retrofit2.http.DELETE
 import retrofit2.http.Path
 
 interface ApiService {
+    // Usuarios
+
     @POST("login")
     fun login(@Body usuario: LoginRequest): Call<LoginResponse>
 
@@ -30,4 +33,11 @@ interface ApiService {
 
     @GET("escuelas")
     suspend fun getEscuelas(): UserListResponse<List<Usuario>>
+
+    // Ofertas
+
+    @GET("ofertas")
+    suspend fun getOfertas(): List<Oferta>
+
+    // Becas
 }

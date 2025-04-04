@@ -2,15 +2,29 @@ package com.altrik.proyectoap
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.ImageButton
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.altrik.proyectoap.utilities.Oferta
+import com.altrik.proyectoap.utilities.OfertaBuscarAdapter
+import com.altrik.proyectoap.utilities.RetrofitClient
+import com.altrik.proyectoap.utilities.Usuario
+import com.altrik.proyectoap.utilities.UsuarioAdapter
 import com.google.android.material.navigation.NavigationView
+import kotlinx.coroutines.launch
 
 class MenuStudentActivity : AppCompatActivity() {
     private lateinit var drawerLayout: DrawerLayout
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var adapter: OfertaBuscarAdapter
+    private val listaOferta = mutableListOf<Oferta>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,6 +81,28 @@ class MenuStudentActivity : AppCompatActivity() {
         val imageButtonMenu = findViewById<ImageButton>(R.id.imageButtonMenu)
         imageButtonMenu.setOnClickListener {
             irSeguimiento()
+        }
+
+        recyclerView = findViewById(R.id.RecyclerViewOferta)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+
+        adapter = OfertaBuscarAdapter(listaOferta)
+        recyclerView.adapter = adapter
+
+        fetchOfertas()
+    }
+
+    private fun fetchOfertas() {
+        lifecycleScope.launch {
+            try {
+                val response = RetrofitClient.apiService.getOfertas()
+                listaOferta.clear()
+                listaOferta.addAll(response)
+                adapter.notifyDataSetChanged()
+            } catch (e: Exception) {
+                Toast.makeText(this@MenuStudentActivity, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
+                println("${e.message}")
+            }
         }
     }
 
