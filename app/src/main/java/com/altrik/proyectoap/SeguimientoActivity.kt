@@ -71,7 +71,7 @@ class SeguimientoActivity: AppCompatActivity() {
 
         val imageButtonDollar = findViewById<ImageButton>(R.id.imageButtonDollar)
         imageButtonDollar.setOnClickListener {
-            irMenu()
+            irStatusFinanciero()
         }
 
         val imageButtonMenu = findViewById<ImageButton>(R.id.imageButtonMenu)
@@ -143,6 +143,12 @@ class SeguimientoActivity: AppCompatActivity() {
 
     private fun irEditarPerfil() {
         val intent = Intent(this, EditProfileStudentActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+
+    private fun irStatusFinanciero() {
+        val intent = Intent(this, StatusFinancieroActivity::class.java)
         startActivity(intent)
         finish()
     }
