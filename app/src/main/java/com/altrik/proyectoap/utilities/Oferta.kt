@@ -13,5 +13,5 @@ data class Oferta (
     val duracion: String,
     val requisitos: String,
     val estadoOferta: String,
-    val historial: Historial
+    val historial: MutableList<Historial> = mutableListOf()
 )
