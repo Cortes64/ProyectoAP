@@ -7,37 +7,71 @@ import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.altrik.proyectoap.R
+import org.w3c.dom.Text
 
 class OfertaAdminAdapter(
     private val ofertas: List<Oferta>,
-) : RecyclerView.Adapter<OfertaAdminAdapter.OfertaViewHolder>() {
+    private val reportes: List<Reporte>
+) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OfertaViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.template_admin_oferta, parent, false)
-        return OfertaViewHolder(view)
+    companion object {
+        private const val TYPE_OFERTA = 1
+        private const val TYPE_REPORTE = 2
     }
 
-    override fun onBindViewHolder(holder: OfertaViewHolder, position: Int) {
-        val oferta = ofertas[position]
-        holder.titulo.text = oferta.titulo
-        holder.tipoTrabajo.text = oferta.tipoTrabajo
-        holder.descripcion.text = oferta.descripcion
-        holder.deleteButton.setOnClickListener {
-            // Lógica para eliminar la oferta
-        }
-        holder.editButton.setOnClickListener {
-            // Lógica para editar la oferta
-        }
-        holder.chatButton.setOnClickListener {
-            // Lógica para abrir el chat con el profesor
-        }
-        holder.personButton.setOnClickListener {
-            // Lógica para abrir el perfil del profesor
+    override fun getItemCount(): Int = ofertas.size + reportes.size
+
+    override fun getItemViewType(position: Int): Int {
+        return if (position < ofertas.size) { TYPE_OFERTA } else { TYPE_REPORTE }
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        return when (viewType) {
+            TYPE_OFERTA -> {
+                val view = LayoutInflater.from(parent.context)
+                    .inflate(R.layout.template_admin_oferta, parent, false)
+                OfertaViewHolder(view)
+            }
+            TYPE_REPORTE -> {
+                val view = LayoutInflater.from(parent.context)
+                    .inflate(R.layout.template_reporte, parent, false)
+                ReporteViewHolder(view)
+            }
+            else -> throw IllegalArgumentException()
         }
     }
 
-    override fun getItemCount(): Int = ofertas.size
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        when (holder) {
+            is OfertaViewHolder -> {
+                val oferta = ofertas[position]
+                holder.apply {
+                    titulo.text = oferta.titulo
+                    tipoTrabajo.text = oferta.tipoTrabajo
+                    descripcion.text = oferta.descripcion
+                    deleteButton.setOnClickListener {
+                        // Lógica para eliminar la oferta
+                    }
+                    editButton.setOnClickListener {
+                        // Lógica para editar la oferta
+                    }
+                    chatButton.setOnClickListener {
+                        // Lógica para abrir el chat con el profesor
+                    }
+                    personButton.setOnClickListener {
+                        // Lógica para abrir el perfil del profesor
+                    }
+                }
+            }
+            is ReporteViewHolder -> {
+                val reporte = reportes[position]
+                holder.apply {
+                    tituloReporte.text = reporte.titulo
+                    descripcionReporte.text = reporte.descripcion
+                }
+            }
+        }
+    }
 
     class OfertaViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val titulo: TextView = view.findViewById(R.id.textOfertaTitle)
@@ -47,5 +81,10 @@ class OfertaAdminAdapter(
         val editButton: ImageButton = view.findViewById(R.id.edit_button)
         val chatButton: ImageButton = view.findViewById(R.id.chat_button)
         val personButton: ImageButton = view.findViewById(R.id.person_button)
+    }
+
+    class ReporteViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val tituloReporte: TextView = view.findViewById(R.id.TextTituloInforme)
+        val descripcionReporte : TextView = view.findViewById(R.id.TextResumenInforme)
     }
 }
