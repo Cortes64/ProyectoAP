@@ -136,8 +136,9 @@
                     android:fontFamily="sans-serif"
                     android:gravity="center"
                     android:hint="Fecha Inicio"
-                    android:inputType="datetime|date"
-                    android:textColorHint="#FFFFFF" />
+                    android:textColorHint="#FFFFFF"
+                    android:focusable="false" 
+                    android:clickable="true" />
 
                 <EditText
                     android:id="@+id/InputFechaFin"
@@ -151,8 +152,9 @@
                     android:fontFamily="sans-serif"
                     android:gravity="center"
                     android:hint="Fecha Fin"
-                    android:inputType="datetime|date"
-                    android:textColorHint="#FFFFFF" />
+                    android:textColorHint="#FFFFFF"
+                    android:focusable="false"
+                    android:clickable="true" />
 
                 <EditText
                     android:id="@+id/InputRequisitos"
@@ -190,10 +192,9 @@
                     android:fontFamily="sans-serif"
                     android:gravity="center"
                     android:hint="Descripción"
-                    android:inputType="textPassword"
-                    android:maxLines="4"
                     android:textColorHint="#FFFFFF"
-                    tools:inputType="textMultiLine" />
+                    android:inputType="textMultiLine"
+                    android:maxLines="3" />
 
                 <Button
                     android:id="@+id/boton_crear"
