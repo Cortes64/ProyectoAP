@@ -5,7 +5,7 @@ import com.altrik.proyectoap.utilities.response.LoginResponse
 import com.altrik.proyectoap.utilities.request.SignInRequest
 import com.altrik.proyectoap.utilities.request.UpdateUserRequest
 import com.altrik.proyectoap.utilities.response.GetBecaResponse
-import com.altrik.proyectoap.utilities.response.OfertaListResponse
+import com.altrik.proyectoap.utilities.response.OfertaResponse
 import com.altrik.proyectoap.utilities.response.SignInResponse
 import com.altrik.proyectoap.utilities.response.UpdateUserResponse
 import com.altrik.proyectoap.utilities.response.UserListResponse
@@ -42,6 +42,9 @@ interface ApiService {
 
     @GET("oferta/{titulo}")
     suspend fun getOfertaByTitle(@Path("titulo") titulo: String): OfertaByTitleResponse
+
+    @POST("oferta")
+    fun createOferta(@Body oferta: Oferta): Call<OfertaResponse>
 
     // Becas
 
