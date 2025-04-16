@@ -180,6 +180,15 @@
                     android:layout_marginRight="20dp"
                     android:background="@drawable/text_edit_sign_in" />
 
+                <Spinner
+                    android:id="@+id/ProfesorOptions"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/text_edit_sign_in" />
+
                 <EditText
                     android:id="@+id/inputDescripcionOferta"
                     android:layout_width="match_parent"
@@ -192,9 +201,9 @@
                     android:fontFamily="sans-serif"
                     android:gravity="center"
                     android:hint="Descripción"
-                    android:textColorHint="#FFFFFF"
                     android:inputType="textMultiLine"
-                    android:maxLines="3" />
+                    android:maxLines="3"
+                    android:textColorHint="#FFFFFF" />
 
                 <Button
                     android:id="@+id/boton_crear"
