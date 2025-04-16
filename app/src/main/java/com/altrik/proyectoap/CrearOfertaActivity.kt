@@ -16,6 +16,8 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.util.*
 import android.content.Intent
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
 
 
 
@@ -31,6 +33,7 @@ class CrearOfertaActivity : AppCompatActivity() {
     private lateinit var inputFechaFin: EditText
     private lateinit var inputRequisitos: EditText
     private lateinit var spinnerDepartamento: Spinner
+    private lateinit var spinnerProfesor: Spinner
     private lateinit var inputDescripcion: EditText
     private lateinit var botonCrear: Button
 
@@ -57,6 +60,7 @@ class CrearOfertaActivity : AppCompatActivity() {
         inputFechaFin = findViewById(R.id.InputFechaFin)
         inputRequisitos = findViewById(R.id.InputRequisitos)
         spinnerDepartamento = findViewById(R.id.DepartamentoOptions)
+        spinnerProfesor = findViewById(R.id.ProfesorOptions)
         inputDescripcion = findViewById(R.id.inputDescripcionOferta)
         botonCrear = findViewById(R.id.boton_crear)
     }
@@ -139,7 +143,7 @@ class CrearOfertaActivity : AppCompatActivity() {
             cantidadVacantes = inputVacantes.text.toString(),
             duracion = inputDuracion.text.toString(),
             requisitos = inputRequisitos.text.toString(),
-            estadoOferta = "Activa"
+            estadoOferta = "ABIERTA"
         )
 
         apiService.createOferta(oferta).enqueue(object : Callback<OfertaResponse> {
