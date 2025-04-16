@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="array_lugares_trabajo">
+        <item>Salud</item>
+        <item>Casa de la ciudad</item>
+        <item>Admision y Registro</item>
+        <item>Administración de Tecnología de Información</item>
+        <item>Bachillerato de Administración de Empresas</item>
+        <item>Bachillerato en Ingeniería en Diseño Industrial</item>
+        <item>Enseñanza de la Matemática con Entornos Tecnológicos</item>
+        <item>Gestión del Turismo Sostenible</item>
+        <item>Ingeniería Agrícola</item>
+        <item>Ingeniería Ambiental</item>
+        <item>Ingeniería Electrónica</item>
+        <item>Ingeniería en Agronegocios</item>
+        <item>Ingeniería en Biotecnología</item>
+        <item>Ingeniería en Computación</item>
+        <item>Ingeniería en Computadores</item>
+        <item>Ingeniería en Diseño Industrial</item>
+        <item>Ingeniería en Materiales</item>
+        <item>Ingeniería en Producción Industrial</item>
+        <item>Ingeniería en Seguridad Laboral e Higiene Ambiental</item>
+        <item>Ingeniería Física</item>
+        <item>Ingeniería Forestal</item>
+        <item>Licenciatura en Educación Técnica</item>
+        <item>Licenciatura en Ingeniería en Construcción</item>
+        <item>Licenciaruta en Ingeniería Mecatrónica</item>
+        <item>Licenciatura en Mantenimiento Industrial</item>
+        <item>Licenciatura Enseñanza de la Matemática con Entornos Tecnológicos</item>
+    </string-array>
+</resources>
