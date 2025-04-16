@@ -16,7 +16,9 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.util.*
 import android.content.Intent
+import android.graphics.Bitmap.Config
 import androidx.lifecycle.lifecycleScope
+import com.altrik.proyectoap.utilities.Usuario
 import kotlinx.coroutines.launch
 
 
@@ -47,6 +49,7 @@ class CrearOfertaActivity : AppCompatActivity() {
         configspinners()
         datepicker()
         ButtonCrearOferta()
+        fetchProfesores()
 
     }
 
@@ -104,6 +107,43 @@ class CrearOfertaActivity : AppCompatActivity() {
         }
 
     }
+
+    private fun fetchProfesores(){
+        lifecycleScope.launch{
+            try{
+                val response = apiService.getUsuariosPorTipo("PROFESOR")
+                if(response.success){
+                    val profesores = response.data ?: emptyList()
+                    runOnUiThread {
+                        ConfigProfesoresSpinner(profesores)
+                    }
+                } else {
+                    showError("No se pudo cargar los profesores")
+                }
+            } catch (e: Exception){ showError("Error de conexion")}
+        }
+    }
+
+    private fun ConfigProfesoresSpinner(profesores: List<Usuario>){
+        val professorNames = profesores.map {
+            it.name ?: "Nombre no disponible"  // Handle null case
+        }
+
+        val adapter = ArrayAdapter(
+            this,
+            android.R.layout.simple_spinner_item,
+            professorNames
+        ).apply {
+            setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        }
+
+        spinnerProfesor.adapter = adapter
+        if (professorNames.isNotEmpty()) {
+            spinnerProfesor.setSelection(0)
+        }
+
+
+    }
     private fun ButtonCrearOferta() {
         botonCrear.setOnClickListener {
             if (validateInputs()) {
@@ -126,6 +166,10 @@ class CrearOfertaActivity : AppCompatActivity() {
                 showError("Seleccione fecha de fin")
                 false
             }
+            spinnerProfesor.selectedItem == null -> {
+                showError("Select a professor")
+                false
+            }
             else -> true
         }
     }
@@ -136,7 +180,7 @@ class CrearOfertaActivity : AppCompatActivity() {
             tipoTrabajo = spinnerTipoOferta.selectedItem.toString(),
             departamento = spinnerDepartamento.selectedItem.toString(),
             descripcion = inputDescripcion.text.toString(),
-            profesor = "Profesor Perez", //De momento no se que hacer aca, pero idealmente hay que hacer que pueda jalar values de la DB
+            profesor = spinnerProfesor.selectedItem.toString(), //De momento no se que hacer aca, pero idealmente hay que hacer que pueda jalar values de la DB
             fechaInicio = inputFechaInicio.text.toString(),
             fechaFin = inputFechaFin.text.toString(),
             objetivos = inputObjetivos.text.toString(),
