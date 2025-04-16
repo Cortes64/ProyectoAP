@@ -40,6 +40,9 @@ interface ApiService {
     @GET("ofertas")
     suspend fun getOfertas(): List<Oferta>
 
+    @GET("oferta/{titulo}")
+    suspend fun getOfertaByTitle(@Path("titulo") titulo: String): OfertaByTitleResponse
+
     // Becas
 
     @GET("becaByEmail/{email}")

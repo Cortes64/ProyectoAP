@@ -1,5 +1,6 @@
 package com.altrik.proyectoap.utilities
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,6 +8,8 @@ import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.altrik.proyectoap.R
+import com.altrik.proyectoap.RevisarInteresadosActivity
+import com.google.gson.Gson
 
 class OfertaBuscarAdapter (
     private val ofertas: List<Oferta>,
@@ -27,7 +30,28 @@ class OfertaBuscarAdapter (
             // Lógica para abrir la oferta
         }
         holder.personButton.setOnClickListener {
-            // Lógica para abrir el perfil del profesor
+            val context = holder.itemView.context
+
+            val gson = Gson()
+            val estudiantesJson = gson.toJson(oferta.estudiantesInteresados)
+            val historialJson = gson.toJson(oferta.historial)
+
+            val intent = Intent(context, RevisarInteresadosActivity::class.java)
+            intent.putExtra("titulo", oferta.titulo)
+            intent.putExtra("tipoTrabajo", oferta.tipoTrabajo)
+            intent.putExtra("departamento", oferta.departamento)
+            intent.putExtra("descripcion", oferta.descripcion)
+            intent.putExtra("profesor", oferta.profesor)
+            intent.putExtra("fechaInicio", oferta.fechaInicio)
+            intent.putExtra("fechaFin", oferta.fechaFin)
+            intent.putExtra("objetivos", oferta.objetivos)
+            intent.putExtra("cantidadVacantes", oferta.cantidadVacantes)
+            intent.putExtra("duracion", oferta.duracion)
+            intent.putExtra("requisitos", oferta.requisitos)
+            intent.putExtra("estadoOferta", oferta.estadoOferta)
+            intent.putExtra("estudiantesInteresados", estudiantesJson)
+            intent.putExtra("historialJson", historialJson)
+            context.startActivity(intent)
         }
     }
 

@@ -11,55 +11,84 @@
 
         <!-- Aquí va tu contenido principal -->
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center_horizontal"
-            android:orientation="vertical">
+            android:layout_above="@id/footer">
 
-            <ImageView
-                android:id="@+id/imagenTrabajo"
-                android:layout_width="300dp"
-                android:layout_height="170dp"
-                android:layout_marginTop="40dp"
-                android:background="#474747"
-                android:scaleType="center" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Descripción de trabajo"
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                android:layout_marginTop="20dp"/>
-                
-            <TextView
-                android:id="@+id/descripcionTrabajo"
-                android:layout_width="300dp"
-                android:layout_height="100dp"
-                android:textColor="@color/black"
-                android:layout_marginTop="5dp"
-                android:background="#EEEEEE"
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:textColor="@color/black"
-                android:layout_marginTop="20dp"
-                android:text="Lista de aplicantes"/>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerAplicantes"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:background="#EEEEEE"
-                />
-            
+                android:layout_height="wrap_content">
 
-        </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textViewTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="44dp"
+                        android:layout_marginTop="40dp"
+                        android:layout_marginRight="44dp"
+                        android:text="Nombre Oferta"
+                        android:textAlignment="center"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:text="Descripción de trabajo"
+                        android:textColor="@color/black"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/descripcionTrabajo"
+                        android:layout_width="300dp"
+                        android:layout_height="100dp"
+                        android:layout_marginTop="5dp"
+                        android:background="#EEEEEE"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:text="Lista de aplicantes"
+                        android:textColor="@color/black"
+                        android:textStyle="bold" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerAplicantes"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:background="#EEEEEE" />
+
+                    <TextView
+                        android:id="@+id/textView3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:text="Historial"
+                        android:textColor="@color/black"
+                        android:textStyle="bold" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerHistorial"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:background="#EEEEEE" />
+
+
+                </LinearLayout>
+            </RelativeLayout>
+        </ScrollView>
 
         <ImageButton
             android:id="@+id/imageButtonSidebar"

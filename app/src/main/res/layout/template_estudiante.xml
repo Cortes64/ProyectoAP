@@ -33,7 +33,7 @@
 
             <TextView
                 android:id="@+id/student_list_correo"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:text="TextView"
@@ -41,7 +41,7 @@
 
             <TextView
                 android:id="@+id/student_list_nombre"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:text="TextView"
