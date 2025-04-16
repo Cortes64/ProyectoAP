@@ -3,6 +3,7 @@ package com.altrik.proyectoap.utilities
 import com.altrik.proyectoap.utilities.request.LoginRequest
 import com.altrik.proyectoap.utilities.response.LoginResponse
 import com.altrik.proyectoap.utilities.request.SignInRequest
+import com.altrik.proyectoap.utilities.request.UpdateOfertaRequest
 import com.altrik.proyectoap.utilities.request.UpdateUserRequest
 import com.altrik.proyectoap.utilities.response.GetBecaResponse
 import com.altrik.proyectoap.utilities.response.OfertaResponse
@@ -45,6 +46,9 @@ interface ApiService {
 
     @POST("oferta")
     fun createOferta(@Body oferta: Oferta): Call<OfertaResponse>
+
+    @PUT("oferta/{titulo}")
+    suspend fun updateOferta(@Path("titulo") titulo: String, @Body oferta: UpdateOfertaRequest): OfertaResponse
 
     // Becas
 
