@@ -24,31 +24,13 @@ class SignInProfessorActivity : AppCompatActivity()  {
         setContentView(R.layout.sign_in_professor_layout)
 
         val spinner = findViewById<Spinner>(R.id.EscuelaOptions)
-
-        lifecycleScope.launch {
-            try {
-                val response: UserListResponse<List<Usuario>> = RetrofitClient.apiService.getEscuelas()
-
-                val nombresEscuelas = response.data?.map { it.name } ?: emptyList()
-
-                val adapter = ArrayAdapter(this@SignInProfessorActivity, android.R.layout.simple_spinner_item, nombresEscuelas)
-                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                spinner.adapter = adapter
-            } catch (e: Exception) {
-                Toast.makeText(this@SignInProfessorActivity, "Error al cargar las escuelas: ${e.message}", Toast.LENGTH_SHORT).show()
-            }
-        }
-
-        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
-                val selectedItem = parent.getItemAtPosition(position).toString()
-                Toast.makeText(this@SignInProfessorActivity, "Seleccionaste: $selectedItem", Toast.LENGTH_SHORT).show()
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>) {
-
-            }
-        }
+        val adapter = ArrayAdapter.createFromResource(
+            this,
+            R.array.array_lugares_trabajo,
+            R.layout.spinner
+        )
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinner.adapter = adapter
 
         val btnLogin = findViewById<Button>(R.id.boton_inicio_sesion)
         btnLogin.setOnClickListener {
@@ -58,24 +40,6 @@ class SignInProfessorActivity : AppCompatActivity()  {
         val btnCrearCuenta = findViewById<Button>(R.id.boton_crear_cuenta)
         btnCrearCuenta.setOnClickListener {
             crearCuenta()
-        }
-    }
-
-    private fun cargarEscuelas() {
-        val spinner = findViewById<Spinner>(R.id.EscuelaOptions)
-
-        lifecycleScope.launch {
-            try {
-                val response: UserListResponse<List<Usuario>> = RetrofitClient.apiService.getEscuelas()
-
-                val nombresEscuelas = response.data?.map { it.name } ?: emptyList()
-
-                val adapter = ArrayAdapter(this@SignInProfessorActivity, android.R.layout.simple_spinner_item, nombresEscuelas)
-                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                spinner.adapter = adapter
-            } catch (e: Exception) {
-                Toast.makeText(this@SignInProfessorActivity, "Error al cargar las escuelas: ${e.message}", Toast.LENGTH_SHORT).show()
-            }
         }
     }
 

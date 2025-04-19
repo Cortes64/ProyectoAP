@@ -2,8 +2,10 @@ package com.altrik.proyectoap
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.altrik.proyectoap.utilities.MailSender
@@ -12,6 +14,17 @@ class SignInSchoolActivity : AppCompatActivity()  {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.sign_in_school_layout)
+
+        val spinner = findViewById<Spinner>(R.id.zonaTrabajoOptions)
+
+        val adapter = ArrayAdapter.createFromResource(
+            this,
+            R.array.array_lugares_trabajo,
+            R.layout.spinner
+        )
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinner.adapter = adapter
 
         val btnLogin = findViewById<Button>(R.id.boton_inicio_sesion)
         btnLogin.setOnClickListener {
@@ -30,10 +43,11 @@ class SignInSchoolActivity : AppCompatActivity()  {
         val correo = findViewById<EditText>(R.id.InputCorreo).text.toString()
         val nombre = findViewById<EditText>(R.id.inputNombre).text.toString()
         val apellidos = findViewById<EditText>(R.id.inputApellidos).text.toString()
-        val zonaTrabajo = findViewById<EditText>(R.id.InputZonaTrabajo).text.toString()
         val contrasena = findViewById<EditText>(R.id.InputContraseña).text.toString()
         val repetirContrasena = findViewById<EditText>(R.id.InputRepetirContraseña).text.toString()
         val telefono = findViewById<EditText>(R.id.InputTelefono).text.toString()
+
+        val zonaTrabajo = findViewById<Spinner>(R.id.zonaTrabajoOptions).selectedItem.toString()
 
         if (camposVacios(correo, nombre, apellidos, zonaTrabajo, contrasena, repetirContrasena, telefono)) {
             Toast.makeText(this, "Por favor, complete todos los campos", Toast.LENGTH_SHORT).show()
