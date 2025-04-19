@@ -57,4 +57,9 @@ interface ApiService {
 
     @GET("becaByEmail/{email}")
     suspend fun getBecaByEmail(@Path("email") email: String): GetBecaResponse<Beca>
+
+    // Reportes
+
+    @GET("getReportes")
+    suspend fun getReportes(): List<Reporte>
 }

@@ -7,9 +7,8 @@ import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.altrik.proyectoap.R
-import org.w3c.dom.Text
 
-class OfertaAdminAdapter(
+class AdminAdapter(
     private val ofertas: List<Oferta>,
     private val reportes: List<Reporte>
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
