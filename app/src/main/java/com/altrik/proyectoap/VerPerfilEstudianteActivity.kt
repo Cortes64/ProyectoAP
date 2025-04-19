@@ -43,6 +43,5 @@ class VerPerfilEstudianteActivity : AppCompatActivity() {
         inputCarrera.setText("Carrera: $carreraUsuario")
         inputNivelAcademico.setText("Nivel Académico: $nivelAcademicoUsuario")
 
-
     }
 }
