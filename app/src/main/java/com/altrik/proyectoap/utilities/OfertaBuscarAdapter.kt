@@ -1,5 +1,9 @@
 package com.altrik.proyectoap.utilities
 
+
+import java.text.SimpleDateFormat
+import java.util.*
+import android.widget.Toast
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
@@ -12,7 +16,7 @@ import com.altrik.proyectoap.RevisarInteresadosActivity
 import com.google.gson.Gson
 
 class OfertaBuscarAdapter (
-    private val ofertas: List<Oferta>,
+    private val ofertas: MutableList<Oferta>,
 ): RecyclerView.Adapter<OfertaBuscarAdapter.OfertaViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OfertaViewHolder {
@@ -26,9 +30,37 @@ class OfertaBuscarAdapter (
         holder.titulo.text = oferta.titulo
         holder.tipoTrabajo.text = oferta.tipoTrabajo
         holder.descripcion.text = oferta.descripcion
+
         holder.chatButton.setOnClickListener {
             // Lógica para abrir la oferta
         }
+
+        holder.personButton.setOnClickListener {
+            val context = holder.itemView.context
+            val gson = Gson()
+            val intent = Intent(context, RevisarInteresadosActivity::class.java).apply {
+                putExtra("oferta", gson.toJson(oferta))
+            }
+            context.startActivity(intent)
+        }
+
+        holder.addButton.setOnClickListener {
+            val nuevoEstudiante = EstudiantesInteresados(
+                nombre = "Nuevo Estudiante",
+                correoEstudiante = "correo@ejemplo.com",
+                fechaRegistro = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date()),
+                aceptado = false
+            )
+
+            oferta.estudiantesInteresados.add(nuevoEstudiante)
+            notifyItemChanged(position)
+            Toast.makeText(holder.itemView.context, "Estudiante añadido!", Toast.LENGTH_SHORT)
+                .show()
+        }
+
+
+
+
         holder.personButton.setOnClickListener {
             val context = holder.itemView.context
 
@@ -53,7 +85,11 @@ class OfertaBuscarAdapter (
             intent.putExtra("historialJson", historialJson)
             context.startActivity(intent)
         }
+
+
+
     }
+
 
     override fun getItemCount(): Int = ofertas.size
 
@@ -63,5 +99,6 @@ class OfertaBuscarAdapter (
         val descripcion: TextView = view.findViewById(R.id.textDescripcionOferta)
         val chatButton: ImageButton = view.findViewById(R.id.chat_button)
         val personButton: ImageButton = view.findViewById(R.id.person_button)
+        val addButton: ImageButton = view.findViewById(R.id.add_button)
     }
 }
