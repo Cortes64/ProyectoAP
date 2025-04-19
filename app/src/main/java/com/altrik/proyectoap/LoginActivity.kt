@@ -100,6 +100,13 @@ class LoginActivity : AppCompatActivity() {
         sharedPref.putString("escuelaUsuario", usuario?.escuela)
         sharedPref.putString("zonaTrabajoUsuario", usuario?.zonaTrabajo)
         sharedPref.putString("contactoUsuario", usuario?.contacto)
+        sharedPref.putString("departamentoAcademicoUsuario", usuario?.departamentoAcademico)
+        sharedPref.putString("telefonoUsuario", usuario?.telefono)
+        sharedPref.putString("nivelAcademicoUsuario", usuario?.nivelAcademico)
+        sharedPref.putString("carreraUsuario", usuario?.carrera)
+        sharedPref.putString("departamentoTrabajoUsuario", usuario?.departamentoTrabajo)
+        sharedPref.putString("promedioPonderadoUsuario", usuario?.promedioPonderado)
+
         sharedPref.apply()
 
         val tipoUsuario = usuario?.tipoUsuario

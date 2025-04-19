@@ -46,32 +46,19 @@
                     tools:layout_editor_absoluteY="93dp" />
 
                 <TextView
-                    android:id="@+id/textCarnet"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="TextView"
-                    android:textSize="20sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/imageView" />
-
-                <TextView
                     android:id="@+id/textCorreo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
                     android:text="TextView"
                     android:textSize="20sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/textCarnet" />
+                    tools:layout_editor_absoluteY="334dp" />
 
                 <TextView
-                    android:id="@+id/textPromedio"
+                    android:id="@+id/textTipoUsuario"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
                     android:text="TextView"
                     android:textSize="20sp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -79,37 +66,44 @@
                     app:layout_constraintTop_toBottomOf="@id/textCorreo" />
 
                 <TextView
-                    android:id="@+id/textContacto"
+                    android:id="@+id/textZonaTrabajo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
                     android:text="TextView"
                     android:textSize="20sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/textPromedio" />
+                    app:layout_constraintTop_toBottomOf="@id/textTipoUsuario" />
 
                 <TextView
-                    android:id="@+id/textCarrera"
+                    android:id="@+id/textDepartamentoTrabajo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
                     android:text="TextView"
                     android:textSize="20sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/textContacto" />
+                    app:layout_constraintTop_toBottomOf="@id/textZonaTrabajo" />
 
                 <TextView
-                    android:id="@+id/textNivelAcademico"
+                    android:id="@+id/textTelefono"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
                     android:text="TextView"
                     android:textSize="20sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/textCarrera" />
+                    app:layout_constraintTop_toBottomOf="@id/textDepartamentoTrabajo" />
+
+                <TextView
+                    android:id="@+id/textEscuela"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="TextView"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textTelefono" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>

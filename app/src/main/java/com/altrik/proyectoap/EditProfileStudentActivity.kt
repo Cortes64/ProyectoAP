@@ -53,7 +53,7 @@ class EditProfileStudentActivity : AppCompatActivity() {
 
     private fun guardarCambios() {
         val sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE)
-        val emailUsuario = sharedPreferences.getString("emailUsuario", null)
+        val emailUsuario = sharedPreferences.getString("correoUsuario", null)
 
         if (emailUsuario.isNullOrEmpty()) {
             Toast.makeText(this, "Error: No se encontró el email del usuario", Toast.LENGTH_SHORT)
