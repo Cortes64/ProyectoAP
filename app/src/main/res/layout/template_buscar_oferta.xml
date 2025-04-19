@@ -80,6 +80,16 @@
                 android:layout_weight="1"
                 app:srcCompat="@drawable/ic_boy" />
 
+            <ImageButton
+                android:id="@+id/add_button"
+                android:layout_width="43dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:contentDescription="Añadir estudiante interesado"
+                android:visibility="visible"
+                app:srcCompat="@drawable/ic_add"
+                tools:srcCompat="@android:drawable/btn_plus" />
+
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>
