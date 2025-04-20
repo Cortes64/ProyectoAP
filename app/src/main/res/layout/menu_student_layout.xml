@@ -14,7 +14,7 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_above="@id/footer">
+            android:layout_above="@id/footerBar">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -38,39 +38,11 @@
             android:elevation="8dp"
             app:srcCompat="@drawable/ic_menu" />
 
-        <LinearLayout
-            android:id="@+id/footer"
+        <com.altrik.proyectoap.utilities.FooterBarView
             android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:layout_alignParentBottom="true"
-            android:background="#444F7E"
-            android:orientation="horizontal"
-            android:paddingTop="10dp">
-
-            <ImageButton
-                android:id="@+id/imageButtonMenu"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="#444F7E"
-                app:srcCompat="@drawable/ic_approval" />
-
-            <ImageButton
-                android:id="@+id/imageButtonDollar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="#444F7E"
-                app:srcCompat="@drawable/ic_attach_money" />
-
-            <ImageButton
-                android:id="@+id/imageButtonEdit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="#444F7E"
-                app:srcCompat="@drawable/group" />
-        </LinearLayout>
+            android:layout_height="wrap_content"
+            android:id="@+id/footerBar"
+            android:layout_alignParentBottom="true" />
     </RelativeLayout>
 
     <!-- Navigation View -->

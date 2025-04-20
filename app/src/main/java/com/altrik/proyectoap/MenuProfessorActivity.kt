@@ -12,6 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.altrik.proyectoap.utilities.AdminAdapter
+import com.altrik.proyectoap.utilities.FooterBarView
 import com.altrik.proyectoap.utilities.Oferta
 import com.altrik.proyectoap.utilities.RetrofitClient
 import com.google.android.material.navigation.NavigationView
@@ -64,35 +65,15 @@ class MenuProfessorActivity : AppCompatActivity() {
             }
         }
 
-        val imageButtonEdit = findViewById<ImageButton>(R.id.imageButtonEdit)
-        val imageFolderPlus = findViewById<ImageButton>(R.id.imageFolderPlus)
-        val imageFolderCheck = findViewById<ImageButton>(R.id.imageFolderCheck)
-
-        imageButtonEdit.setOnClickListener {
-            val intent = Intent(this, EditProfileStudentActivity::class.java)
-            // Se debe hacer y cambiar por el EditProfileProfessorActivity.
-            startActivity(intent)
-            finish()
-        }
-
-        imageFolderPlus.setOnClickListener {
-            val intent = Intent(this, CrearOfertaActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
-
-        imageFolderCheck.setOnClickListener {
-            val intent = Intent(this, MenuProfessorActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
-
         recyclerView = findViewById(R.id.RecyclerViewOferta)
         recyclerView.layoutManager = LinearLayoutManager(this)
         // Al final se puede usar el mismo AdminAdapter, son las mismas opciones,
         // solo es cuestión de que recibe cosas diferentes en fetchOfertas
         adapter = AdminAdapter(listaOferta, emptyList())
         recyclerView.adapter = adapter
+
+        val footer = findViewById<FooterBarView>(R.id.footerBar)
+        footer.configurarPara("PROFESOR")
 
         fetchOfertas()
     }

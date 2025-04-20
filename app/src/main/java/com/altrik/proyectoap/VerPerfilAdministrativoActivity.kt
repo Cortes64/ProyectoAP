@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
+import com.altrik.proyectoap.utilities.FooterBarView
 
 class VerPerfilAdministrativoActivity : AppCompatActivity() {
 
@@ -58,5 +59,11 @@ class VerPerfilAdministrativoActivity : AppCompatActivity() {
         inputDepartamentoTrabajo.setText("Departamento de trabajo: $departamentoTrabajo")
         inputTelefono.setText("Teléfono: $telefono")
         inputEscuela.setText("Escuela: $escuela")
+
+        val sharedPrefs = getSharedPreferences("UserPrefs", MODE_PRIVATE)
+        val tipoUsuario = sharedPrefs.getString("tipoUsuario", "ESTUDIANTE")
+
+        val footer = findViewById<FooterBarView>(R.id.footerBar)
+        footer.configurarPara(tipoUsuario ?: "ESTUDIANTE")
     }
 }

@@ -12,6 +12,7 @@ import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import com.altrik.proyectoap.utilities.FooterBarView
 import com.altrik.proyectoap.utilities.RetrofitClient
 import com.google.gson.Gson
 import kotlinx.coroutines.launch
@@ -36,6 +37,12 @@ class FormBuscarOfertaActivity : AppCompatActivity() {
         inputRequisitos = findViewById(R.id.inputRequisitos)
         departamentoSpinner = findViewById(R.id.departamentoOptions)
         botonBuscar = findViewById(R.id.boton_buscar)
+
+        val sharedPrefs = getSharedPreferences("UserPrefs", MODE_PRIVATE)
+        val tipoUsuario = sharedPrefs.getString("tipoUsuario", "ESTUDIANTE")
+
+        val footer = findViewById<FooterBarView>(R.id.footerBar)
+        footer.configurarPara(tipoUsuario ?: "ESTUDIANTE")
 
         val adapter = ArrayAdapter.createFromResource(
             this,

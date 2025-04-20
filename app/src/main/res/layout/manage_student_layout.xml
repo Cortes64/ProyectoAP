@@ -14,14 +14,14 @@
         android:layout_marginBottom="5dp"
         android:background="@drawable/rounded_navbar"
         android:elevation="8dp"
-        app:layout_constraintBottom_toTopOf="@id/bottom_bar"
+        app:layout_constraintBottom_toTopOf="@id/footerBar"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/ic_menu" />
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@id/bottom_bar"
+        app:layout_constraintBottom_toTopOf="@id/footerBar"
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -188,39 +188,11 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
-    <LinearLayout
-        android:id="@+id/bottom_bar"
+    <com.altrik.proyectoap.utilities.FooterBarView
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/footerBar"
         android:layout_alignParentBottom="true"
-        android:background="#444F7E"
-        android:orientation="horizontal"
-        android:paddingTop="10dp"
-        app:layout_constraintBottom_toBottomOf="parent">
-
-        <ImageButton
-            android:id="@+id/imageButtonMenu"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="#444F7E"
-            app:srcCompat="@drawable/ic_create_new_folder" />
-
-        <ImageButton
-            android:id="@+id/imageButtonDollar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="#444F7E"
-            app:srcCompat="@drawable/ic_folder_check" />
-
-        <ImageButton
-            android:id="@+id/imageButtonEdit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="#444F7E"
-            app:srcCompat="@drawable/group" />
-    </LinearLayout>
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

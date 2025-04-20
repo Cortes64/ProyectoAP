@@ -12,6 +12,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.altrik.proyectoap.utilities.FooterBarView
 import com.altrik.proyectoap.utilities.Oferta
 import com.altrik.proyectoap.utilities.OfertaBuscarAdapter
 import com.altrik.proyectoap.utilities.RetrofitClient
@@ -68,26 +69,14 @@ class MenuStudentActivity : AppCompatActivity() {
             }
         }
 
-        val imageButtonEdit = findViewById<ImageButton>(R.id.imageButtonEdit)
-        imageButtonEdit.setOnClickListener {
-            irEditarPerfil()
-        }
-
-        val imageButtonDollar = findViewById<ImageButton>(R.id.imageButtonDollar)
-        imageButtonDollar.setOnClickListener {
-            irMenu()
-        }
-
-        val imageButtonMenu = findViewById<ImageButton>(R.id.imageButtonMenu)
-        imageButtonMenu.setOnClickListener {
-            irSeguimiento()
-        }
-
         recyclerView = findViewById(R.id.RecyclerViewOferta)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
         adapter = OfertaBuscarAdapter(listaOferta)
         recyclerView.adapter = adapter
+
+        val footer = findViewById<FooterBarView>(R.id.footerBar)
+        footer.configurarPara("ESTUDIANTE")
 
         fetchOfertas()
     }

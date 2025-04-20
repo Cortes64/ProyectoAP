@@ -8,7 +8,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@id/footer"
+        app:layout_constraintBottom_toTopOf="@id/footerBar"
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
@@ -23,39 +23,12 @@
         </LinearLayout>
     </ScrollView>
 
-    <LinearLayout
-        android:id="@+id/footer"
+    <com.altrik.proyectoap.utilities.FooterBarView
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:background="#444F7E"
-        android:orientation="horizontal"
-        android:paddingTop="10dp"
-        app:layout_constraintBottom_toBottomOf="parent">
-
-        <ImageButton
-            android:id="@+id/imageButtonMenu"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="#444F7E"
-            app:srcCompat="@drawable/ic_approval" />
-
-        <ImageButton
-            android:id="@+id/imageButtonDollar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="#444F7E"
-            app:srcCompat="@drawable/ic_attach_money" />
-
-        <ImageButton
-            android:id="@+id/imageButtonEdit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="#444F7E"
-            app:srcCompat="@drawable/ic_server_person" />
-    </LinearLayout>
+        android:layout_height="wrap_content"
+        android:id="@+id/footerBar"
+        android:layout_alignParentBottom="true"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
     <ImageButton
         android:id="@+id/imageButtonSidebar5"
@@ -66,7 +39,7 @@
         android:layout_marginBottom="5dp"
         android:background="@drawable/rounded_navbar"
         android:elevation="8dp"
-        app:layout_constraintBottom_toTopOf="@id/footer"
+        app:layout_constraintBottom_toTopOf="@id/footerBar"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/ic_menu" />
 
