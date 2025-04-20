@@ -29,10 +29,18 @@ class RevisarInteresadosActivity: AppCompatActivity() {
         val historialJson = intent.getStringExtra("historialJson")
 
         val typeEstudiantes = object : TypeToken<List<EstudiantesInteresados>>() {}.type
-        val estudiantes: List<EstudiantesInteresados> = Gson().fromJson(estudiantesJson, typeEstudiantes)
+        val estudiantes: List<EstudiantesInteresados> = if (estudiantesJson != null) {
+            Gson().fromJson(estudiantesJson, typeEstudiantes)
+        } else {
+            emptyList()
+        }
 
         val typeHistorial = object: TypeToken<List<Historial>>() {}.type
-        val historial: List<Historial> = Gson().fromJson(historialJson, typeHistorial)
+        val historial: List<Historial> = if (historialJson != null) {
+            Gson().fromJson(historialJson, typeHistorial)
+        } else {
+            emptyList()
+        }
 
         recyclerViewEstudiantes = findViewById(R.id.recyclerAplicantes)
         recyclerViewHistorial = findViewById(R.id.recyclerHistorial)
