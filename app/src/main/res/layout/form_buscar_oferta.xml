@@ -57,6 +57,30 @@
                 android:inputType="textPassword"
                 android:textColorHint="#FFFFFF" />
 
+            <Spinner
+                android:id="@+id/departamentoOptions"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/text_edit_sign_in" />
+
+            <EditText
+                android:id="@+id/inputRequisitos"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/text_edit_sign_in"
+                android:ems="10"
+                android:fontFamily="sans-serif"
+                android:gravity="center"
+                android:hint="Requisitos"
+                android:inputType="textPassword"
+                android:textColorHint="#FFFFFF" />
+
             <Button
                 android:id="@+id/boton_buscar"
                 android:layout_width="match_parent"

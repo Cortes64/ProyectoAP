@@ -17,6 +17,7 @@ import retrofit2.http.GET
 import retrofit2.http.PUT
 import retrofit2.http.DELETE
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface ApiService {
     // Usuarios
@@ -52,6 +53,13 @@ interface ApiService {
 
     @PUT("oferta/{titulo}")
     suspend fun updateOferta(@Path("titulo") titulo: String, @Body oferta: UpdateOfertaRequest): OfertaResponse
+
+    @GET("filtroOfertas")
+    suspend fun filtrarOfertas(
+        @Query("titulo") titulo: String?,
+        @Query("requisitos") requisitos: String?,
+        @Query("departamento") departamento: String?
+    ): List<Oferta>
 
     // Becas
 
