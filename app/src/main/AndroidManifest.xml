@@ -16,7 +16,28 @@
         android:theme="@style/Theme.ProyectoAP"
         tools:targetApi="31">
         <activity
+            android:name=".BuscarOfertaActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".VerPerfilAdministrativoActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".VerPerfilEstudianteActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".StatusFinancieroActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".EditarOfertaActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".EvaluarAlumnoActivity"
+            android:exported="false"/>
+        <activity
             android:name=".RevisarInteresadosActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".FormBuscarOfertaActivity"
             android:exported="false"/>
         <activity
             android:name=".ManageStudentActivity"
@@ -63,7 +84,8 @@
         <activity
             android:name=".SignInSchoolActivity"
             android:exported="false"/>
-        <activity android:name=".CrearOfertaActivity"
+        <activity
+            android:name=".CrearOfertaActivity"
             android:exported="false"/>
         <activity
             android:name=".LoginActivity"

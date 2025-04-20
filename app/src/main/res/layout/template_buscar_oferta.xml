@@ -88,7 +88,7 @@
                 android:contentDescription="Añadir estudiante interesado"
                 android:visibility="visible"
                 app:srcCompat="@drawable/ic_add"
-                tools:srcCompat="@android:drawable/btn_plus" />
+                tools:srcCompat="@drawable/ic_add" />
 
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

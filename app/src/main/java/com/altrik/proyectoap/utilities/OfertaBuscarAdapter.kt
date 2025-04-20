@@ -16,7 +16,7 @@ import com.altrik.proyectoap.RevisarInteresadosActivity
 import com.google.gson.Gson
 
 class OfertaBuscarAdapter (
-    private val ofertas: MutableList<Oferta>,
+    private val ofertas: List<Oferta>,
 ): RecyclerView.Adapter<OfertaBuscarAdapter.OfertaViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OfertaViewHolder {

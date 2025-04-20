@@ -2,6 +2,7 @@ package com.altrik.proyectoap
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
@@ -12,22 +13,23 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.altrik.proyectoap.utilities.Oferta
-import com.altrik.proyectoap.utilities.OfertaSeguimientoAdapter
+import com.altrik.proyectoap.utilities.OfertaBuscarAdapter
 import com.altrik.proyectoap.utilities.RetrofitClient
+import com.altrik.proyectoap.utilities.Usuario
+import com.altrik.proyectoap.utilities.UsuarioAdapter
 import com.google.android.material.navigation.NavigationView
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import kotlinx.coroutines.launch
 
-class SeguimientoActivity: AppCompatActivity() {
+class BuscarOfertaActivity : AppCompatActivity() {
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: OfertaSeguimientoAdapter
-    private val listaOferta = mutableListOf<Oferta>()
+    private lateinit var adapter: OfertaBuscarAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.seguimiento_layout)
-
-        val nombreUsuario = getSharedPreferences("UserPrefs", MODE_PRIVATE).getString("nombreUsuario", "")
+        setContentView(R.layout.buscar_oferta_layout)
 
         drawerLayout = findViewById(R.id.drawer_layout)
         val navView = findViewById<NavigationView>(R.id.nav_view)
@@ -35,6 +37,9 @@ class SeguimientoActivity: AppCompatActivity() {
         val headerView = navView.getHeaderView(0)
         val sidebarNombre = headerView.findViewById<TextView>(R.id.sidebarNombre)
 
+        val sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE)
+
+        val nombreUsuario = sharedPreferences.getString("nombreUsuario", "")
         sidebarNombre.text = nombreUsuario
 
         val imageButtonSidebar = findViewById<ImageButton>(R.id.imageButtonSidebar)
@@ -71,7 +76,7 @@ class SeguimientoActivity: AppCompatActivity() {
 
         val imageButtonDollar = findViewById<ImageButton>(R.id.imageButtonDollar)
         imageButtonDollar.setOnClickListener {
-            irStatusFinanciero()
+            irMenu()
         }
 
         val imageButtonMenu = findViewById<ImageButton>(R.id.imageButtonMenu)
@@ -79,37 +84,23 @@ class SeguimientoActivity: AppCompatActivity() {
             irSeguimiento()
         }
 
+        val listaOfertaJson = intent.getStringExtra("ofertas")
+        val typeOfertas = object : TypeToken<List<Oferta>>() {}.type
+        val listaOferta : List<Oferta> = if (listaOfertaJson != null) {
+            Gson().fromJson(listaOfertaJson, typeOfertas)
+        } else {
+            emptyList()
+        }
+
         recyclerView = findViewById(R.id.RecyclerViewOferta)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        adapter = OfertaSeguimientoAdapter(listaOferta)
+        adapter = OfertaBuscarAdapter(listaOferta)
         recyclerView.adapter = adapter
 
-        fetchOfertas()
     }
 
-    private fun fetchOfertas() {
-        val nombreUsuario = getSharedPreferences("UserPrefs", MODE_PRIVATE).getString("nombreUsuario", "")
 
-        lifecycleScope.launch {
-            try {
-                val response = RetrofitClient.apiService.getOfertas()
-
-                val ofertasFiltradas = response.filter { oferta ->
-                    oferta.estudiantesInteresados.any {
-                        it.correoEstudiante == nombreUsuario
-                    }
-                }
-
-                listaOferta.clear()
-                listaOferta.addAll(ofertasFiltradas)
-                adapter.notifyDataSetChanged()
-            } catch(e: Exception) {
-                Toast.makeText(this@SeguimientoActivity, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
-                println("${e.message}")
-            }
-        }
-    }
 
     private fun abrirSidebar() {
         drawerLayout.openDrawer(GravityCompat.START)
@@ -145,12 +136,6 @@ class SeguimientoActivity: AppCompatActivity() {
 
     private fun irEditarPerfil() {
         val intent = Intent(this, EditProfileStudentActivity::class.java)
-        startActivity(intent)
-        finish()
-    }
-
-    private fun irStatusFinanciero() {
-        val intent = Intent(this, StatusFinancieroActivity::class.java)
         startActivity(intent)
         finish()
     }

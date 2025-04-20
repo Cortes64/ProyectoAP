@@ -1,5 +1,6 @@
 package com.altrik.proyectoap
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -12,9 +13,11 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.altrik.proyectoap.utilities.RetrofitClient
+import com.google.gson.Gson
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import java.io.IOException
+import com.altrik.proyectoap.utilities.Oferta
 
 class FormBuscarOfertaActivity : AppCompatActivity() {
 
@@ -72,9 +75,22 @@ class FormBuscarOfertaActivity : AppCompatActivity() {
                     requisitos = requisitos
                 )
 
-                for (oferta in response) {
+                val listaOfertas = response.data ?: emptyList()
+
+                for (oferta in listaOfertas) {
                     Log.d("OFERTA", "Titulo: ${oferta.titulo} | Departamento: ${oferta.departamento}")
                 }
+
+                val intent = Intent(this@FormBuscarOfertaActivity, BuscarOfertaActivity::class.java)
+
+                val gson = Gson()
+                val ofertasJson = gson.toJson(listaOfertas)
+
+                intent.putExtra("ofertas", ofertasJson)
+
+                startActivity(intent)
+                finish()
+
             } catch (e: IOException) {
                 Toast.makeText(this@FormBuscarOfertaActivity, "Sin conexion", Toast.LENGTH_SHORT).show()
             } catch (e: HttpException) {

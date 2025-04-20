@@ -6,6 +6,7 @@ import com.altrik.proyectoap.utilities.request.SignInRequest
 import com.altrik.proyectoap.utilities.request.UpdateOfertaRequest
 import com.altrik.proyectoap.utilities.request.UpdateUserRequest
 import com.altrik.proyectoap.utilities.response.GetBecaResponse
+import com.altrik.proyectoap.utilities.response.OfertaListResponse
 import com.altrik.proyectoap.utilities.response.OfertaResponse
 import com.altrik.proyectoap.utilities.response.SignInResponse
 import com.altrik.proyectoap.utilities.response.UpdateUserResponse
@@ -59,7 +60,7 @@ interface ApiService {
         @Query("titulo") titulo: String?,
         @Query("requisitos") requisitos: String?,
         @Query("departamento") departamento: String?
-    ): List<Oferta>
+    ): OfertaListResponse<List<Oferta>>
 
     // Becas
 
