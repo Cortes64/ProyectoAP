@@ -208,7 +208,35 @@ class CrearOfertaActivity : AppCompatActivity() {
     private fun handleSuccess(response: OfertaResponse?) {
         if (response?.success == true) {
             Toast.makeText(this, "Oferta creada exitosamente", Toast.LENGTH_SHORT).show()
-            finish() // Close activity after success
+
+            val sharedPrefs = getSharedPreferences("UserPrefs", MODE_PRIVATE)
+            val tipoUsuario = sharedPrefs.getString("tipoUsuario", "ESTUDIANTE")
+
+            when (tipoUsuario) {
+                "ESTUDIANTE" -> {
+                    val intent = Intent(this, MenuStudentActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                }
+                "PROFESOR" -> {
+                    val intent = Intent(this, MenuProfessorActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                }
+                "ESCUELA" -> {
+                    val intent = Intent(this, MenuSchoolActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                }
+                "ADMINISTRADOR" -> {
+                    val intent = Intent(this, MenuAdminActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                }
+                else -> {
+                    Toast.makeText(this, "Tipo de usuario desconocido", Toast.LENGTH_SHORT).show()
+                }
+            }
         } else {
             handleError(response?.message ?: "Error desconocido")
         }
