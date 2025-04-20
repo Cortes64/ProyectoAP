@@ -94,7 +94,7 @@
                 android:fontFamily="sans-serif"
                 android:gravity="center"
                 android:hint="Nombre del Estudiante"
-                android:inputType="textPassword"
+                android:inputType="text"
                 android:textColorHint="#FFFFFF" />
 
             <Button

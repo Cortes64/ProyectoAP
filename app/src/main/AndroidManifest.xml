@@ -63,6 +63,8 @@
         <activity
             android:name=".SignInSchoolActivity"
             android:exported="false"/>
+        <activity android:name=".CrearOfertaActivity"
+            android:exported="false"/>
         <activity
             android:name=".LoginActivity"
             android:exported="true">
