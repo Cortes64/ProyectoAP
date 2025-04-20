@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import android.widget.Toast
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +15,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.altrik.proyectoap.R
 import com.altrik.proyectoap.RevisarInteresadosActivity
 import com.google.gson.Gson
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class OfertaBuscarAdapter (
     private val ofertas: List<Oferta>,
@@ -31,18 +36,20 @@ class OfertaBuscarAdapter (
         holder.tipoTrabajo.text = oferta.tipoTrabajo
         holder.descripcion.text = oferta.descripcion
 
+        val context = holder.itemView.context
+
         holder.chatButton.setOnClickListener {
             // Lógica para abrir la oferta
         }
 
         holder.personButton.setOnClickListener {
-            val context = holder.itemView.context
             val gson = Gson()
             val intent = Intent(context, RevisarInteresadosActivity::class.java).apply {
                 putExtra("oferta", gson.toJson(oferta))
             }
             context.startActivity(intent)
         }
+
 
         holder.addButton.setOnClickListener {
             val nuevoEstudiante = EstudiantesInteresados(
@@ -52,10 +59,28 @@ class OfertaBuscarAdapter (
                 aceptado = false
             )
 
-            oferta.estudiantesInteresados.add(nuevoEstudiante)
-            notifyItemChanged(position)
-            Toast.makeText(holder.itemView.context, "Estudiante añadido!", Toast.LENGTH_SHORT)
-                .show()
+            CoroutineScope(Dispatchers.IO).launch {
+                try {
+                    val response = RetrofitClient.apiService.addEstudianteInteresado(oferta.titulo, nuevoEstudiante)
+
+                    withContext(Dispatchers.Main) {
+                        if (response.success) {
+                            oferta.estudiantesInteresados.add(response.estudianteInteresado)
+                            notifyItemChanged(position)
+
+                            Toast.makeText(context, "Estudiante agregado correctamente!", Toast.LENGTH_SHORT).show()
+
+                        } else {
+                            Toast.makeText(context, "Error del servidor: ${response.message}", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                } catch (e: Exception) {
+                    withContext(Dispatchers.Main) {
+                        Toast.makeText(context, "Error de red: ${e.message}", Toast.LENGTH_SHORT).show()
+                        Log.e("ADD_ESTUDIANTE", "Error al agregar estudiante", e)
+                    }
+                }
+            }
         }
 
 
