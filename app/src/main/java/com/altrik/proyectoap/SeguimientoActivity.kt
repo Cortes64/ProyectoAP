@@ -89,7 +89,7 @@ class SeguimientoActivity: AppCompatActivity() {
     }
 
     private fun fetchOfertas() {
-        val nombreUsuario = getSharedPreferences("UserPrefs", MODE_PRIVATE).getString("nombreUsuario", "")
+        val correoUsuario = getSharedPreferences("UserPrefs", MODE_PRIVATE).getString("correoUsuario", "")
 
         lifecycleScope.launch {
             try {
@@ -97,7 +97,7 @@ class SeguimientoActivity: AppCompatActivity() {
 
                 val ofertasFiltradas = response.filter { oferta ->
                     oferta.estudiantesInteresados.any {
-                        it.correoEstudiante == nombreUsuario
+                        it.correoEstudiante == correoUsuario
                     }
                 }
 

@@ -95,7 +95,11 @@ class BuscarOfertaActivity : AppCompatActivity() {
         recyclerView = findViewById(R.id.RecyclerViewOferta)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        adapter = OfertaBuscarAdapter(listaOferta)
+        adapter = OfertaBuscarAdapter(
+            ofertas = listaOferta,
+            nombreUsuario = sharedPreferences.getString("nombreUsuario", "") ?: "",
+            correoUsuario = sharedPreferences.getString("correoUsuario", "") ?: ""
+        )
         recyclerView.adapter = adapter
 
     }

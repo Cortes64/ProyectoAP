@@ -22,6 +22,8 @@ import kotlinx.coroutines.withContext
 
 class OfertaBuscarAdapter (
     private val ofertas: List<Oferta>,
+    private val nombreUsuario: String,
+    private val correoUsuario: String
 ): RecyclerView.Adapter<OfertaBuscarAdapter.OfertaViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OfertaViewHolder {
@@ -53,8 +55,8 @@ class OfertaBuscarAdapter (
 
         holder.addButton.setOnClickListener {
             val nuevoEstudiante = EstudiantesInteresados(
-                nombre = "Nuevo Estudiante",
-                correoEstudiante = "correo@ejemplo.com",
+                nombre = nombreUsuario,
+                correoEstudiante = correoUsuario,
                 fechaRegistro = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date()),
                 aceptado = false
             )
