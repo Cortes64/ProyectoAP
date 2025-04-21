@@ -3,6 +3,7 @@ package com.altrik.proyectoap
 import android.os.Bundle
 import android.app.DatePickerDialog
 import androidx.activity.enableEdgeToEdge
+import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -39,6 +40,8 @@ class CrearOfertaActivity : AppCompatActivity() {
     private lateinit var spinnerProfesor: Spinner
     private lateinit var inputDescripcion: EditText
     private lateinit var botonCrear: Button
+    private lateinit var sidebarContainer: LinearLayout
+    private var isSidebarOpen = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,7 +61,7 @@ class CrearOfertaActivity : AppCompatActivity() {
         datepicker()
         ButtonCrearOferta()
         fetchProfesores()
-
+        setupSidebar()
     }
 
     private fun Inicializarinputs(){
@@ -179,6 +182,58 @@ class CrearOfertaActivity : AppCompatActivity() {
                 false
             }
             else -> true
+        }
+    }
+    private fun setupSidebar() {
+
+        sidebarContainer = findViewById(R.id.sidebarContainer)
+
+        val sidebarButton = findViewById<ImageButton>(R.id.imageButtonSidebar2)
+
+
+        sidebarButton.setOnClickListener {
+            toggleSidebar()
+        }
+
+
+        findViewById<RelativeLayout>(R.id.mainLayout).setOnClickListener {
+            if (isSidebarOpen) {
+                closeSidebar()
+            }
+        }
+    }
+    private fun toggleSidebar() {
+        if (isSidebarOpen) {
+            closeSidebar()
+        } else {
+            openSidebar()
+        }
+        isSidebarOpen = !isSidebarOpen
+    }
+
+    private fun openSidebar() {
+        val animation = AnimationUtils.loadAnimation(this, R.anim.slide_in)
+        sidebarContainer.startAnimation(animation)
+        val params = sidebarContainer.layoutParams as RelativeLayout.LayoutParams
+        params.marginStart = 0
+        sidebarContainer.layoutParams = params
+    }
+
+    private fun closeSidebar() {
+        val animation = AnimationUtils.loadAnimation(this, R.anim.slide_out)
+        sidebarContainer.startAnimation(animation)
+        val params = sidebarContainer.layoutParams as RelativeLayout.LayoutParams
+        params.marginStart = -sidebarContainer.width
+        sidebarContainer.layoutParams = params
+    }
+
+
+    override fun onBackPressed() {
+        if (isSidebarOpen) {
+            closeSidebar()
+            isSidebarOpen = false
+        } else {
+            super.onBackPressed()
         }
     }
 
