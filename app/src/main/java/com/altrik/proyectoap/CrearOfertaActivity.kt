@@ -18,6 +18,7 @@ import retrofit2.Response
 import java.util.*
 import android.content.Intent
 import android.graphics.Bitmap.Config
+import android.view.MotionEvent
 import androidx.lifecycle.lifecycleScope
 import com.altrik.proyectoap.utilities.FooterBarView
 import com.altrik.proyectoap.utilities.Usuario
@@ -195,6 +196,7 @@ class CrearOfertaActivity : AppCompatActivity() {
             toggleSidebar()
         }
 
+        setupSidebarTouchInterceptor()
 
         findViewById<RelativeLayout>(R.id.mainLayout).setOnClickListener {
             if (isSidebarOpen) {
@@ -234,6 +236,25 @@ class CrearOfertaActivity : AppCompatActivity() {
             isSidebarOpen = false
         } else {
             super.onBackPressed()
+        }
+    }
+    private fun setupSidebarTouchInterceptor() {
+        val rootView = findViewById<RelativeLayout>(R.id.mainLayout)
+
+        rootView.setOnTouchListener { _, event ->
+            if (isSidebarOpen && event.action == MotionEvent.ACTION_DOWN) {
+                val x = event.x
+                // Close if touched outside the sidebar
+                if (x > sidebarContainer.width) {
+                    closeSidebar()
+                    isSidebarOpen = false
+                    true // Consume the event
+                } else {
+                    false
+                }
+            } else {
+                false
+            }
         }
     }
 
