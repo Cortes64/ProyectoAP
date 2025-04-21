@@ -5,6 +5,8 @@ import android.view.View
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import com.altrik.proyectoap.utilities.FooterBarView
+import com.altrik.proyectoap.utilities.NavViewHelper
+import com.google.android.material.navigation.NavigationView
 
 class VerPerfilAdministrativoActivity : AppCompatActivity() {
 
@@ -61,9 +63,12 @@ class VerPerfilAdministrativoActivity : AppCompatActivity() {
         inputEscuela.setText("Escuela: $escuela")
 
         val sharedPrefs = getSharedPreferences("UserPrefs", MODE_PRIVATE)
-        val tipoUsuario = sharedPrefs.getString("tipoUsuario", "ESTUDIANTE")
+        val tipoUsuario = sharedPrefs.getString("tipoUsuario", "") ?: "ESTUDIANTE"
 
+        val navView = findViewById<NavigationView>(R.id.nav_view)
         val footer = findViewById<FooterBarView>(R.id.footerBar)
-        footer.configurarPara(tipoUsuario ?: "ESTUDIANTE")
+        footer.configurarPara(tipoUsuario)
+        NavViewHelper.configurarMenu(navView, tipoUsuario);
+        NavViewHelper.configurarListeners(this, navView, tipoUsuario)
     }
 }
