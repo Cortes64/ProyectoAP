@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/sidebarMenu"
+    android:layout_width="250dp"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#2C393E"
+    android:elevation="16dp">
+
+    <!-- Menu Items -->
+    <Button
+        android:id="@+id/menuHome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Home"
+        android:textColor="#FFF"
+        android:background="@android:color/transparent"/>
+
+    <Button
+        android:id="@+id/menuProfile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Profile"
+        android:textColor="#FFF"
+        android:background="@android:color/transparent"/>
+
+    <!-- Add more menu items as needed -->
+
+</LinearLayout>
