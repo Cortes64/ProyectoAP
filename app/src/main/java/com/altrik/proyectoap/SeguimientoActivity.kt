@@ -82,7 +82,10 @@ class SeguimientoActivity: AppCompatActivity() {
         recyclerView = findViewById(R.id.RecyclerViewOferta)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        adapter = OfertaSeguimientoAdapter(listaOferta)
+        adapter = OfertaSeguimientoAdapter(
+            ofertas = listaOferta,
+            correoUsuario = getSharedPreferences("UserPrefs", MODE_PRIVATE).getString("correoUsuario", "") ?: ""
+        )
         recyclerView.adapter = adapter
 
         fetchOfertas()

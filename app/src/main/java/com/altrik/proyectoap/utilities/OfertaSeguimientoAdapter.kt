@@ -5,17 +5,23 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.altrik.proyectoap.R
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class OfertaSeguimientoAdapter (
-    private val ofertas: List<Oferta>
+    private val ofertas: MutableList<Oferta>,
+    private val correoUsuario: String
 ): RecyclerView.Adapter<OfertaSeguimientoAdapter.OfertaViewHolder>() {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): OfertaSeguimientoAdapter.OfertaViewHolder {
+    ): OfertaViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.template_seguimiento_oferta, parent, false)
         return OfertaViewHolder(view)
@@ -26,11 +32,30 @@ class OfertaSeguimientoAdapter (
         holder.titulo.text = oferta.titulo
         holder.tipoTrabajo.text = oferta.tipoTrabajo
         holder.descripcion.text = oferta.descripcion
-        holder.adButton.setOnClickListener {
-            // Lógica para abrir la oferta
-        }
-        holder.notificationsButton.setOnClickListener {
-            // Lógica para abrir el perfil del profesor
+        holder.removeButton.setOnClickListener {
+            val context = holder.itemView.context
+
+            CoroutineScope(Dispatchers.IO).launch {
+                try {
+                    val response = RetrofitClient.apiService.removeEstudianteInteresado(
+                        oferta.titulo,
+                        correoUsuario
+                    )
+
+                    withContext(Dispatchers.Main) {
+                        if (response.isSuccessful) {
+                            ofertas.removeAt(position)
+                            notifyItemRemoved(position)
+                        } else {
+                            Toast.makeText(context, "Error al eliminar el estudiante interesado", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                } catch (e: Exception) {
+                    withContext(Dispatchers.Main) {
+                        Toast.makeText(context, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
         }
     }
 
@@ -40,7 +65,6 @@ class OfertaSeguimientoAdapter (
         val titulo: TextView = view.findViewById(R.id.textOfertaTitle)
         val tipoTrabajo: TextView = view.findViewById(R.id.textTipoOferta)
         val descripcion: TextView = view.findViewById(R.id.textDescripcionOferta)
-        val adButton: ImageButton = view.findViewById(R.id.ad_button)
-        val notificationsButton: ImageButton = view.findViewById(R.id.notifications_button)
+        val removeButton: ImageButton = view.findViewById(R.id.remove_button)
     }
 }

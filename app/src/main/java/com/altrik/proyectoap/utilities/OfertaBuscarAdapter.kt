@@ -40,10 +40,6 @@ class OfertaBuscarAdapter (
 
         val context = holder.itemView.context
 
-        holder.chatButton.setOnClickListener {
-            // Lógica para abrir la oferta
-        }
-
         holder.personButton.setOnClickListener {
             val gson = Gson()
             val intent = Intent(context, RevisarInteresadosActivity::class.java).apply {
@@ -124,7 +120,6 @@ class OfertaBuscarAdapter (
         val titulo: TextView = view.findViewById(R.id.textOfertaTitle)
         val tipoTrabajo: TextView = view.findViewById(R.id.textTipoOferta)
         val descripcion: TextView = view.findViewById(R.id.textDescripcionOferta)
-        val chatButton: ImageButton = view.findViewById(R.id.chat_button)
         val personButton: ImageButton = view.findViewById(R.id.person_button)
         val addButton: ImageButton = view.findViewById(R.id.add_button)
     }

@@ -7,12 +7,14 @@ import com.altrik.proyectoap.utilities.request.UpdateOfertaRequest
 import com.altrik.proyectoap.utilities.request.UpdateUserRequest
 import com.altrik.proyectoap.utilities.response.EstudianteInteresadoResponse
 import com.altrik.proyectoap.utilities.response.GetBecaResponse
+import com.altrik.proyectoap.utilities.response.OfertaByTitleResponse
 import com.altrik.proyectoap.utilities.response.OfertaListResponse
 import com.altrik.proyectoap.utilities.response.OfertaResponse
 import com.altrik.proyectoap.utilities.response.SignInResponse
 import com.altrik.proyectoap.utilities.response.UpdateUserResponse
 import com.altrik.proyectoap.utilities.response.UserListResponse
 import retrofit2.Call
+import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.POST
 import retrofit2.http.GET
@@ -68,6 +70,12 @@ interface ApiService {
         @Path("titulo") titulo: String,
         @Body estudianteInteresado: EstudiantesInteresados
     ): EstudianteInteresadoResponse
+
+    @DELETE("oferta/{titulo}/estudiante/{correo}")
+    suspend fun removeEstudianteInteresado(
+        @Path("titulo") titulo: String,
+        @Path("correo") correo: String
+    ): Response<Void>
 
     // Becas
 
