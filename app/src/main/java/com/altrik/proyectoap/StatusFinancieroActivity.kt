@@ -12,6 +12,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.lifecycleScope
 import com.altrik.proyectoap.utilities.Beca
 import com.altrik.proyectoap.utilities.FooterBarView
+import com.altrik.proyectoap.utilities.NavViewHelper
 import com.altrik.proyectoap.utilities.RetrofitClient
 import com.google.android.material.navigation.NavigationView
 import kotlinx.coroutines.launch
@@ -40,33 +41,13 @@ class StatusFinancieroActivity: AppCompatActivity() {
             abrirSidebar()
         }
 
-        navView.setNavigationItemSelectedListener { menuItem ->
-            when (menuItem.itemId) {
-                R.id.nav_inicio -> {
-                    irMenu()
-                    true
-                }
-                R.id.nav_buscar_oferta -> {
-                    irBuscarOferta()
-                    true
-                }
-                R.id.nav_seguimiento -> {
-                    irSeguimiento()
-                    true
-                }
-                R.id.nav_cerrar_sesion -> {
-                    cerrarSesion()
-                    true
-                }
-                else -> false
-            }
-        }
-
         val sharedPrefs = getSharedPreferences("UserPrefs", MODE_PRIVATE)
-        val tipoUsuario = sharedPrefs.getString("tipoUsuario", "ESTUDIANTE")
-
+        val tipoUsuario = sharedPrefs.getString("tipoUsuario", "") ?: "ESTUDIANTE"
         val footer = findViewById<FooterBarView>(R.id.footerBar)
-        footer.configurarPara(tipoUsuario ?: "ESTUDIANTE")
+
+        footer.configurarPara(tipoUsuario)
+        NavViewHelper.configurarMenu(navView, tipoUsuario);
+        NavViewHelper.configurarListeners(this, navView, tipoUsuario)
 
         fetchBeca()
     }
@@ -98,45 +79,5 @@ class StatusFinancieroActivity: AppCompatActivity() {
 
     private fun abrirSidebar() {
         drawerLayout.openDrawer(GravityCompat.START)
-    }
-
-    private fun cerrarSesion() {
-        val sharedPref = getSharedPreferences("UserPrefs", MODE_PRIVATE).edit()
-        sharedPref.clear()
-        sharedPref.apply()
-
-        val intent = Intent(this, LoginActivity::class.java)
-        startActivity(intent)
-        finish()
-    }
-
-    private fun irMenu() {
-        val intent = Intent(this, MenuStudentActivity::class.java)
-        startActivity(intent)
-        finish()
-    }
-
-    private fun irBuscarOferta() {
-        val intent = Intent(this, FormBuscarOfertaActivity::class.java)
-        startActivity(intent)
-        finish()
-    }
-
-    private fun irSeguimiento() {
-        val intent = Intent(this, SeguimientoActivity::class.java)
-        startActivity(intent)
-        finish()
-    }
-
-    private fun irEditarPerfil() {
-        val intent = Intent(this, EditProfileStudentActivity::class.java)
-        startActivity(intent)
-        finish()
-    }
-
-    private fun irStatusFinanciero() {
-        val intent = Intent(this, StatusFinancieroActivity::class.java)
-        startActivity(intent)
-        finish()
     }
 }
