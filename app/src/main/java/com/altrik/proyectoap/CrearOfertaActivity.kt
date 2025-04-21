@@ -60,7 +60,7 @@ class CrearOfertaActivity : AppCompatActivity() {
 
         configspinners()
         datepicker()
-        ButtonCrearOferta()
+        buttonCrearOferta()
         fetchProfesores()
         setupSidebar()
     }
@@ -127,7 +127,7 @@ class CrearOfertaActivity : AppCompatActivity() {
                 if(response.success){
                     val profesores = response.data ?: emptyList()
                     runOnUiThread {
-                        ConfigProfesoresSpinner(profesores)
+                        configProfesoresSpinner(profesores)
                     }
                 } else {
                     showError("No se pudo cargar los profesores")
@@ -136,7 +136,7 @@ class CrearOfertaActivity : AppCompatActivity() {
         }
     }
 
-    private fun ConfigProfesoresSpinner(profesores: List<Usuario>){
+    private fun configProfesoresSpinner(profesores: List<Usuario>){
         val professorNames = profesores.map {
             it.name ?: "Nombre no disponible"  // Handle null case
         }
@@ -156,7 +156,7 @@ class CrearOfertaActivity : AppCompatActivity() {
 
 
     }
-    private fun ButtonCrearOferta() {
+    private fun buttonCrearOferta() {
         botonCrear.setOnClickListener {
             if (validateInputs()) {
                 createOferta()
