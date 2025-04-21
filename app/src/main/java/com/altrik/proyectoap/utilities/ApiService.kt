@@ -35,7 +35,7 @@ interface ApiService {
     @GET("userList/{name}")
     suspend fun getListaUsuarios(@Path("name") name: String): UserListResponse<List<Usuario>>
 
-    @PUT("user/{email}")
+    @PUT("users/{email}")
     suspend fun updateUser(@Path("email") email: String, @Body usuario: UpdateUserRequest): UpdateUserResponse<Usuario>
 
     @GET("usersByType/{tipoUsuario}")

@@ -16,6 +16,7 @@ import com.altrik.proyectoap.MenuSchoolActivity
 import com.altrik.proyectoap.MenuStudentActivity
 import com.altrik.proyectoap.R
 import com.altrik.proyectoap.SeguimientoActivity
+import com.altrik.proyectoap.StatusFinancieroActivity
 import java.util.Locale
 
 class FooterBarView @JvmOverloads constructor(
@@ -83,7 +84,7 @@ class FooterBarView @JvmOverloads constructor(
         }
 
         findViewById<ImageButton?>(R.id.imageButtonDollar)?.setOnClickListener {
-            val intent = Intent(context, MenuStudentActivity::class.java)
+            val intent = Intent(context, StatusFinancieroActivity::class.java)
             context.startActivity(intent)
             (context as Activity).finish()
         }
