@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.altrik.proyectoap.utilities.Historial
 import com.altrik.proyectoap.utilities.EstudiantesInteresados
 import com.altrik.proyectoap.utilities.EstudiantesInteresadosAdapter
+import com.altrik.proyectoap.utilities.FooterBarView
 import com.altrik.proyectoap.utilities.HistorialAdapter
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -27,6 +28,12 @@ class RevisarInteresadosActivity: AppCompatActivity() {
         val descripcion = intent.getStringExtra("descripcion")
         val estudiantesJson = intent.getStringExtra("estudiantesJson")
         val historialJson = intent.getStringExtra("historialJson")
+
+        val sharedPrefs = getSharedPreferences("UserPrefs", MODE_PRIVATE)
+        val tipoUsuario = sharedPrefs.getString("tipoUsuario", "ESTUDIANTE")
+
+        val footer = findViewById<FooterBarView>(R.id.footerBar)
+        footer.configurarPara(tipoUsuario ?: "ESTUDIANTE")
 
         val typeEstudiantes = object : TypeToken<List<EstudiantesInteresados>>() {}.type
         val estudiantes: List<EstudiantesInteresados> = if (estudiantesJson != null) {

@@ -11,6 +11,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.altrik.proyectoap.utilities.FooterBarView
 import com.altrik.proyectoap.utilities.Oferta
 import com.altrik.proyectoap.utilities.OfertaSeguimientoAdapter
 import com.altrik.proyectoap.utilities.RetrofitClient
@@ -64,26 +65,17 @@ class SeguimientoActivity: AppCompatActivity() {
             }
         }
 
-        val imageButtonEdit = findViewById<ImageButton>(R.id.imageButtonEdit)
-        imageButtonEdit.setOnClickListener {
-            irEditarPerfil()
-        }
-
-        val imageButtonDollar = findViewById<ImageButton>(R.id.imageButtonDollar)
-        imageButtonDollar.setOnClickListener {
-            irStatusFinanciero()
-        }
-
-        val imageButtonMenu = findViewById<ImageButton>(R.id.imageButtonMenu)
-        imageButtonMenu.setOnClickListener {
-            irSeguimiento()
-        }
-
         recyclerView = findViewById(R.id.RecyclerViewOferta)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
         adapter = OfertaSeguimientoAdapter(listaOferta)
         recyclerView.adapter = adapter
+
+        val sharedPrefs = getSharedPreferences("UserPrefs", MODE_PRIVATE)
+        val tipoUsuario = sharedPrefs.getString("tipoUsuario", "ESTUDIANTE")
+
+        val footer = findViewById<FooterBarView>(R.id.footerBar)
+        footer.configurarPara(tipoUsuario ?: "ESTUDIANTE")
 
         fetchOfertas()
     }

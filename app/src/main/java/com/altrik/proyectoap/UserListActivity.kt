@@ -11,6 +11,7 @@ import com.altrik.proyectoap.utilities.Usuario
 import com.altrik.proyectoap.utilities.UsuarioAdapter
 import kotlinx.coroutines.launch
 import android.content.Intent
+import com.altrik.proyectoap.utilities.FooterBarView
 
 class UserListActivity : AppCompatActivity() {
 
@@ -24,6 +25,12 @@ class UserListActivity : AppCompatActivity() {
 
         recyclerView = findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
+
+        val sharedPrefs = getSharedPreferences("UserPrefs", MODE_PRIVATE)
+        val tipoUsuario = sharedPrefs.getString("tipoUsuario", "ESTUDIANTE")
+
+        val footer = findViewById<FooterBarView>(R.id.footerBar)
+        footer.configurarPara(tipoUsuario ?: "ESTUDIANTE")
 
         adapter = UsuarioAdapter(listaUsuarios) { usuario ->
             // Manejar click del usuario
