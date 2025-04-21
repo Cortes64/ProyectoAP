@@ -18,6 +18,7 @@ import java.util.*
 import android.content.Intent
 import android.graphics.Bitmap.Config
 import androidx.lifecycle.lifecycleScope
+import com.altrik.proyectoap.utilities.FooterBarView
 import com.altrik.proyectoap.utilities.Usuario
 import kotlinx.coroutines.launch
 
@@ -46,6 +47,13 @@ class CrearOfertaActivity : AppCompatActivity() {
         apiService = RetrofitClient.apiService
 
         Inicializarinputs()
+
+        val sharedPrefs = getSharedPreferences("UserPrefs", MODE_PRIVATE)
+        val tipoUsuario = sharedPrefs.getString("tipoUsuario", "ESTUDIANTE")
+
+        val footer = findViewById<FooterBarView>(R.id.footerBar)
+        footer.configurarPara(tipoUsuario ?: "ESTUDIANTE")
+
         configspinners()
         datepicker()
         ButtonCrearOferta()

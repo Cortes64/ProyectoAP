@@ -15,6 +15,7 @@ import com.altrik.proyectoap.utilities.AdminAdapter
 import com.altrik.proyectoap.utilities.Reporte
 import com.google.android.material.navigation.NavigationView
 import androidx.lifecycle.lifecycleScope
+import com.altrik.proyectoap.utilities.FooterBarView
 import com.altrik.proyectoap.utilities.RetrofitClient
 import kotlinx.coroutines.launch
 
@@ -66,33 +67,13 @@ class MenuAdminActivity : AppCompatActivity() {
             }
         }
 
-        val imageButtonEdit = findViewById<ImageButton>(R.id.imageButtonEdit)
-        val imageFolderPlus = findViewById<ImageButton>(R.id.imageFolderPlus)
-        val imageFolderCheck = findViewById<ImageButton>(R.id.imageFolderCheck)
-
-        imageButtonEdit.setOnClickListener {
-            val intent = Intent(this, EditProfileStudentActivity::class.java)
-            // Se debe hacer y cambiar por el EditProfileAdminActivity.
-            startActivity(intent)
-            finish()
-        }
-
-        imageFolderPlus.setOnClickListener {
-            val intent = Intent(this, CrearOfertaActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
-
-        imageFolderCheck.setOnClickListener {
-            val intent = Intent(this, MenuAdminActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
-
         recyclerView = findViewById(R.id.RecyclerViewOferta)
         recyclerView.layoutManager = LinearLayoutManager(this)
         adapter = AdminAdapter(listaOferta, listaReportes)
         recyclerView.adapter = adapter
+
+        val footer = findViewById<FooterBarView>(R.id.footerBar)
+        footer.configurarPara("ADMINISTRADOR")
 
         fetchOfertasReportes()
     }

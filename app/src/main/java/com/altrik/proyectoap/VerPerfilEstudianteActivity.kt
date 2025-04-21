@@ -3,6 +3,7 @@ package com.altrik.proyectoap
 import android.os.Bundle
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
+import com.altrik.proyectoap.utilities.FooterBarView
 
 class VerPerfilEstudianteActivity : AppCompatActivity() {
     private lateinit var inputNombre: EditText
@@ -43,5 +44,10 @@ class VerPerfilEstudianteActivity : AppCompatActivity() {
         inputCarrera.setText("Carrera: $carreraUsuario")
         inputNivelAcademico.setText("Nivel Académico: $nivelAcademicoUsuario")
 
+        val sharedPrefs = getSharedPreferences("UserPrefs", MODE_PRIVATE)
+        val tipoUsuario = sharedPrefs.getString("tipoUsuario", "ESTUDIANTE")
+
+        val footer = findViewById<FooterBarView>(R.id.footerBar)
+        footer.configurarPara(tipoUsuario ?: "ESTUDIANTE")
     }
 }

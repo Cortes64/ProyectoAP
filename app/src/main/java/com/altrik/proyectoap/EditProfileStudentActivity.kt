@@ -12,6 +12,7 @@ import com.altrik.proyectoap.utilities.response.UpdateUserResponse
 import android.content.Intent
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
+import com.altrik.proyectoap.utilities.FooterBarView
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
@@ -26,6 +27,10 @@ class EditProfileStudentActivity : AppCompatActivity() {
 
         val nombreUsuario = sharedPreferences.getString("nombreUsuario", "")
         val apellidosUsuario = sharedPreferences.getString("apellidosUsuario", "")
+        val tipoUsuario = sharedPreferences.getString("tipoUsuario", "ESTUDIANTE")
+
+        val footer = findViewById<FooterBarView>(R.id.footerBar)
+        footer.configurarPara(tipoUsuario ?: "ESTUDIANTE")
 
         val editButtonNombre = findViewById<ImageButton>(R.id.editButtonNombre)
         val editTextNombre = findViewById<EditText>(R.id.inputEditNombre)

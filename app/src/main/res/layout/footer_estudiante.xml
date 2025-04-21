@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/footer_admin"
+    android:layout_width="match_parent"
+    android:layout_height="70dp"
+    android:layout_gravity="bottom"
+    android:background="#444F7E"
+    android:orientation="horizontal"
+    android:paddingTop="4dp">
+
+    <ImageButton
+        android:id="@+id/imageButtonMenu"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@android:color/transparent"
+        android:padding="10dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_approval" />
+
+    <ImageButton
+        android:id="@+id/imageButtonDollar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@android:color/transparent"
+        android:padding="10dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_attach_money" />
+
+    <ImageButton
+        android:id="@+id/imageButtonEdit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@android:color/transparent"
+        android:padding="10dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/group" />
+</LinearLayout>

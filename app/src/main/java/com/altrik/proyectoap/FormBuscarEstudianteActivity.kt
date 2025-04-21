@@ -6,6 +6,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.altrik.proyectoap.utilities.FooterBarView
 
 class FormBuscarEstudianteActivity : AppCompatActivity() {
 
@@ -17,6 +18,12 @@ class FormBuscarEstudianteActivity : AppCompatActivity() {
         botonBuscar.setOnClickListener {
             buscarEstudiante()
         }
+
+        val sharedPrefs = getSharedPreferences("UserPrefs", MODE_PRIVATE)
+        val tipoUsuario = sharedPrefs.getString("tipoUsuario", "ESTUDIANTE")
+
+        val footer = findViewById<FooterBarView>(R.id.footerBar)
+        footer.configurarPara(tipoUsuario ?: "ESTUDIANTE")
     }
 
     private fun buscarEstudiante() {
