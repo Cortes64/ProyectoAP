@@ -16,6 +16,7 @@ import com.altrik.proyectoap.utilities.Reporte
 import com.google.android.material.navigation.NavigationView
 import androidx.lifecycle.lifecycleScope
 import com.altrik.proyectoap.utilities.FooterBarView
+import com.altrik.proyectoap.utilities.NavViewHelper
 import com.altrik.proyectoap.utilities.RetrofitClient
 import kotlinx.coroutines.launch
 
@@ -33,38 +34,11 @@ class MenuAdminActivity : AppCompatActivity() {
         drawerLayout = findViewById(R.id.drawer_layout)
         val navView = findViewById<NavigationView>(R.id.nav_view)
 
-        val headerView = navView.getHeaderView(0)
-        val sidebarNombre = headerView.findViewById<TextView>(R.id.sidebarNombre)
-
         val sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE)
-
-        val nombreUsuario = sharedPreferences.getString("nombreUsuario", "")
-        sidebarNombre.text = nombreUsuario
 
         val imageButtonSidebar = findViewById<ImageButton>(R.id.imageButtonSidebar)
         imageButtonSidebar.setOnClickListener {
             abrirSidebar()
-        }
-
-        navView.setNavigationItemSelectedListener { menuItem ->
-            when (menuItem.itemId) {
-                R.id.nav_inicio -> {
-                    irMenu()
-                    true
-                }
-                R.id.nav_gestionar_usuarios -> {
-                    irGestionarUsuarios()
-                    true
-                }
-                R.id.nav_buscar_publicaciones -> {
-                    true
-                }
-                R.id.nav_cerrar_sesion -> {
-                    cerrarSesion()
-                    true
-                }
-                else -> false
-            }
         }
 
         recyclerView = findViewById(R.id.RecyclerViewOferta)
@@ -74,6 +48,10 @@ class MenuAdminActivity : AppCompatActivity() {
 
         val footer = findViewById<FooterBarView>(R.id.footerBar)
         footer.configurarPara("ADMINISTRADOR")
+
+        val tipoUsuario = sharedPreferences.getString("tipoUsuario", "") ?: "ESTUDIANTE"
+        NavViewHelper.configurarMenu(navView, tipoUsuario);
+        NavViewHelper.configurarListeners(this, navView, tipoUsuario)
 
         fetchOfertasReportes()
     }
@@ -99,27 +77,5 @@ class MenuAdminActivity : AppCompatActivity() {
 
     private fun abrirSidebar() {
         drawerLayout.openDrawer(GravityCompat.START)
-    }
-
-    private fun cerrarSesion() {
-        val sharedPref = getSharedPreferences("UserPrefs", MODE_PRIVATE).edit()
-        sharedPref.clear()
-        sharedPref.apply()
-
-        val intent = Intent(this, LoginActivity::class.java)
-        startActivity(intent)
-        finish()
-    }
-
-    private fun irMenu() {
-        val intent = Intent(this, MenuAdminActivity::class.java)
-        startActivity(intent)
-        finish()
-    }
-
-    private fun irGestionarUsuarios() {
-        val intent = Intent(this, FormBuscarEstudianteActivity::class.java)
-        startActivity(intent)
-        finish()
     }
 }
