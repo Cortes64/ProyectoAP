@@ -9,6 +9,13 @@ import android.widget.EditText
 import android.widget.Spinner
 import android.widget.Toast
 import com.altrik.proyectoap.utilities.MailSender
+import com.altrik.proyectoap.utilities.PromedioExtractor
+import com.altrik.proyectoap.utilities.TecDigitalHelper
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import com.altrik.proyectoap.utilities.TecPromedioService
 
 class SignInStudentActivity : AppCompatActivity()  {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,9 +62,7 @@ class SignInStudentActivity : AppCompatActivity()  {
         val apellidos = findViewById<EditText>(R.id.inputApellidos).text.toString()
         val carnet = findViewById<EditText>(R.id.InputCarnet).text.toString()
         val contrasena = findViewById<EditText>(R.id.InputContraseña).text.toString()
-        val repetirContrasena = findViewById<EditText>(R.id.InputRepetirContraseña).text.toString()
         val contacto = findViewById<EditText>(R.id.InputContacto).text.toString()
-        val promedioPonderado = findViewById<EditText>(R.id.InputPromedio).text.toString()
 
         val spinnerCarrera = findViewById<Spinner>(R.id.carreraOptions)
         val spinnerNivelAcademico = findViewById<Spinner>(R.id.nivelAcademicoOptions)
@@ -65,18 +70,13 @@ class SignInStudentActivity : AppCompatActivity()  {
         val carrera = spinnerCarrera.selectedItem.toString()
         val nivelAcademico = spinnerNivelAcademico.selectedItem.toString()
 
-        if (camposVacios(correo, nombre, apellidos, carnet, contrasena, repetirContrasena, contacto, promedioPonderado)) {
+        if (camposVacios(correo, nombre, apellidos, carnet, contrasena, contacto)) {
             Toast.makeText(this, "Por favor, complete todos los campos", Toast.LENGTH_SHORT).show()
             return
         }
 
         if (!validarCorreo(correo)) {
             Toast.makeText(this, "El correo debe terminar en @estudiantec.cr", Toast.LENGTH_SHORT).show()
-            return
-        }
-
-        if (!validarContransena(contrasena, repetirContrasena)) {
-            Toast.makeText(this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show()
             return
         }
 
@@ -87,18 +87,28 @@ class SignInStudentActivity : AppCompatActivity()  {
 
         MailSender.sendEmail(this, correo, asunto, cuerpo)
 
-        mostrarPantallaVerificacion(
-            codigoVerificacion = codigoVerificacion,
-            correo = correo,
-            nombre = nombre,
-            apellidos = apellidos,
-            carnet = carnet,
-            contrasena = contrasena,
-            contacto = contacto,
-            carrera = carrera,
-            nivelAcademico = nivelAcademico,
-            promedioPonderado = promedioPonderado
-        )
+        CoroutineScope(Dispatchers.IO).launch {
+            val promedioApi = TecDigitalHelper.obtenerPromedioTec(correo, contrasena)
+
+            withContext(Dispatchers.Main) {
+                if (promedioApi == null) {
+                    Toast.makeText(this@SignInStudentActivity, "Error al obtener el promedio", Toast.LENGTH_SHORT).show()
+                } else {
+                    mostrarPantallaVerificacion(
+                        codigoVerificacion = codigoVerificacion,
+                        correo = correo,
+                        nombre = nombre,
+                        apellidos = apellidos,
+                        carnet = carnet,
+                        contrasena = contrasena,
+                        contacto = contacto,
+                        carrera = carrera,
+                        nivelAcademico = nivelAcademico,
+                        promedioPonderado = promedioApi.toString()
+                    )
+                }
+            }
+        }
     }
 
     private fun irLogin() {
@@ -115,29 +125,20 @@ class SignInStudentActivity : AppCompatActivity()  {
         apellidos: String,
         carnet: String,
         contrasena: String,
-        repetirContrasena: String,
         contacto: String,
-        promedioPonderado: String
     ): Boolean {
         val camposVacios = correo.isEmpty() ||
                 nombre.isEmpty() ||
                 apellidos.isEmpty() ||
                 carnet.isEmpty() ||
                 contrasena.isEmpty() ||
-                repetirContrasena.isEmpty() ||
-                contacto.isEmpty() ||
-                promedioPonderado.isEmpty()
+                contacto.isEmpty()
         return camposVacios
     }
 
     private fun validarCorreo(correo: String): Boolean {
         val domain = correo.endsWith("@estudiantec.cr")
         return domain
-    }
-
-    private fun validarContransena(contrasena: String, repetirContrasena: String): Boolean {
-        val passwordMatch = contrasena == repetirContrasena
-        return passwordMatch
     }
 
     private fun generarCodigoVerificacion(): String {

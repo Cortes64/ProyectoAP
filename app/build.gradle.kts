@@ -45,6 +45,10 @@ dependencies {
 
     implementation("com.sun.mail:android-mail:1.6.7")
     implementation("com.sun.mail:android-activation:1.6.7")
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-scalars:2.9.0") // Para manejar HTML o texto
+    implementation("com.squareup.okhttp3:okhttp:4.10.0")
+    implementation("org.jsoup:jsoup:1.15.3") // Para parsear HTML y extraer el promedio
     implementation(libs.material.v190)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

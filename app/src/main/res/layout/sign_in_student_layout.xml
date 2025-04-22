@@ -108,21 +108,6 @@
                         android:textColorHint="#FFFFFF" />
 
                     <EditText
-                        android:id="@+id/InputPromedio"
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginRight="20dp"
-                        android:background="@drawable/text_edit_sign_in"
-                        android:ems="10"
-                        android:fontFamily="sans-serif"
-                        android:gravity="center"
-                        android:hint="Promedio Ponderado"
-                        android:inputType="text"
-                        android:textColorHint="#FFFFFF" />
-
-                    <EditText
                         android:id="@+id/InputContacto"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
@@ -167,21 +152,6 @@
                         android:fontFamily="sans-serif"
                         android:gravity="center"
                         android:hint="Contraseña"
-                        android:inputType="textPassword"
-                        android:textColorHint="#FFFFFF" />
-
-                    <EditText
-                        android:id="@+id/InputRepetirContraseña"
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginRight="20dp"
-                        android:background="@drawable/text_edit_sign_in"
-                        android:ems="10"
-                        android:fontFamily="sans-serif"
-                        android:gravity="center"
-                        android:hint="Repetir Contraseña"
                         android:inputType="textPassword"
                         android:textColorHint="#FFFFFF" />
 
