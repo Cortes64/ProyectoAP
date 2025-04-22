@@ -39,6 +39,9 @@ class EditProfileStudentActivity : AppCompatActivity() {
 
         editButtonNombre.setOnClickListener {
             editTextNombre.isEnabled = true
+            if (editButtonNombre.isEnabled) {
+                editTextNombre.background = getDrawable(R.drawable.input_edit_enabled)
+            }
         }
 
         val editButtonApellidos = findViewById<ImageButton>(R.id.editButtonApellidos)
@@ -48,6 +51,9 @@ class EditProfileStudentActivity : AppCompatActivity() {
 
         editButtonApellidos.setOnClickListener {
             editTextApellidos.isEnabled = true
+            if (editButtonApellidos.isEnabled) {
+                editTextApellidos.background = getDrawable(R.drawable.input_edit_enabled)
+            }
         }
 
         val botonAplicarCambios = findViewById<Button>(R.id.boton_aplicar_cambios)

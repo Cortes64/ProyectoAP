@@ -5,8 +5,10 @@ import android.content.Context
 import com.altrik.proyectoap.R
 import com.google.android.material.navigation.NavigationView
 import android.content.Intent
+import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity.MODE_PRIVATE
+import com.altrik.proyectoap.EditProfileStudentActivity
 import com.altrik.proyectoap.FormBuscarEstudianteActivity
 import com.altrik.proyectoap.FormBuscarOfertaActivity
 import com.altrik.proyectoap.LoginActivity
@@ -15,6 +17,7 @@ import com.altrik.proyectoap.MenuProfessorActivity
 import com.altrik.proyectoap.MenuSchoolActivity
 import com.altrik.proyectoap.MenuStudentActivity
 import com.altrik.proyectoap.SeguimientoActivity
+import androidx.core.content.edit
 
 object NavViewHelper {
     fun configurarMenu(navView: NavigationView, tipoUsuario: String) {
@@ -52,6 +55,7 @@ object NavViewHelper {
                     R.id.nav_inicio -> {irMenu(context, tipoUsuario); true}
                     R.id.nav_gestionar_usuarios -> {irGestionarUsuarios(context); true}
                     R.id.nav_buscar_publicaciones -> {true} // ...?
+                    R.id.nav_editar_parfil -> {irEditarPerfil(context); true}
                     R.id.nav_cerrar_sesion -> {cerrarSesion(context); true}
                     else -> false
                 }
@@ -96,9 +100,9 @@ object NavViewHelper {
     }
 
     private fun cerrarSesion(context: Context) {
-        val sharedPref = context.getSharedPreferences("UserPrefs", MODE_PRIVATE).edit()
-        sharedPref.clear()
-        sharedPref.apply()
+        context.getSharedPreferences("UserPrefs", MODE_PRIVATE).edit() {
+            clear()
+        }
 
         val intent = Intent(context, LoginActivity::class.java)
         context.startActivity(intent)
@@ -107,6 +111,12 @@ object NavViewHelper {
 
     private fun irGestionarUsuarios(context: Context) {
         val intent = Intent(context, FormBuscarEstudianteActivity::class.java)
+        context.startActivity(intent)
+        (context as Activity).finish()
+    }
+
+    private fun irEditarPerfil(context: Context) {
+        val intent = Intent(context, EditProfileStudentActivity::class.java)
         context.startActivity(intent)
         (context as Activity).finish()
     }
