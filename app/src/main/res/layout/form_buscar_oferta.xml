@@ -54,7 +54,7 @@
                 android:fontFamily="sans-serif"
                 android:gravity="center"
                 android:hint="Título Oferta"
-                android:inputType="textPassword"
+                android:inputType="text"
                 android:textColorHint="#FFFFFF" />
 
             <Spinner
@@ -78,7 +78,7 @@
                 android:fontFamily="sans-serif"
                 android:gravity="center"
                 android:hint="Requisitos"
-                android:inputType="textPassword"
+                android:inputType="text"
                 android:textColorHint="#FFFFFF" />
 
             <Button
