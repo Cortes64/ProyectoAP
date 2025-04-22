@@ -10,6 +10,7 @@ import com.altrik.proyectoap.utilities.response.GetBecaResponse
 import com.altrik.proyectoap.utilities.response.OfertaByTitleResponse
 import com.altrik.proyectoap.utilities.response.OfertaListResponse
 import com.altrik.proyectoap.utilities.response.OfertaResponse
+import com.altrik.proyectoap.utilities.response.PerfilEstudianteSimpleResponse
 import com.altrik.proyectoap.utilities.response.SignInResponse
 import com.altrik.proyectoap.utilities.response.UpdateUserResponse
 import com.altrik.proyectoap.utilities.response.UserListResponse
@@ -41,8 +42,10 @@ interface ApiService {
     @GET("usersByType/{tipoUsuario}")
     suspend fun getUsuariosPorTipo(@Path("tipoUsuario") tipoUsuario: String): UserListResponse<List<Usuario>>
 
-    @GET("escuelas")
-    suspend fun getEscuelas(): UserListResponse<List<Usuario>>
+    @GET("perfilEstudianteSimple")
+    suspend fun getPerfilEstudianteSimple(
+        @Path("email") email: String
+    ): PerfilEstudianteSimpleResponse
 
     // Ofertas
 
