@@ -3,14 +3,18 @@ package com.altrik.proyectoap
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.GravityCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import com.altrik.proyectoap.utilities.FooterBarView
 import com.altrik.proyectoap.utilities.MailSender
+import com.altrik.proyectoap.utilities.NavViewHelper
 import com.altrik.proyectoap.utilities.request.EvaluacionRequest
 import com.google.android.material.navigation.NavigationView
 
@@ -26,12 +30,31 @@ class EvaluarAlumnoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.evaluar_alumno_layout)  // Updated layout reference
 
+        val navView = findViewById<NavigationView>(R.id.nav_view)
+        val sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE)
+
+        val tipoUsuario = sharedPreferences.getString("tipoUsuario", "") ?: "ESTUDIANTE"
+
+        val footer = findViewById<FooterBarView>(R.id.footerBar)
+        footer.configurarPara(tipoUsuario);
+        NavViewHelper.configurarMenu(navView, tipoUsuario);
+        NavViewHelper.configurarListeners(this, navView, tipoUsuario)
+
         inicializarpantalla()
+
+        val imageButtonSidebar = findViewById<ImageButton>(R.id.imageButtonSidebar)
+        imageButtonSidebar.setOnClickListener {
+            abrirSidebar()
+        }
+
         estrellitas()
         setupSubmitButton()
 
     }
 
+    private fun abrirSidebar() {
+        drawerLayout.openDrawer(GravityCompat.START)
+    }
 
     private fun inicializarpantalla() {
         drawerLayout = findViewById(R.id.drawer_layout)

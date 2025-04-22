@@ -4,14 +4,21 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.lifecycleScope
 import com.altrik.proyectoap.utilities.ApiService
+import com.altrik.proyectoap.utilities.FooterBarView
+import com.altrik.proyectoap.utilities.NavViewHelper
 import com.altrik.proyectoap.utilities.RetrofitClient
 import com.altrik.proyectoap.utilities.request.UpdateOfertaRequest
+import com.google.android.material.navigation.NavigationView
 import kotlinx.coroutines.launch
 
 class EditarOfertaActivity : AppCompatActivity() {
+    private lateinit var drawerLayout: DrawerLayout
     private lateinit var apiService: ApiService
     private lateinit var inputTitulo: EditText
     private lateinit var inputTipoTrabajo: EditText
@@ -21,6 +28,21 @@ class EditarOfertaActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.editar_oferta_trabajo_layout)
+
+        drawerLayout = findViewById(R.id.drawer_layout)
+        val navView = findViewById<NavigationView>(R.id.nav_view)
+        val sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE)
+        val tipoUsuario = sharedPreferences.getString("tipoUsuario", "") ?: "ESTUDIANTE"
+
+        val imageButtonSidebar = findViewById<ImageButton>(R.id.imageButtonSidebar)
+        imageButtonSidebar.setOnClickListener {
+            abrirSidebar()
+        }
+
+        val footer = findViewById<FooterBarView>(R.id.footerBar)
+        footer.configurarPara(tipoUsuario);
+        NavViewHelper.configurarMenu(navView, tipoUsuario);
+        NavViewHelper.configurarListeners(this, navView, tipoUsuario)
 
         apiService = RetrofitClient.apiService
 
@@ -43,6 +65,10 @@ class EditarOfertaActivity : AppCompatActivity() {
         botonEditarOferta.setOnClickListener {
 
         }
+    }
+
+    private fun abrirSidebar() {
+        drawerLayout.openDrawer(GravityCompat.START)
     }
 
     private fun editarOferta() {
