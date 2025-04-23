@@ -17,7 +17,9 @@ import com.altrik.proyectoap.utilities.NavViewHelper
 import com.altrik.proyectoap.utilities.Oferta
 import com.altrik.proyectoap.utilities.RetrofitClient
 import com.google.android.material.navigation.NavigationView
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class MenuProfessorActivity : AppCompatActivity() {
     private lateinit var drawerLayout: DrawerLayout
@@ -43,7 +45,28 @@ class MenuProfessorActivity : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
         // Al final se puede usar el mismo AdminAdapter, son las mismas opciones,
         // solo es cuestión de que recibe cosas diferentes en fetchOfertas
-        adapter = AdminAdapter(listaOferta, emptyList())
+
+        val onDeleteOferta: suspend (Oferta) -> Unit = { oferta ->
+            try {
+                RetrofitClient.apiService.deleteOferta(oferta.titulo)
+                withContext(Dispatchers.Main) {
+                    listaOferta.remove(oferta)
+                    adapter.notifyDataSetChanged()
+                    Toast.makeText(this@MenuProfessorActivity, "Oferta eliminada", Toast.LENGTH_SHORT).show()
+                }
+            } catch (err: Exception) {
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(this@MenuProfessorActivity, "Error: ${err.message}", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+
+        adapter = AdminAdapter(
+            context = this,
+            ofertas = listaOferta,
+            reportes = emptyList(),
+            onDelete = onDeleteOferta
+        )
         recyclerView.adapter = adapter
 
         val footer = findViewById<FooterBarView>(R.id.footerBar)

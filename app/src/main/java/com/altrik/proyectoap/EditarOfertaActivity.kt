@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
@@ -13,6 +14,7 @@ import com.altrik.proyectoap.utilities.ApiService
 import com.altrik.proyectoap.utilities.FooterBarView
 import com.altrik.proyectoap.utilities.NavViewHelper
 import com.altrik.proyectoap.utilities.RetrofitClient
+import com.altrik.proyectoap.utilities.request.AddHistorialRequest
 import com.altrik.proyectoap.utilities.request.UpdateOfertaRequest
 import com.google.android.material.navigation.NavigationView
 import kotlinx.coroutines.launch
@@ -63,7 +65,7 @@ class EditarOfertaActivity : AppCompatActivity() {
 
         val botonEditarOferta = findViewById<Button>(R.id.botonEditarOferta)
         botonEditarOferta.setOnClickListener {
-
+            editarOferta()
         }
     }
 
@@ -76,6 +78,11 @@ class EditarOfertaActivity : AppCompatActivity() {
         val tipoTrabajo = inputTipoTrabajo.text.toString()
         val departamento = inputDepartamento.text.toString()
         val descripcion = inputDescripcion.text.toString()
+
+        if (titulo.isBlank() && tipoTrabajo.isBlank() && departamento.isBlank() && descripcion.isBlank()) {
+            Toast.makeText(this, "Al menos un campo debe estar completado", Toast.LENGTH_SHORT).show()
+            return
+        }
 
         val tituloAnterior = intent.getStringExtra("titulo")
         val tipoTrabajoAnterior = intent.getStringExtra("tipoTrabajo")
@@ -101,13 +108,29 @@ class EditarOfertaActivity : AppCompatActivity() {
                     updateOfertaRequest
                 )
                 if (response.success && response.data != null) {
+                    val cambios = listOfNotNull(
+                        if (tituloDefinitivo != null) AddHistorialRequest("Título", tituloAnterior ?: "", titulo) else null,
+                        if (tipoTrabajoDefinitivo  != null) AddHistorialRequest("Tipo de trabajo", tipoTrabajoAnterior ?: "", tipoTrabajo) else null,
+                        if (departamentoDefinitivo  != null) AddHistorialRequest("Departamento", departamentoAnterior ?: "", departamento) else null,
+                        if (descripcionDefinitivo  != null) AddHistorialRequest("Descripción", descripcionAnterior ?: "", descripcion) else null
+                    )
+
+                    for (cambio in cambios) {
+                        try {
+                            apiService.addToHistorial(tituloAnterior ?: "", cambio)
+                        } catch (e: Exception) {
+                            Toast.makeText(this@EditarOfertaActivity, "Error al agregar cambio al historial: ${e.message}", Toast.LENGTH_LONG).show()
+                        }
+                    }
+
+                    Toast.makeText(this@EditarOfertaActivity, "Oferta actualizada con éxito", Toast.LENGTH_SHORT).show()
 
                     val intent = Intent(this@EditarOfertaActivity, MenuProfessorActivity::class.java)
                     startActivity(intent)
                     finish()
                 }
             } catch(e: Exception) {
-
+                Toast.makeText(this@EditarOfertaActivity, "Error: ${e.message}", Toast.LENGTH_LONG).show()
             }
         }
     }

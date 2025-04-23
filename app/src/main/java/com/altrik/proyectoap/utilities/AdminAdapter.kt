@@ -1,5 +1,6 @@
 package com.altrik.proyectoap.utilities
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,11 +8,17 @@ import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.altrik.proyectoap.R
+import com.altrik.proyectoap.EditarOfertaActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import android.content.Intent
+import com.altrik.proyectoap.RevisarInteresadosActivity
+import com.google.gson.Gson
+
 
 class AdminAdapter(
+    private val context: Context,
     private val ofertas: List<Oferta>,
     private val reportes: List<Reporte>,
     private val onDelete: suspend (Oferta) -> Unit
@@ -53,19 +60,29 @@ class AdminAdapter(
                     tipoTrabajo.text = oferta.tipoTrabajo
                     descripcion.text = oferta.descripcion
                     deleteButton.setOnClickListener {
-                        val oferta = ofertas[position]
                         CoroutineScope(Dispatchers.IO).launch {
                             onDelete(oferta)
                         }
                     }
                     editButton.setOnClickListener {
-                        // Lógica para editar la oferta
+                        val intent = Intent(context, EditarOfertaActivity::class.java).apply {
+                            putExtra("titulo", oferta.titulo)
+                            putExtra("tipoTrabajo", oferta.tipoTrabajo)
+                            putExtra("departamento", oferta.departamento)
+                            putExtra("descripcion", oferta.descripcion)
+                        }
+                        context.startActivity(intent)
                     }
                     chatButton.setOnClickListener {
                         // Lógica para abrir el chat con el profesor
                     }
                     personButton.setOnClickListener {
-                        // Lógica para abrir el perfil del profesor
+                        val gson = Gson()
+                        val intent = Intent(context, RevisarInteresadosActivity::class.java).apply {
+                            putExtra("oferta", gson.toJson(oferta))
+                        }
+                        context.startActivity(intent)
+
                     }
                 }
             }

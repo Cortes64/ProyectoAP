@@ -64,9 +64,8 @@ class MenuAdminActivity : AppCompatActivity() {
             }
         }
 
-
-
         adapter = AdminAdapter(
+            context = this,
             ofertas = listaOferta,
             reportes = listaReportes,
             onDelete = onDeleteOferta
