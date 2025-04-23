@@ -15,7 +15,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import com.altrik.proyectoap.utilities.TecPromedioService
 
 class SignInStudentActivity : AppCompatActivity()  {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -88,24 +87,37 @@ class SignInStudentActivity : AppCompatActivity()  {
         MailSender.sendEmail(this, correo, asunto, cuerpo)
 
         CoroutineScope(Dispatchers.IO).launch {
-            val promedioApi = TecDigitalHelper.obtenerPromedioTec(correo, contrasena)
+            val promedioApi = TecDigitalHelper().obtenerPromedioTec(correo, contrasena)
 
             withContext(Dispatchers.Main) {
-                if (promedioApi == null) {
-                    Toast.makeText(this@SignInStudentActivity, "Error al obtener el promedio", Toast.LENGTH_SHORT).show()
-                } else {
-                    mostrarPantallaVerificacion(
-                        codigoVerificacion = codigoVerificacion,
-                        correo = correo,
-                        nombre = nombre,
-                        apellidos = apellidos,
-                        carnet = carnet,
-                        contrasena = contrasena,
-                        contacto = contacto,
-                        carrera = carrera,
-                        nivelAcademico = nivelAcademico,
-                        promedioPonderado = promedioApi.toString()
-                    )
+
+                when (promedioApi) {
+                    "ERR_401" -> {
+                        Toast.makeText(this@SignInStudentActivity, "Contraseña o correo incorrectos", Toast.LENGTH_SHORT).show()
+                    }
+                    "ERR_NO_RESPONSE" -> {
+                        Toast.makeText(this@SignInStudentActivity, "Error al obtener el promedio", Toast.LENGTH_SHORT).show()
+                    }
+                    "ERR_PARSE" -> {
+                        Toast.makeText(this@SignInStudentActivity, "Error al obtener el promedio", Toast.LENGTH_SHORT).show()
+                    }
+                    "ERR_DESCONOCIDO" -> {
+                        Toast.makeText(this@SignInStudentActivity, "Ocurrió un error desconocido", Toast.LENGTH_SHORT).show()
+                    }
+                    else -> {
+                        mostrarPantallaVerificacion(
+                            codigoVerificacion = codigoVerificacion,
+                            correo = correo,
+                            nombre = nombre,
+                            apellidos = apellidos,
+                            carnet = carnet,
+                            contrasena = contrasena,
+                            contacto = contacto,
+                            carrera = carrera,
+                            nivelAcademico = nivelAcademico,
+                            promedioPonderado = promedioApi.toString()
+                        )
+                    }
                 }
             }
         }
