@@ -61,6 +61,11 @@ interface ApiService {
     @PUT("oferta/{titulo}")
     suspend fun updateOferta(@Path("titulo") titulo: String, @Body oferta: UpdateOfertaRequest): OfertaResponse
 
+    @DELETE("/oferta/{titulo}")
+    suspend fun deleteOferta(
+        @Path("titulo") titulo: String
+    )
+
     @GET("filtroOfertas")
     suspend fun filtrarOfertas(
         @Query("titulo") titulo: String?,

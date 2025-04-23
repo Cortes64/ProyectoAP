@@ -18,7 +18,9 @@ import androidx.lifecycle.lifecycleScope
 import com.altrik.proyectoap.utilities.FooterBarView
 import com.altrik.proyectoap.utilities.NavViewHelper
 import com.altrik.proyectoap.utilities.RetrofitClient
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class MenuAdminActivity : AppCompatActivity() {
     private lateinit var drawerLayout: DrawerLayout
@@ -43,7 +45,33 @@ class MenuAdminActivity : AppCompatActivity() {
 
         recyclerView = findViewById(R.id.RecyclerViewOferta)
         recyclerView.layoutManager = LinearLayoutManager(this)
-        adapter = AdminAdapter(listaOferta, listaReportes)
+
+        val apiService = RetrofitClient.apiService
+
+        // Se obtiene el OnDeleteOferta
+        val onDeleteOferta: suspend (Oferta) -> Unit = { oferta ->
+            try {
+                RetrofitClient.apiService.deleteOferta(oferta.titulo)
+                withContext(Dispatchers.Main) {
+                    listaOferta.remove(oferta)
+                    adapter.notifyDataSetChanged()
+                    Toast.makeText(this@MenuAdminActivity, "Oferta eliminada", Toast.LENGTH_SHORT).show()
+                }
+            } catch (err: Exception) {
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(this@MenuAdminActivity, "Error: ${err.message}", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+
+
+
+        adapter = AdminAdapter(
+            ofertas = listaOferta,
+            reportes = listaReportes,
+            onDelete = onDeleteOferta
+        )
+
         recyclerView.adapter = adapter
 
         val footer = findViewById<FooterBarView>(R.id.footerBar)

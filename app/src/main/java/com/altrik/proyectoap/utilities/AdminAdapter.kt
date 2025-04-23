@@ -7,10 +7,14 @@ import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.altrik.proyectoap.R
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class AdminAdapter(
     private val ofertas: List<Oferta>,
-    private val reportes: List<Reporte>
+    private val reportes: List<Reporte>,
+    private val onDelete: suspend (Oferta) -> Unit
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     companion object {
@@ -49,7 +53,10 @@ class AdminAdapter(
                     tipoTrabajo.text = oferta.tipoTrabajo
                     descripcion.text = oferta.descripcion
                     deleteButton.setOnClickListener {
-                        // Lógica para eliminar la oferta
+                        val oferta = ofertas[position]
+                        CoroutineScope(Dispatchers.IO).launch {
+                            onDelete(oferta)
+                        }
                     }
                     editButton.setOnClickListener {
                         // Lógica para editar la oferta
