@@ -13,6 +13,8 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import android.content.Intent
+import android.net.Uri
+import androidx.core.content.ContextCompat.startActivity
 import com.altrik.proyectoap.RevisarInteresadosActivity
 import com.google.gson.Gson
 
@@ -73,9 +75,6 @@ class AdminAdapter(
                         }
                         context.startActivity(intent)
                     }
-                    chatButton.setOnClickListener {
-                        // Lógica para abrir el chat con el profesor
-                    }
                     personButton.setOnClickListener {
                         val gson = Gson()
                         val intent = Intent(context, RevisarInteresadosActivity::class.java).apply {
@@ -102,7 +101,6 @@ class AdminAdapter(
         val descripcion: TextView = view.findViewById(R.id.textDescripcionOferta)
         val deleteButton: ImageButton = view.findViewById(R.id.delete_button)
         val editButton: ImageButton = view.findViewById(R.id.edit_button)
-        val chatButton: ImageButton = view.findViewById(R.id.chat_button)
         val personButton: ImageButton = view.findViewById(R.id.person_button)
     }
 
