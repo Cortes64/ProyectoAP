@@ -2,7 +2,8 @@ package com.altrik.proyectoap.utilities
 
 data class  EstudiantesInteresados (
     val nombre: String,
-    val correoEstudiante: String,  // Nuevo parámetro requerido
+    val correoEstudiante: String,
     val fechaRegistro: String,
-    val aceptado: Boolean          // Otro parámetro requerido
+    val aceptado: Boolean,
+    val promedioPonderado: String
 )

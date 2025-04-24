@@ -48,7 +48,8 @@ class MenuStudentActivity : AppCompatActivity() {
         adapter = OfertaBuscarAdapter(
             ofertas = listaOferta,
             nombreUsuario = sharedPreferences.getString("nombreUsuario", "") ?: "",
-            correoUsuario = sharedPreferences.getString("correoUsuario", "") ?: ""
+            correoUsuario = sharedPreferences.getString("correoUsuario", "") ?: "",
+            promedioPonderado = sharedPreferences.getString("promedioPonderadoUsuario", "") ?: ""
         )
         recyclerView.adapter = adapter
 

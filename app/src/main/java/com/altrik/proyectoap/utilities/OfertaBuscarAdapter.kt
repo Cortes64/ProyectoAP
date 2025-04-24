@@ -1,6 +1,8 @@
 package com.altrik.proyectoap.utilities
 
 
+import android.content.Context
+import android.content.Context.MODE_PRIVATE
 import java.text.SimpleDateFormat
 import java.util.*
 import android.widget.Toast
@@ -23,7 +25,8 @@ import kotlinx.coroutines.withContext
 class OfertaBuscarAdapter (
     private val ofertas: List<Oferta>,
     private val nombreUsuario: String,
-    private val correoUsuario: String
+    private val correoUsuario: String,
+    private val promedioPonderado: String
 ): RecyclerView.Adapter<OfertaBuscarAdapter.OfertaViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OfertaViewHolder {
@@ -48,13 +51,13 @@ class OfertaBuscarAdapter (
             context.startActivity(intent)
         }
 
-
         holder.addButton.setOnClickListener {
             val nuevoEstudiante = EstudiantesInteresados(
                 nombre = nombreUsuario,
                 correoEstudiante = correoUsuario,
                 fechaRegistro = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date()),
-                aceptado = false
+                aceptado = false,
+                promedioPonderado = promedioPonderado
             )
 
             CoroutineScope(Dispatchers.IO).launch {

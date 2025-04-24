@@ -13,7 +13,7 @@ class EstudiantesInteresadosAdapter (
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EstudiantesInteresadosViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.template_estudiante, parent, false)
+            .inflate(R.layout.template_estudiante_interesado, parent, false)
         return EstudiantesInteresadosViewHolder(view)
     }
 
@@ -21,14 +21,12 @@ class EstudiantesInteresadosAdapter (
         val estudianteInteresado = estudiantesInteresados[position]
         holder.email.text = estudianteInteresado.correoEstudiante
         holder.tipoUsuario.text = "ESTUDIANTE"
-
-        holder.nombre.visibility = View.GONE
     }
 
     override fun getItemCount(): Int = estudiantesInteresados.size
 
     class EstudiantesInteresadosViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val nombre: TextView = view.findViewById(R.id.student_list_nombre)
+        val promedio: TextView = view.findViewById(R.id.student_promedio_ponderado)
         val email: TextView = view.findViewById(R.id.student_list_correo)
         val tipoUsuario: TextView = view.findViewById(R.id.student_list_tipo)
     }
