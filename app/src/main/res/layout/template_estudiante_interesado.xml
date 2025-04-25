@@ -17,19 +17,20 @@
             android:id="@+id/ic_student_list"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:srcCompat="@drawable/ic_digital_wellbeing_outline"
-            tools:layout_editor_absoluteY="8dp" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_digital_wellbeing_outline" />
 
         <LinearLayout
+            android:id="@+id/dataLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="@id/ic_student_list"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/ic_student_list"
-            app:layout_constraintTop_toTopOf="@id/ic_student_list">
+            app:layout_constraintTop_toTopOf="parent">
 
             <TextView
                 android:id="@+id/student_list_correo"
@@ -55,6 +56,30 @@
                 android:text="TextView"
                 android:textSize="20sp" />
 
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/iconLayout"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/dataLayout">
+
+            <ImageButton
+                android:id="@+id/button_check"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/ic_check" />
+
+            <ImageButton
+                android:id="@+id/button_close"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/ic_close" />
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
