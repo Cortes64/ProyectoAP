@@ -43,13 +43,6 @@ class OfertaBuscarAdapter (
 
         val context = holder.itemView.context
 
-        holder.personButton.setOnClickListener {
-            val gson = Gson()
-            val intent = Intent(context, RevisarInteresadosActivity::class.java).apply {
-                putExtra("oferta", gson.toJson(oferta))
-            }
-            context.startActivity(intent)
-        }
 
         holder.addButton.setOnClickListener {
             val nuevoEstudiante = EstudiantesInteresados(
@@ -83,37 +76,6 @@ class OfertaBuscarAdapter (
                 }
             }
         }
-
-
-
-
-        holder.personButton.setOnClickListener {
-            val context = holder.itemView.context
-
-            val gson = Gson()
-            val estudiantesJson = gson.toJson(oferta.estudiantesInteresados)
-            val historialJson = gson.toJson(oferta.historial)
-
-            val intent = Intent(context, RevisarInteresadosActivity::class.java)
-            intent.putExtra("titulo", oferta.titulo)
-            intent.putExtra("tipoTrabajo", oferta.tipoTrabajo)
-            intent.putExtra("departamento", oferta.departamento)
-            intent.putExtra("descripcion", oferta.descripcion)
-            intent.putExtra("profesor", oferta.profesor)
-            intent.putExtra("fechaInicio", oferta.fechaInicio)
-            intent.putExtra("fechaFin", oferta.fechaFin)
-            intent.putExtra("objetivos", oferta.objetivos)
-            intent.putExtra("cantidadVacantes", oferta.cantidadVacantes)
-            intent.putExtra("duracion", oferta.duracion)
-            intent.putExtra("requisitos", oferta.requisitos)
-            intent.putExtra("estadoOferta", oferta.estadoOferta)
-            intent.putExtra("estudiantesInteresados", estudiantesJson)
-            intent.putExtra("historialJson", historialJson)
-            context.startActivity(intent)
-        }
-
-
-
     }
 
 
@@ -123,7 +85,6 @@ class OfertaBuscarAdapter (
         val titulo: TextView = view.findViewById(R.id.textOfertaTitle)
         val tipoTrabajo: TextView = view.findViewById(R.id.textTipoOferta)
         val descripcion: TextView = view.findViewById(R.id.textDescripcionOferta)
-        val personButton: ImageButton = view.findViewById(R.id.person_button)
         val addButton: ImageButton = view.findViewById(R.id.add_button)
     }
 }

@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class EstudiantesInteresadosAdapter (
-    private val estudiantesInteresados: List<EstudiantesInteresados>,
+    private val estudiantesInteresados: MutableList<EstudiantesInteresados>,
     private val tituloOferta: String
 ) : RecyclerView.Adapter<EstudiantesInteresadosAdapter.EstudiantesInteresadosViewHolder>() {
 
@@ -27,8 +27,16 @@ class EstudiantesInteresadosAdapter (
     override fun onBindViewHolder(holder: EstudiantesInteresadosViewHolder, position: Int) {
         val estudianteInteresado = estudiantesInteresados[position]
         holder.email.text = estudianteInteresado.correoEstudiante
-        holder.tipoUsuario.text = "ESTUDIANTE"
-        holder.promedio.text = estudianteInteresado.promedioPonderado.toString()
+        holder.aceptado.text = if (estudianteInteresado.aceptado) "Aceptado" else "Rechazado"
+        holder.promedio.text = estudianteInteresado.promedioPonderado
+
+        if (estudianteInteresado.aceptado) {
+            holder.check.isEnabled = false
+            holder.check.alpha = 0.5f
+        } else {
+            holder.check.isEnabled = true
+            holder.check.alpha = 1.0f
+        }
 
         holder.check.setOnClickListener {
             CoroutineScope(Dispatchers.IO).launch {
@@ -38,12 +46,13 @@ class EstudiantesInteresadosAdapter (
                         correo = estudianteInteresado.correoEstudiante,
                     )
 
-                    if (response.isSuccessful) {
-                        withContext(Dispatchers.Main) {
+                    withContext(Dispatchers.Main) {
+                        if (response.isSuccessful) {
+                            estudianteInteresado.aceptado = true
+                            notifyItemChanged(position)
+
                             Toast.makeText(holder.itemView.context, "Estudiante aceptado!", Toast.LENGTH_SHORT).show()
-                        }
-                    } else {
-                        withContext(Dispatchers.Main) {
+                        } else {
                             Toast.makeText(holder.itemView.context, "Error al aceptar estudiante", Toast.LENGTH_SHORT).show()
                         }
                     }
@@ -55,6 +64,7 @@ class EstudiantesInteresadosAdapter (
             }
         }
 
+
         holder.close.setOnClickListener {
             CoroutineScope(Dispatchers.IO).launch {
                 try {
@@ -65,7 +75,11 @@ class EstudiantesInteresadosAdapter (
 
                     withContext(Dispatchers.Main) {
                         if (response.isSuccessful) {
-                            Toast.makeText(holder.itemView.context, "Estudiante rechazado!", Toast.LENGTH_SHORT).show()
+                            estudiantesInteresados.removeAt(position)
+                            notifyItemRemoved(position)
+                            notifyItemRangeChanged(position, estudiantesInteresados.size)
+
+                            Toast.makeText(holder.itemView.context, "Estudiante rechazado y eliminado", Toast.LENGTH_SHORT).show()
                         } else {
                             Toast.makeText(holder.itemView.context, "Error al rechazar estudiante", Toast.LENGTH_SHORT).show()
                         }
@@ -77,6 +91,7 @@ class EstudiantesInteresadosAdapter (
                 }
             }
         }
+
     }
 
     override fun getItemCount(): Int = estudiantesInteresados.size
@@ -84,7 +99,8 @@ class EstudiantesInteresadosAdapter (
     class EstudiantesInteresadosViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val promedio: TextView = view.findViewById(R.id.student_promedio_ponderado)
         val email: TextView = view.findViewById(R.id.student_list_correo)
-        val tipoUsuario: TextView = view.findViewById(R.id.student_list_tipo)
+        val aceptado: TextView = view.findViewById(R.id.student_list_aceptado)
+
 
         val check: ImageButton = view.findViewById<ImageButton>(R.id.button_check)
         val close: ImageButton = view.findViewById<ImageButton>(R.id.button_close)

@@ -4,6 +4,6 @@ data class  EstudiantesInteresados (
     val nombre: String,
     val correoEstudiante: String,
     val fechaRegistro: String,
-    val aceptado: Boolean,
+    var aceptado: Boolean,
     val promedioPonderado: String
 )

@@ -61,7 +61,10 @@ class RevisarInteresadosActivity: AppCompatActivity() {
         recyclerViewEstudiantes.layoutManager = LinearLayoutManager(this)
         recyclerViewHistorial.layoutManager = LinearLayoutManager(this)
 
-        adapterEstudiantes = EstudiantesInteresadosAdapter(estudiantes)
+        adapterEstudiantes = EstudiantesInteresadosAdapter(
+            estudiantesInteresados = estudiantes,
+            tituloOferta = oferta.titulo
+        )
         adapterHistorial = HistorialAdapter(historial)
 
         recyclerViewEstudiantes.adapter = adapterEstudiantes

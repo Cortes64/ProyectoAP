@@ -49,7 +49,7 @@
                 android:textSize="20sp" />
 
             <TextView
-                android:id="@+id/student_list_tipo"
+                android:id="@+id/student_list_aceptado"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
