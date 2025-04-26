@@ -10,6 +10,10 @@ import com.altrik.proyectoap.utilities.ApiService
 import com.altrik.proyectoap.utilities.RetrofitClient
 import com.altrik.proyectoap.utilities.request.SignInRequest
 import com.altrik.proyectoap.utilities.response.SignInResponse
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -73,32 +77,57 @@ class VerificacionActivity : AppCompatActivity() {
         val nivelAcademico = sharedPref.getString("nivelAcademico", "") ?: ""
         val promedioPonderado = sharedPref.getString("promedioPonderado", "") ?: ""
 
-        val signInRequest = SignInRequest(
-            email = correo,
-            name = nombre,
-            apellidos = apellidos,
-            carnet = carnet,
-            password = contrasena,
-            tipoUsuario = tipoUsuario,
-            escuela = null,
-            zonaTrabajo = null,
-            departamentoTrabajo = null,
-            telefono = null,
-            nivelAcademico = nivelAcademico,
-            contacto = contacto,
-            carrera = carrera,
-            promedioPonderado = promedioPonderado
+        val emailBody = correo.toRequestBody()
+        val nameBody = nombre.toRequestBody()
+        val apellidosBody = apellidos.toRequestBody()
+        val passwordBody = contrasena.toRequestBody()
+        val tipoUsuarioBody = tipoUsuario.toRequestBody()
+        val contactoBody = contacto.toRequestBody()
+        val carnetBody = carnet.toRequestBody()
+        val carreraBody = carrera.toRequestBody()
+        val nivelAcademicoBody = nivelAcademico.toRequestBody()
+        val promedioPonderadoBody = promedioPonderado.toRequestBody()
+
+        val archivoPart: MultipartBody.Part? = null
+
+        val call = apiService.signInStudent(
+            emailBody,
+            nameBody,
+            apellidosBody,
+            passwordBody,
+            tipoUsuarioBody,
+            contactoBody,
+            null,
+            null,
+            carnetBody,
+            null,
+            null,
+            nivelAcademicoBody,
+            carreraBody,
+            promedioPonderadoBody,
+            archivoPart
         )
 
-        if (
-            !vacio(signInRequest.email) &&
-            !vacio(signInRequest.name) &&
-            !vacio(signInRequest.apellidos) &&
-            !vacio(signInRequest.carnet) &&
-            !vacio(signInRequest.password)
-        ) {
-            llamarApi(apiService, signInRequest)
-        }
+        call.enqueue(object : Callback<SignInResponse> {
+            override fun onResponse(call: Call<SignInResponse>, response: Response<SignInResponse>) {
+                if (response.isSuccessful) {
+                    val signInResponse = response.body()
+                    if (signInResponse != null && signInResponse.success) {
+                        Toast.makeText(this@VerificacionActivity, signInResponse.message, Toast.LENGTH_SHORT).show()
+                        irLogin()
+                    } else {
+                        Toast.makeText(this@VerificacionActivity, signInResponse?.message ?: "Error desconocido", Toast.LENGTH_SHORT).show()
+                    }
+                } else {
+                    val errorMessage = response.errorBody()?.string() ?: "Error desconocido"
+                    Toast.makeText(this@VerificacionActivity, errorMessage, Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onFailure(call: Call<SignInResponse>, t: Throwable) {
+                Toast.makeText(this@VerificacionActivity, "Error: ${t.message}", Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 
     private fun crearProfesor() {
@@ -219,4 +248,8 @@ class VerificacionActivity : AppCompatActivity() {
         startActivity(intent)
         finish()
     }
+
+    private fun String.toRequestBody(): RequestBody =
+        this.toRequestBody("text/plain".toMediaTypeOrNull())
+
 }

@@ -16,6 +16,8 @@ import com.altrik.proyectoap.utilities.response.PerfilEstudianteSimpleResponse
 import com.altrik.proyectoap.utilities.response.SignInResponse
 import com.altrik.proyectoap.utilities.response.UpdateUserResponse
 import com.altrik.proyectoap.utilities.response.UserListResponse
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.Body
@@ -23,6 +25,8 @@ import retrofit2.http.POST
 import retrofit2.http.GET
 import retrofit2.http.PUT
 import retrofit2.http.DELETE
+import retrofit2.http.Multipart
+import retrofit2.http.Part
 import retrofit2.http.Path
 import retrofit2.http.Query
 
@@ -34,6 +38,26 @@ interface ApiService {
 
     @POST("signIn")
     fun signIn(@Body usuario: SignInRequest): Call<SignInResponse>
+
+    @Multipart
+    @POST("signIn")
+    fun signInStudent(
+        @Part("email") email: RequestBody,
+        @Part("name") name: RequestBody,
+        @Part("apellidos") apellidos: RequestBody,
+        @Part("password") password: RequestBody,
+        @Part("tipoUsuario") tipoUsuario: RequestBody,
+        @Part("contacto") contacto: RequestBody?,
+        @Part("escuela") escuela: RequestBody?,
+        @Part("zonaTrabajo") zonaTrabajo: RequestBody?,
+        @Part("carnet") carnet: RequestBody?,
+        @Part("departamentoTrabajo") departamentoTrabajo: RequestBody?,
+        @Part("telefono") telefono: RequestBody?,
+        @Part("nivelAcademico") nivelAcademico: RequestBody?,
+        @Part("carrera") carrera: RequestBody?,
+        @Part("promedioPonderado") promedioPonderado: RequestBody?,
+        @Part archivo: MultipartBody.Part? // <- archivo opcional
+    ): Call<SignInResponse>
 
     @GET("userList/{name}")
     suspend fun getListaUsuarios(@Path("name") name: String): UserListResponse<List<Usuario>>
