@@ -87,6 +87,13 @@ interface ApiService {
         @Path("correo") correo: String
     ): Response<Void>
 
+    @PUT("oferta/{titulo}/estudiante/{correo}")
+    suspend fun updateEstudianteInteresado(
+        @Path("titulo") titulo: String,
+        @Path("correo") correo: String,
+    ): Response<Void>
+
+
     @POST("/oferta/{titulo}/historial")
     suspend fun addToHistorial(
         @Path("titulo") titulo: String,
