@@ -6,6 +6,7 @@ import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.Spinner
 import android.widget.Toast
 import com.altrik.proyectoap.utilities.MailSender
@@ -17,6 +18,8 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class SignInStudentActivity : AppCompatActivity()  {
+    private val REQUEST_CODE_FILE_PICKER = 1001
+    
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.sign_in_student_layout)
@@ -50,6 +53,11 @@ class SignInStudentActivity : AppCompatActivity()  {
         val btnCrearCuenta = findViewById<Button>(R.id.boton_crear_cuenta)
         btnCrearCuenta.setOnClickListener {
             crearCuenta()
+        }
+
+        val btnSubirArchivo = findViewById<ImageButton>(R.id.boton_adjuntar_archivo)
+        btnSubirArchivo.setOnClickListener {
+            seleccionarArchivo()
         }
     }
 
@@ -129,6 +137,12 @@ class SignInStudentActivity : AppCompatActivity()  {
         finish()
     }
 
+    private fun seleccionarArchivo() {
+        val intent = Intent(Intent.ACTION_GET_CONTENT)
+        intent.type = "*/*" // Puedes especificar "application/pdf", "image/*", etc.
+        startActivityForResult(Intent.createChooser(intent, "Seleccione un archivo"), REQUEST_CODE_FILE_PICKER)
+    }
+
     // Validaciones al crear la cuenta
 
     private fun camposVacios(
@@ -195,5 +209,16 @@ class SignInStudentActivity : AppCompatActivity()  {
         val intent = Intent(this, VerificacionActivity::class.java)
         startActivity(intent)
         finish()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode === REQUEST_CODE_FILE_PICKER && resultCode == RESULT_OK) {
+            val fileUri = data?.data
+            if (fileUri != null) {
+                Toast.makeText(this, "Archivo seleccionado: $fileUri", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 }
