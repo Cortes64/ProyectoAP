@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="tipos_beca">
+        <item>CulturalDeportiva</item>
+        <item>FEITEC</item>
+        <item>HorasEstudiante</item>
+        <item>HorasAsistente</item>
+        <item>TutoriaEstudiantil</item>
+        <item>Honor</item>
+        <item>AsistenciaEspecial</item>
+        <item>ExcelenciaAcademica</item>
+        <item>MauricioCampos</item>
+        <item>Dependiente</item>
+        <item>EgresadoColegioCientifico</item>
+        <item>Prestamo</item>
+        <item>ExoneracionPorcentual</item>
+        <item>TipTec</item>
+    </string-array>
+</resources>
