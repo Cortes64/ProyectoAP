@@ -8,5 +8,4 @@ data class Beca (
     val procesoObtencion: String,
     val estudiante: String,
     val tipo: String,
-    val grupo: Grupo?
 )

@@ -13,7 +13,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.altrik.proyectoap.utilities.ApiService
 import com.altrik.proyectoap.utilities.Beca
-import com.altrik.proyectoap.utilities.Grupo
 import com.altrik.proyectoap.utilities.RetrofitClient
 import com.altrik.proyectoap.utilities.response.BecaResponse
 
@@ -87,12 +86,17 @@ class ManejarBeneficioAlumno : AppCompatActivity() {
         val beneficios = inputBeneficios.text.toString()
         val procesoObtencion = inputProcesoObtencion.text.toString()
         val tipoBeca = spinnerTipoBeca.selectedItem.toString()
-        val grupoBeca: Grupo? = if (spinnerGrupoBeca.visibility == View.VISIBLE) {
-            Grupo(spinnerGrupoBeca.selectedItem.toString())
-        } else {
-            null
-        }
+
         val email = intent.getStringExtra("EMAIL").toString()
+
+        Log.d("ManejarBeneficioAlumno", "Creando beca con datos:")
+        Log.d("ManejarBeneficioAlumno", "Nombre: $nombre")
+        Log.d("ManejarBeneficioAlumno", "Descripción: $descripcion")
+        Log.d("ManejarBeneficioAlumno", "Requisitos: $requisitos")
+        Log.d("ManejarBeneficioAlumno", "Beneficios: $beneficios")
+        Log.d("ManejarBeneficioAlumno", "Proceso Obtención: $procesoObtencion")
+        Log.d("ManejarBeneficioAlumno", "Tipo Beca: $tipoBeca")
+        Log.d("ManejarBeneficioAlumno", "Email Estudiante: $email")
 
         val beca = Beca(
             nombre = nombre,
@@ -100,7 +104,6 @@ class ManejarBeneficioAlumno : AppCompatActivity() {
             requisitos = requisitos,
             procesoObtencion = procesoObtencion,
             tipo = tipoBeca,
-            grupo = grupoBeca, // ahora es un objeto
             estudiante = email,
             beneficios = beneficios
         )
@@ -114,20 +117,21 @@ class ManejarBeneficioAlumno : AppCompatActivity() {
                 if (response.isSuccessful) {
                     val mensaje = response.body()?.message ?: "Beca creada exitosamente"
                     Toast.makeText(this@ManejarBeneficioAlumno, mensaje, Toast.LENGTH_SHORT).show()
+                    Log.d("ManejarBeneficioAlumno", "Beca creada exitosamente: $mensaje")
                     val intent = Intent(this@ManejarBeneficioAlumno, ManageStudentActivity::class.java)
                     startActivity(intent)
                     finish()
                 } else {
-                    Toast.makeText(this@ManejarBeneficioAlumno, "Error al crear la beca: ${response.errorBody()?.string()}", Toast.LENGTH_LONG).show()
+                    val error = response.errorBody()?.string()
+                    Toast.makeText(this@ManejarBeneficioAlumno, "Error al crear la beca", Toast.LENGTH_LONG).show()
+                    Log.e("ManejarBeneficioAlumno", "Error al crear la beca: $error")
                 }
             }
 
             override fun onFailure(call: retrofit2.Call<BecaResponse>, t: Throwable) {
                 Toast.makeText(this@ManejarBeneficioAlumno, "Error de conexión", Toast.LENGTH_SHORT).show()
+                Log.e("ManejarBeneficioAlumno", "Error de conexión: ${t.localizedMessage}")
             }
         })
     }
-
-
-
 }
