@@ -1,12 +1,15 @@
 package com.altrik.proyectoap.utilities
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity.MODE_PRIVATE
 import androidx.recyclerview.widget.RecyclerView
+import com.altrik.proyectoap.EvaluarAlumnoActivity
 import com.altrik.proyectoap.R
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -31,11 +34,23 @@ class EstudiantesInteresadosAdapter (
         holder.promedio.text = estudianteInteresado.promedioPonderado
 
         if (estudianteInteresado.aceptado) {
+            holder.star.visibility = View.VISIBLE
             holder.check.isEnabled = false
             holder.check.alpha = 0.5f
         } else {
+            holder.star.visibility = View.GONE
             holder.check.isEnabled = true
             holder.check.alpha = 1.0f
+        }
+
+        holder.star.setOnClickListener {
+            val context = holder.itemView.context
+            val intent = Intent(context, EvaluarAlumnoActivity::class.java)
+
+            val sharedPrefs = context.getSharedPreferences("UserPrefs", MODE_PRIVATE)
+            intent.putExtra("correoEstudiante", estudianteInteresado.correoEstudiante )
+            intent.putExtra("email", sharedPrefs.getString("correoUsuario", "") )
+            context.startActivity(intent)
         }
 
         holder.check.setOnClickListener {
@@ -100,8 +115,7 @@ class EstudiantesInteresadosAdapter (
         val promedio: TextView = view.findViewById(R.id.student_promedio_ponderado)
         val email: TextView = view.findViewById(R.id.student_list_correo)
         val aceptado: TextView = view.findViewById(R.id.student_list_aceptado)
-
-
+        val star: ImageButton = view.findViewById(R.id.evaluarButton)
         val check: ImageButton = view.findViewById<ImageButton>(R.id.button_check)
         val close: ImageButton = view.findViewById<ImageButton>(R.id.button_close)
     }

@@ -99,7 +99,8 @@ class EvaluarAlumnoActivity : AppCompatActivity() {
     }
 
     private fun submitEvaluation() {
-        val CorreoAlumno = intent.getStringExtra("email") ?: run {
+        val correoEstudiante = intent.getStringExtra("correoEstudiante")
+        val correo = intent.getStringExtra("email") ?: run {
             // En TEORIA esto deberia de poder agarrar el correo del login
             showError("No se encontro correo al cual enviar esto")
             return
@@ -109,15 +110,16 @@ class EvaluarAlumnoActivity : AppCompatActivity() {
 
         val asunto = "Evaluacion de trabajo"
         val cuerpo = """
+            Alumno: $correoEstudiante
             Calificacion de alumno: $Calificacionfinal / 5
             Comentarios adicionales:
-            ${comentarios}
+            $comentarios
         """.trimIndent()
 
         try {
             MailSender.sendEmail(
                 context = this,
-                to = CorreoAlumno,
+                to = correo,
                 subject = asunto,
                 body = cuerpo
             )
