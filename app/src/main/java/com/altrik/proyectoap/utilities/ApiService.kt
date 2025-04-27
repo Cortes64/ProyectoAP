@@ -7,6 +7,7 @@ import com.altrik.proyectoap.utilities.request.SignInRequest
 import com.altrik.proyectoap.utilities.request.UpdateOfertaRequest
 import com.altrik.proyectoap.utilities.request.UpdateUserRequest
 import com.altrik.proyectoap.utilities.response.AddHistorialResponse
+import com.altrik.proyectoap.utilities.response.BecaResponse
 import com.altrik.proyectoap.utilities.response.EstudianteInteresadoResponse
 import com.altrik.proyectoap.utilities.response.GetBecaResponse
 import com.altrik.proyectoap.utilities.response.OfertaByTitleResponse
@@ -101,6 +102,9 @@ interface ApiService {
     ): AddHistorialResponse
 
     // Becas
+
+    @POST("createBeca")
+    fun createBeca(@Body beca: Beca): Call<BecaResponse>
 
     @GET("becaByEmail/{email}")
     suspend fun getBecaByEmail(@Path("email") email: String): GetBecaResponse<Beca>

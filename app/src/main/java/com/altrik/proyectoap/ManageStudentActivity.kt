@@ -1,5 +1,6 @@
 package com.altrik.proyectoap
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageButton
 import android.widget.TextView
@@ -25,7 +26,10 @@ class ManageStudentActivity : AppCompatActivity() {
 
         val botonBeca = findViewById<ImageButton>(R.id.BecaButton)
         botonBeca.setOnClickListener {
-
+            val intent = Intent(this, ManejarBeneficioAlumno::class.java)
+            intent.putExtra("EMAIL", email)
+            startActivity(intent)
+            finish()
         }
 
         llenarCampos()

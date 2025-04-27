@@ -65,7 +65,7 @@ class StatusFinancieroActivity: AppCompatActivity() {
                     val textViewBeneficioBeca = findViewById<TextView>(R.id.textViewBeneficiosBeca)
 
                     textViewTipoBeca.text = "Tipo de beca: ${beca?.tipo}"
-                    textViewBeneficioBeca.text = "Beneficios: ${beca?.description}"
+                    textViewBeneficioBeca.text = "Beneficios: ${beca?.descripcion}"
                 } else {
                     Toast.makeText(this@StatusFinancieroActivity, "No se encontró la beca", Toast.LENGTH_SHORT).show()
                 }
