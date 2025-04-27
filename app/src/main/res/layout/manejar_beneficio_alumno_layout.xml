@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#2C393E">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@id/footerBar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/Título"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="serif"
+            android:gravity="center"
+            android:text="Asignar Beca"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="300sp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_sign_in_background"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <!-- Empieza como invisible -->
+
+            <!-- Empieza como invisible -->
+
+
+            <!-- Empieza como invisible -->
+
+            <EditText
+                android:id="@+id/InputNombreBeca"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/text_edit_sign_in"
+                android:ems="10"
+                android:fontFamily="sans-serif"
+                android:gravity="center"
+                android:hint="Nombre Beca"
+                android:inputType="text"
+                android:textColorHint="#FFFFFF" />
+
+            <EditText
+                android:id="@+id/InputDescripcionBeca"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/text_edit_sign_in"
+                android:ems="10"
+                android:fontFamily="sans-serif"
+                android:gravity="center"
+                android:hint="Descripcion"
+                android:inputType="text"
+                android:textColorHint="#FFFFFF" />
+
+            <EditText
+                android:id="@+id/InputRequisitosBeca"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/text_edit_sign_in"
+                android:ems="10"
+                android:fontFamily="sans-serif"
+                android:gravity="center"
+                android:hint="Requisitos"
+                android:inputType="text"
+                android:textColorHint="#FFFFFF" />
+
+            <EditText
+                android:id="@+id/InputBeneficiosBeca"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/text_edit_sign_in"
+                android:ems="10"
+                android:fontFamily="sans-serif"
+                android:gravity="center"
+                android:hint="Beneficios"
+                android:inputType="text"
+                android:textColorHint="#FFFFFF" />
+
+            <EditText
+                android:id="@+id/InputObtencionBeca"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/text_edit_sign_in"
+                android:ems="10"
+                android:fontFamily="sans-serif"
+                android:gravity="center"
+                android:hint="Proceso de Obtención"
+                android:inputType="text"
+                android:textColorHint="#FFFFFF" />
+
+            <Spinner
+                android:id="@+id/TipoBecaOptions"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/text_edit_sign_in" />
+
+            <Spinner
+                android:id="@+id/GrupoBecaOptions"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/text_edit_sign_in" />
+
+            <Button
+                android:id="@+id/boton_crear"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="40dp"
+                android:layout_marginBottom="40dp"
+                android:backgroundTint="#827E94"
+                android:minHeight="48dp"
+                android:text="Asignar"
+                android:textColor="#FFFFFF"
+                app:cornerRadius="16dp" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <com.altrik.proyectoap.utilities.FooterBarView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/footerBar"
+        android:layout_alignParentBottom="true"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

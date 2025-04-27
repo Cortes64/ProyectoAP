@@ -176,12 +176,13 @@
                     android:orientation="horizontal"
                     tools:layout_constraintEnd_toEndOf="parent">
 
-                    <ImageView
-                        android:id="@+id/imageViewBeca"
+                    <ImageButton
+                        android:id="@+id/BecaButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         app:srcCompat="@drawable/ic_article_shortcut" />
+
                 </LinearLayout>
             </LinearLayout>
 
