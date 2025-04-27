@@ -2,6 +2,7 @@ package com.altrik.proyectoap
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -12,6 +13,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.altrik.proyectoap.utilities.ApiService
 import com.altrik.proyectoap.utilities.Beca
+import com.altrik.proyectoap.utilities.Grupo
 import com.altrik.proyectoap.utilities.RetrofitClient
 import com.altrik.proyectoap.utilities.response.BecaResponse
 
@@ -85,7 +87,11 @@ class ManejarBeneficioAlumno : AppCompatActivity() {
         val beneficios = inputBeneficios.text.toString()
         val procesoObtencion = inputProcesoObtencion.text.toString()
         val tipoBeca = spinnerTipoBeca.selectedItem.toString()
-        val grupoBeca = spinnerGrupoBeca.selectedItem.toString()
+        val grupoBeca: Grupo? = if (spinnerGrupoBeca.visibility == View.VISIBLE) {
+            Grupo(spinnerGrupoBeca.selectedItem.toString())
+        } else {
+            null
+        }
         val email = intent.getStringExtra("EMAIL").toString()
 
         val beca = Beca(
@@ -94,7 +100,7 @@ class ManejarBeneficioAlumno : AppCompatActivity() {
             requisitos = requisitos,
             procesoObtencion = procesoObtencion,
             tipo = tipoBeca,
-            grupo = grupoBeca,
+            grupo = grupoBeca, // ahora es un objeto
             estudiante = email,
             beneficios = beneficios
         )
@@ -112,7 +118,7 @@ class ManejarBeneficioAlumno : AppCompatActivity() {
                     startActivity(intent)
                     finish()
                 } else {
-                    Toast.makeText(this@ManejarBeneficioAlumno, "Error al crear la beca", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@ManejarBeneficioAlumno, "Error al crear la beca: ${response.errorBody()?.string()}", Toast.LENGTH_LONG).show()
                 }
             }
 
@@ -121,4 +127,7 @@ class ManejarBeneficioAlumno : AppCompatActivity() {
             }
         })
     }
+
+
+
 }

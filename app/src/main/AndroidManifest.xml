@@ -16,7 +16,7 @@
         android:theme="@style/Theme.ProyectoAP"
         tools:targetApi="31">
         <activity
-            android:name=".ManageStudentActivity"
+            android:name=".ManejarBeneficioAlumno"
             android:exported="false"/>
         <activity
             android:name=".BuscarOfertaActivity"
