@@ -66,6 +66,7 @@ class MenuSchoolActivity : AppCompatActivity() {
             reportes = emptyList(),
             onDelete = onDeleteOferta
         )
+        recyclerView.adapter = adapter
 
         val footer = findViewById<FooterBarView>(R.id.footerBar)
         val tipoUsuario = sharedPreferences.getString("tipoUsuario", "") ?: "ESTUDIANTE"
